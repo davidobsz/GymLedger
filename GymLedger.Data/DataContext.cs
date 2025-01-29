@@ -11,10 +11,16 @@ namespace GymLedger.Data
 {
     public class DataContext : DbContext
     {
+        public DataContext() : base("GymLedger") 
+        {
+            
+        }
+
         // public DbSet<Model> TableName { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Set> Sets { get; set; }
         public DbSet<Session> Sessions { get; set; }
         public DbSet<Exercise> Exercises { get; set; }
+
     }
 }

@@ -35,6 +35,8 @@ namespace GymLedger.Models.Mappings
             Property(u => u.LastLogin)
                 .IsOptional();
 
+            Property(u => u.UserRole).IsRequired();
+
             // Relationships
             HasMany(u => u.Sessions)
                 .WithRequired(s => s.User) 

@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialMigration_v_10 : DbMigration
+    public partial class v_10 : DbMigration
     {
         public override void Up()
         {
@@ -27,8 +27,9 @@
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Username = c.String(),
-                        Password = c.String(),
+                        Username = c.String(nullable: false),
+                        UserRole = c.Int(nullable: false),
+                        Password = c.String(nullable: false),
                         UniqueId = c.String(),
                         LastLogin = c.DateTime(),
                         DateAdded = c.DateTime(),

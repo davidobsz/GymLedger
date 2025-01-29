@@ -6,8 +6,9 @@ using System.Web.Mvc;
 
 namespace GymLedger.Web.Controllers
 {
-    public class HomeController : Controller
+    public class LedgerController : Controller
     {
+        // GET: Ledger
         public ActionResult Index()
         {
             return View();
