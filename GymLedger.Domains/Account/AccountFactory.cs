@@ -16,6 +16,11 @@ namespace GymLedger.Domains.Account
         {
             return new RegisterAccountCommandValidator(new RegisterAccountCommandHandler(null, command), command);
         }
+
+        public static ICommandHandler<LoginAccountCommand, DataCommandResponse> LoginAccountCommandHandler(LoginAccountCommand command)
+        {
+            return new LoginAccountCommandValidator(new LoginAccountCommandHandler(null, command), command);
+        }
         #endregion
 
         #region Querys

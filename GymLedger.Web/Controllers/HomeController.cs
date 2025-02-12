@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace GymLedger.Web.Controllers
 {
+    [CustomAuthorize]
     public class HomeController : Controller
     {
         public ActionResult Index()

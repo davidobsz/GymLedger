@@ -1,15 +1,15 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D83A6476-9C6F-4C45-A0BF-F1D64ABA17B6}</ProjectGuid>
+    <ProjectGuid>{BD7DFAED-138D-4473-9E4E-6D7467E53344}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GymLedger.Domains</RootNamespace>
-    <AssemblyName>GymLedger.Domains</AssemblyName>
+    <RootNamespace>GymLedger.Helpers</RootNamespace>
+    <AssemblyName>GymLedger.Helpers</AssemblyName>
     <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -43,6 +43,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,43 +52,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Account\AccountFactory.cs" />
-    <Compile Include="Account\CommandHandlers\LoginAccountCommandHandler.cs" />
-    <Compile Include="Account\CommandHandlers\RegisterAccountCommandHandler.cs" />
-    <Compile Include="Account\Commands\LoginAccountCommand.cs" />
-    <Compile Include="Account\Commands\RegisterAccountCommand.cs" />
-    <Compile Include="Areas\Ledger\LedgerFactory.cs" />
-    <Compile Include="BaseCommands\DataCommandResponse.cs" />
-    <Compile Include="BaseCommands\ICommand.cs" />
-    <Compile Include="BaseCommands\ICommandHandler.cs" />
-    <Compile Include="BaseQuerys\IQuery.cs" />
-    <Compile Include="BaseQuerys\IQueryHandler.cs" />
+    <Compile Include="CookieAuth\AuthCookieHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Account\QueryHandlers\" />
-    <Folder Include="Account\Querys\" />
-    <Folder Include="Areas\Admin\CommandHandlers\" />
-    <Folder Include="Areas\Admin\Commands\" />
-    <Folder Include="Areas\Admin\QueryHandlers\" />
-    <Folder Include="Areas\Admin\Querys\" />
-    <Folder Include="Areas\Ledger\CommandHandlers\" />
-    <Folder Include="Areas\Ledger\Commands\" />
-    <Folder Include="Areas\Ledger\QueryHandlers\" />
-    <Folder Include="Areas\Ledger\Querys\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\GymLedger.Common\GymLedger.Common.csproj">
-      <Project>{E0FFAE38-AF6A-4957-B196-263D58CAB3FF}</Project>
-      <Name>GymLedger.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\GymLedger.Data\GymLedger.Data.csproj">
       <Project>{08F816F0-9BB4-4823-8B76-BDC5376D433A}</Project>
       <Name>GymLedger.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\GymLedger.Helpers\GymLedger.Helpers.csproj">
-      <Project>{BD7DFAED-138D-4473-9E4E-6D7467E53344}</Project>
-      <Name>GymLedger.Helpers</Name>
     </ProjectReference>
     <ProjectReference Include="..\GymLedger.Models\GymLedger.Models.csproj">
       <Project>{CDAC1BDD-D624-43EA-B436-B4DB33591B11}</Project>
