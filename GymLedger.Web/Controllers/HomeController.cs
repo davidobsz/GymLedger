@@ -9,9 +9,11 @@ namespace GymLedger.Web.Controllers
     [CustomAuthorize]
     public class HomeController : Controller
     {
+        [HttpGet]
         public ActionResult Index()
         {
             return View();
         }
+
     }
 }

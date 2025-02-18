@@ -43,6 +43,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -56,7 +57,11 @@
     <Compile Include="Account\CommandHandlers\RegisterAccountCommandHandler.cs" />
     <Compile Include="Account\Commands\LoginAccountCommand.cs" />
     <Compile Include="Account\Commands\RegisterAccountCommand.cs" />
+    <Compile Include="Areas\Ledger\CommandHandlers\AddExerciseCommandHandler.cs" />
+    <Compile Include="Areas\Ledger\Commands\AddExerciseCommand.cs" />
     <Compile Include="Areas\Ledger\LedgerFactory.cs" />
+    <Compile Include="Areas\Ledger\QueryHandlers\GetExercisesQueryHandler.cs" />
+    <Compile Include="Areas\Ledger\Querys\GetExercisesQuery.cs" />
     <Compile Include="BaseCommands\DataCommandResponse.cs" />
     <Compile Include="BaseCommands\ICommand.cs" />
     <Compile Include="BaseCommands\ICommandHandler.cs" />
@@ -71,10 +76,6 @@
     <Folder Include="Areas\Admin\Commands\" />
     <Folder Include="Areas\Admin\QueryHandlers\" />
     <Folder Include="Areas\Admin\Querys\" />
-    <Folder Include="Areas\Ledger\CommandHandlers\" />
-    <Folder Include="Areas\Ledger\Commands\" />
-    <Folder Include="Areas\Ledger\QueryHandlers\" />
-    <Folder Include="Areas\Ledger\Querys\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GymLedger.Common\GymLedger.Common.csproj">

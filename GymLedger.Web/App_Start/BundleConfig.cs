@@ -24,10 +24,15 @@ namespace GymLedger.Web
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/bootstrap-table.min.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/account").Include(
                 "~/Scripts/Site/Account/Account.js"
+                ));
+            bundles.Add(new ScriptBundle("~/bundles/site").Include(
+                "~/Scripts/Site/site.js",
+                "~/Scripts/bootstrap-table.min.js"
                 ));
 
             bundles.Add(new ScriptBundle("~/bundles/growl").Include(

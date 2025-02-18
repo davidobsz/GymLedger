@@ -1,0 +1,20 @@
+﻿@model GymLedger.Views.Areas.Ledger.AddExerciseView
+
+@{
+    ViewBag.Title = "AddExercise";
+}
+
+<h2>Add Exercise</h2>
+
+
+
+@using (Html.BeginForm("AddExercise", "Ledger", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "addExerciseForm" }))
+{
+    <div>
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Name)
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+}
