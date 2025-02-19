@@ -10,7 +10,16 @@ namespace GymLedger.Views.Areas.Ledger
 {
     public class AddSessionView
     {
-        public Exercise Exercise { get; set; }
-        public List<Set> Sets { get; set; } 
+        public string ExerciseName { get; set; }  // Selected Exercise
+        public List<Exercise> Exercises { get; set; }  // List of Exercises for dropdown
+        public List<SetViewModel> Sets { get; set; } 
     }
+
+    public class SetViewModel
+    {
+        public int SetNumber { get; set; }
+        public int Weight { get; set; }
+        public int Reps { get; set; }
+    }
+
 }

@@ -58,7 +58,9 @@
     <Compile Include="Account\Commands\LoginAccountCommand.cs" />
     <Compile Include="Account\Commands\RegisterAccountCommand.cs" />
     <Compile Include="Areas\Ledger\CommandHandlers\AddExerciseCommandHandler.cs" />
+    <Compile Include="Areas\Ledger\CommandHandlers\AddSessionCommandHandler.cs" />
     <Compile Include="Areas\Ledger\Commands\AddExerciseCommand.cs" />
+    <Compile Include="Areas\Ledger\Commands\AddSessionCommand.cs" />
     <Compile Include="Areas\Ledger\LedgerFactory.cs" />
     <Compile Include="Areas\Ledger\QueryHandlers\GetExercisesQueryHandler.cs" />
     <Compile Include="Areas\Ledger\Querys\GetExercisesQuery.cs" />

@@ -9,6 +9,7 @@ namespace GymLedger.Models.Models
     public class Session : BaseModel
     {
         public int UserId { get; set; }
+        public int ExerciseId { get; set; }
         public string UniqueId { get; set; }
         public ICollection<Set> Sets { get; set; }
         public DateTime? Date { get; set; }

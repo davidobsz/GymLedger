@@ -56,9 +56,9 @@
     <Compile Include="Mappings\SessionMap.cs" />
     <Compile Include="Mappings\SetMap.cs" />
     <Compile Include="Mappings\UserMap.cs" />
-    <Compile Include="Migrations\202501291251426_v_1.0.cs" />
-    <Compile Include="Migrations\202501291251426_v_1.0.Designer.cs">
-      <DependentUpon>202501291251426_v_1.0.cs</DependentUpon>
+    <Compile Include="Migrations\202502191447035_v_1.0.cs" />
+    <Compile Include="Migrations\202502191447035_v_1.0.Designer.cs">
+      <DependentUpon>202502191447035_v_1.0.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -78,8 +78,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202501291251426_v_1.0.resx">
-      <DependentUpon>202501291251426_v_1.0.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202502191447035_v_1.0.resx">
+      <DependentUpon>202502191447035_v_1.0.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

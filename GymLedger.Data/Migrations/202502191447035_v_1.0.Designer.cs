@@ -13,7 +13,7 @@ namespace GymLedger.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202501291251426_v_1.0"; }
+            get { return "202502191447035_v_1.0"; }
         }
         
         string IMigrationMetadata.Source

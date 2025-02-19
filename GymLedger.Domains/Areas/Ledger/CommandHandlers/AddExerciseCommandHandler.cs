@@ -31,15 +31,12 @@ namespace GymLedger.Domains.Areas.Ledger.CommandHandlers
             Command.ValidateMe();
             using (DataContext db = new DataContext())
             {
-                bool exists = db.Exercises.Any(e => e.Name == this.Command.View.Name);
+                bool exists = db.Exercises.Any(e => e.Name == this.Command.View.Name && e.User.Username == this.Command.UserIdentity.Username);
 
                 if (exists) 
                 {
                     throw new Exception("This exercise already exists");
                 }
-
-
-                
             }
 
             return this.decorated.Execute();
@@ -61,14 +58,9 @@ namespace GymLedger.Domains.Areas.Ledger.CommandHandlers
         {
             using (DataContext db = new DataContext())
             {
-                // get cookie from context of current user
-                var authCookie = HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName];
-
-                // Decrypt the auth cookie
-                var userInfo = AuthCookieHelper.DecryptAuthCookie(authCookie.Value);
 
                 // get user
-                var user = db.Users.FirstOrDefault(u => u.Username == userInfo.Username);
+                var user = db.Users.FirstOrDefault(u => u.Username == this.Command.UserIdentity.Username);
 
                 Exercise exercise = new Exercise
                 {

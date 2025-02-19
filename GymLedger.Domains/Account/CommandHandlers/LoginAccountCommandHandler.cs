@@ -60,7 +60,7 @@ namespace GymLedger.Domains.Account.CommandHandlers
                 var response = new DataCommandResponse();
 
                 response.Success = true;
-                response.Message = "Registration Successful";
+                response.Message = "Login Successful";
 
                 return response;
             }

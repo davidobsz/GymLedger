@@ -18,6 +18,5 @@ namespace GymLedger.Models.Models
         public string UniqueId { get; set; }
         public DateTime? LastLogin { get; set; }
         public ICollection<Session> Sessions { get; set; }
-        public ICollection<Exercise> Exercises { get; set; }
     }
 }

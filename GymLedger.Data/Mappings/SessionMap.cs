@@ -22,12 +22,13 @@ namespace GymLedger.Data.Mappings
             Property(t => t.DateAdded).IsRequired();
             Property(t => t.UserId).IsRequired();
             Property(t => t.Date).IsRequired();
+            Property(t => t.ExerciseId).IsRequired();
 
             // one to many (1 session to many Sets) 
             HasMany(t => t.Sets)
-            .WithRequired(s => s.Session) // Required navigation
-            .HasForeignKey(s => s.SessionId) // FK in Sets
-            .WillCascadeOnDelete(true);
+                .WithRequired(s => s.Session) // Required navigation
+                .HasForeignKey(s => s.SessionId) // FK in Sets
+                .WillCascadeOnDelete(true); // Disable cascading delete on Sets
 
             //table name - make plurals
             ToTable("Sessions");

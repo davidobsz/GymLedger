@@ -10,12 +10,18 @@ using System.Web.UI.WebControls;
 using GymLedger.Domains.Areas.Ledger;
 using GymLedger.Views.Areas.Ledger;
 using GymLedger.Domains.Areas.Ledger.Querys;
+using GymLedger.Models.Models;
 
 namespace GymLedger.Web.Controllers
 {
     [CustomAuthorize]
     public class LedgerController : Controller
     {
+        [HttpGet]
+        public ActionResult Home()
+        {
+            return View("Index");
+        }
 
         [HttpGet]
         public ActionResult AddExercise()
@@ -30,7 +36,7 @@ namespace GymLedger.Web.Controllers
             {
                 try
                 {
-                    var handler = LedgerFactory.AddExerciseCommandHandler(new AddExerciseCommand(view));
+                    var handler = LedgerFactory.AddExerciseCommandHandler(new AddExerciseCommand(view, this.HttpContext));
                     var response = handler.Execute();
 
                     return Json(new { success = true, responseText = $"{response.Message}", responseReload = true }, JsonRequestBehavior.AllowGet);
@@ -67,6 +73,55 @@ namespace GymLedger.Web.Controllers
                 }
             }
             return Json(new { success = false, responseText = "Failed to get exercises" }, JsonRequestBehavior.AllowGet);
+
+        }
+
+        [HttpGet]
+        public ActionResult AddSession()
+        {
+            try
+            {
+                var handler = LedgerFactory.GetExercisesQueryHandler(new GetExercisesQuery());
+                var response = handler.Get();
+
+                List<Exercise> exercises = new List<Exercise>();
+
+                foreach (var resp in response.Exercises)
+                {
+                    Exercise exercise = new Exercise
+                    {
+                        Name = resp.Name
+                    };
+
+                    exercises.Add(exercise);
+                }
+                var view = new AddSessionView { Exercises = exercises };
+                return View(view);
+            }
+            catch (Exception ex)
+            {
+                return View();
+            }
+        }
+
+        [HttpPost]
+        public ActionResult AddSession(AddSessionView view)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var handler = LedgerFactory.AddSessionCommandHandler(new AddSessionCommand(view, this.HttpContext));
+                    var response = handler.Execute();
+
+                    return Json(new { success = true, responseText = $"{response.Message}", responseReload = true }, JsonRequestBehavior.AllowGet);
+                }
+                catch (Exception ex)
+                {
+                    return Json(new { success = false, responseText = ex.Message }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            return Json(new { success = false, responseText = "Failed to add session" }, JsonRequestBehavior.AllowGet);
 
         }
     }

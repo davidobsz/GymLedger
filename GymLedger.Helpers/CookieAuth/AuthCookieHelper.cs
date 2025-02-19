@@ -1,4 +1,5 @@
 ﻿using GymLedger.Data;
+using GymLedger.Models.Models;
 using GymLedger.Views.Account.Login;
 using System;
 using System.Collections.Generic;
@@ -63,14 +64,38 @@ namespace GymLedger.Helpers.CookieAuth
                 return null; // Decryption failed
             }
         }
-
+        private static readonly object _lock = new object();
         public static bool ValidateUser(string username, string password)
         {
+            // if needed to prevent concurrent users
+            /*lock (_lock)
+            {
+                using (var db = new DataContext())
+                {
+                    return db.Users.Any(u => u.Username == username && u.Password == password);
+                }
+            }*/
             using (var db = new DataContext())
             {
                 return db.Users.Any(u => u.Username == username && u.Password == password);
             }
         } 
+
+        public static User getUserIdentity()
+        {
+            // get cookie from context of current user
+            var authCookie = HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName];
+
+            // Decrypt the auth cookie
+            var userInfo = AuthCookieHelper.DecryptAuthCookie(authCookie.Value);
+
+            User user = new User
+            {
+                Username = userInfo.Username
+            };
+
+            return user;
+        }
 
         public static void Logout()
         {

@@ -1,0 +1,76 @@
+﻿@model GymLedger.Views.Areas.Ledger.AddSessionView
+
+@{
+    ViewBag.Title = "Add Session";
+}
+
+<h2>Add Session</h2>
+
+@using (Html.BeginForm("AddSession", "Ledger", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "addExerciseForm" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Exercises)
+        @Html.DropDownListFor(m => m.ExerciseName, new SelectList(Model.Exercises, "Name", "Name"), "Select Exercise", new { @class = "form-control"})
+        @Html.ValidationMessageFor(m => m.Exercises)
+    </div>
+
+    <button type="button" class="btn btn-primary" id="add-set">Add Set</button>
+
+    <div id="sets-container"></div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-success">Save Session</button>
+    </div>
+}
+
+
+<!-- Hidden template for Set inputs -->
+<div id="set-template" style="display:none;">
+    <div class="set-entry">
+        <div class="form-group">
+            <label for="SetNumber">Set Number</label>
+            <input type="number" name="Sets[0].SetNumber" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="Weight">Weight</label>
+            <input type="number" name="Sets[0].Weight" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="Reps">Reps</label>
+            <input type="number" name="Sets[0].Reps" class="form-control" />
+        </div>
+        <button type="button" class="btn btn-danger remove-set">Remove</button>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            var setIndex = 0;
+
+            // Handle add set button click
+            $('#add-set').click(function () {
+                var setTemplate = $('#set-template').html();
+                var newSet = setTemplate.replace(/Sets\[0\]/g, 'Sets[' + setIndex + ']');
+                $('#sets-container').append(newSet);
+                setIndex++;
+            });
+
+            // Handle remove set button click
+            $(document).on('click', '.remove-set', function () {
+                $(this).closest('.set-entry').remove();
+            });
+
+            $('form').submit(function () {
+                var exerciseValue = $('#addSessionForm').val();
+                // Make sure the dropdown's value is sent
+                $('<input />').attr('type', 'hidden')
+                    .attr('name', 'ExerciseName')
+                    .attr('value', exerciseValue)
+                    .appendTo('form');
+            });
+        });
+    </script>
+}

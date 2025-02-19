@@ -193,6 +193,8 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Ledger\AddExercise.cshtml" />
     <Content Include="Views\Ledger\Exercises.cshtml" />
+    <Content Include="Views\Ledger\AddSession.cshtml" />
+    <Content Include="Views\Ledger\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -234,6 +236,10 @@
     <ProjectReference Include="..\GymLedger.Helpers\GymLedger.Helpers.csproj">
       <Project>{BD7DFAED-138D-4473-9E4E-6D7467E53344}</Project>
       <Name>GymLedger.Helpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GymLedger.Models\GymLedger.Models.csproj">
+      <Project>{CDAC1BDD-D624-43EA-B436-B4DB33591B11}</Project>
+      <Name>GymLedger.Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\GymLedger.Views\GymLedger.Views.csproj">
       <Project>{8a012a32-61b9-46ee-85bc-3a5d037b481b}</Project>

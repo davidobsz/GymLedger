@@ -61,7 +61,7 @@ namespace GymLedger.Web.Controllers
                     var handler = AccountFactory.LoginAccountCommandHandler(new LoginAccountCommand(view));
                     var response = handler.Execute();
 
-                    return Json(new { success = true, responseText = $"{response.Message}", responseReload = true }, JsonRequestBehavior.AllowGet);
+                    return Json(new { success = true, responseText = $"{response.Message}", responseReload = false, redirectUrl = Url.Action("Index", "Home") }, JsonRequestBehavior.AllowGet);
                 }
                 catch (Exception ex)
                 {
@@ -69,6 +69,14 @@ namespace GymLedger.Web.Controllers
                 }
             }
             return Json(new { success = false, responseText = "Failed to login account" }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult Logout()
+        {
+            Helpers.CookieAuth.AuthCookieHelper.Logout();
+
+            return RedirectToAction("Login", "Account");
         }
     }
 }
