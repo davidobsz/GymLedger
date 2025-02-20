@@ -12,6 +12,7 @@
            data-url="@Url.Action("GetExercises", "Ledger")"
            data-pagination="true"
            data-search="true"
+           data-click-to-select="true"
            data-toolbar-align="left"
            data-show-refresh="true"
            data-cache="false"
@@ -20,16 +21,21 @@
            data-page-list="[10, 25, 50, 100, all]"
            data-side-pagination="client"
            data-query-params="queryParams"
-@*           data-sort-name="DisplayOrder"*@
-           data-sort-order="asc">
+           @*           data-sort-name="DisplayOrder"*@
+           data-sort-order="asc"
+           data-unique-id="UniqueId">
         <thead>
             <tr>
                 <th data-sortable="true" data-field="Name">Name</th>
                 <th data-sortable="true" data-field="DateAddedAsString">Date Added</th>
+                <th data-sortable="false" data-visible="false" data-field="UniqueId">UniqueId</th>
             </tr>
         </thead>
-        <tbody></tbody>
+        <tbody>
+        </tbody>
     </table>
 </div>
 
-
+<div id="exerciseTableContainer" 
+     data-url="@Url.Action("GetExerciseDetails", "Ledger")">
+</div>

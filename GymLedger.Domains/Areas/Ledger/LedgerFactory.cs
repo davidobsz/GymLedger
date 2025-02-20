@@ -40,6 +40,11 @@ namespace GymLedger.Domains.Areas.Ledger
             return new GetSessionsQueryValidator(new GetSessionsQueryHandler(query), query);
         }
 
+        public static IQueryHandler<GetExerciseDetailQuery, ExerciseDetailView> GetExerciseDetailsQueryHandler(GetExerciseDetailQuery query)
+        {
+            return new GetExerciseDetailQueryValidator(new GetExerciseDetailQueryHandler(query), query);
+        }
+
         #endregion
     }
 }

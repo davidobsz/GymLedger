@@ -77,6 +77,22 @@ namespace GymLedger.Web.Controllers
         }
 
         [HttpGet]
+        public PartialViewResult GetExerciseDetails(string uniqueId)
+        {
+            try
+            {
+                var handler = LedgerFactory.GetExerciseDetailsQueryHandler(new GetExerciseDetailQuery(this.HttpContext, uniqueId));
+                var response = handler.Get();
+
+                return PartialView("_ExerciseDetail",response);
+            }
+            catch (Exception ex)
+            {
+                return PartialView("_ExerciseDetail");
+            }
+        }
+
+        [HttpGet]
         public ActionResult AddSession()
         {
             try

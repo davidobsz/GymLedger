@@ -196,6 +196,7 @@
     <Content Include="Views\Ledger\AddSession.cshtml" />
     <Content Include="Views\Ledger\Index.cshtml" />
     <Content Include="Views\Ledger\Sessions.cshtml" />
+    <Content Include="Views\Ledger\_ExerciseDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
