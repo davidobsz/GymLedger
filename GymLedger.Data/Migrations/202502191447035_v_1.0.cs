@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialMigration_v_10 : DbMigration
+    public partial class v_10 : DbMigration
     {
         public override void Up()
         {
@@ -27,8 +27,9 @@
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Username = c.String(),
-                        Password = c.String(),
+                        Username = c.String(nullable: false),
+                        UserRole = c.Int(nullable: false),
+                        Password = c.String(nullable: false),
                         UniqueId = c.String(),
                         LastLogin = c.DateTime(),
                         DateAdded = c.DateTime(),
@@ -42,6 +43,7 @@
                     {
                         Id = c.Int(nullable: false, identity: true),
                         UserId = c.Int(nullable: false),
+                        ExerciseId = c.Int(nullable: false),
                         UniqueId = c.String(),
                         Date = c.DateTime(),
                         DateAdded = c.DateTime(),
@@ -72,9 +74,9 @@
         
         public override void Down()
         {
+            DropForeignKey("dbo.Exercises", "UserId", "dbo.Users");
             DropForeignKey("dbo.Sessions", "UserId", "dbo.Users");
             DropForeignKey("dbo.Sets", "SessionId", "dbo.Sessions");
-            DropForeignKey("dbo.Exercises", "UserId", "dbo.Users");
             DropIndex("dbo.Sets", new[] { "SessionId" });
             DropIndex("dbo.Sessions", new[] { "UserId" });
             DropIndex("dbo.Exercises", new[] { "UserId" });

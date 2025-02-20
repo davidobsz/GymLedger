@@ -7,13 +7,13 @@ namespace GymLedger.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.5.1")]
-    public sealed partial class InitialMigration_v_10 : IMigrationMetadata
+    public sealed partial class v_10 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialMigration_v_10));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(v_10));
         
         string IMigrationMetadata.Id
         {
-            get { return "202501161157138_InitialMigration_v_1.0"; }
+            get { return "202502191447035_v_1.0"; }
         }
         
         string IMigrationMetadata.Source

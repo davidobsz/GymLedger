@@ -21,9 +21,6 @@ namespace GymLedger.Data.Mappings
             Property(t => t.DateAdded).IsRequired();
             Property(t => t.Name).HasMaxLength(64).HasColumnType("nvarchar").IsRequired();
 
-            // Foreign key configuration (many-to-one relationship)
-            HasRequired(t => t.User).WithMany(s => s.Exercises).HasForeignKey(t => t.UserId);
-
             //table name - make plural
             ToTable("Exercises");
         }

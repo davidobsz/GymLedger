@@ -41,7 +41,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account\Login\LoginAccountView.cs" />
+    <Compile Include="Account\Registration\RegisterAccountView.cs" />
+    <Compile Include="Areas\Ledger\AddExerciseView.cs" />
+    <Compile Include="Areas\Ledger\AddSessionView.cs" />
+    <Compile Include="Areas\Ledger\GetExerciseView.cs" />
+    <Compile Include="Areas\Ledger\GetSessionView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GymLedger.Models\GymLedger.Models.csproj">
+      <Project>{CDAC1BDD-D624-43EA-B436-B4DB33591B11}</Project>
+      <Name>GymLedger.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

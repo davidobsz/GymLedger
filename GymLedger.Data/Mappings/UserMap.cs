@@ -35,15 +35,12 @@ namespace GymLedger.Models.Mappings
             Property(u => u.LastLogin)
                 .IsOptional();
 
+            Property(u => u.UserRole).IsRequired();
+
             // Relationships
             HasMany(u => u.Sessions)
                 .WithRequired(s => s.User) 
                 .HasForeignKey(s => s.UserId)
-                .WillCascadeOnDelete(false); 
-
-            HasMany(u => u.Exercises)
-                .WithRequired(e => e.User) 
-                .HasForeignKey(e => e.UserId)
                 .WillCascadeOnDelete(false); 
 
             // Table name

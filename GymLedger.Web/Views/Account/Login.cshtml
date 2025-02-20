@@ -1,0 +1,33 @@
+﻿@model GymLedger.Views.Account.Login.LoginAccountView
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+
+@using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "loginForm" }))
+{
+    <div class="form-group">
+        @Html.LabelFor(model => model.Username, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Username, new { @class = "form-control", placeholder = "Enter your username" })
+            @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Password, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.PasswordFor(model => model.Password, new { @class = "form-control", placeholder = "Enter your password" })
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button type="submit" class="btn btn-primary">Login</button>
+        </div>
+        <p>Dont have an account? <a href="@Url.Action("Register", "Account")">Click me!</a></p>
+    </div>
+}
