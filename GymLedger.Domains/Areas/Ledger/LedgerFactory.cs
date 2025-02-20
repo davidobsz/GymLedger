@@ -35,7 +35,10 @@ namespace GymLedger.Domains.Areas.Ledger
             return new GetExercisesQueryValidator(new GetExercisesQueryHandler(query), query);
         }
 
-
+        public static IQueryHandler<GetSessionsQuery, GetSessionView> GetSessionsQueryHandler(GetSessionsQuery query)
+        {
+            return new GetSessionsQueryValidator(new GetSessionsQueryHandler(query), query);
+        }
 
         #endregion
     }

@@ -10,12 +10,12 @@ using System.Web;
 
 namespace GymLedger.Domains.Areas.Ledger.Querys
 {
-    public class GetExercisesQuery: IQuery<GetExerciseView>
+    public class GetSessionsQuery : IQuery<GetSessionView>
     {
         public User UserIdentity { get; set; }
 
-        public GetExercisesQuery(HttpContextBase httpContext) 
-        {
+        public GetSessionsQuery(HttpContextBase httpContext) 
+        { 
             this.UserIdentity = GymLedger.Helpers.CookieAuth.AuthCookieHelper.getUserIdentity();
         }
         public void ValidateMe()

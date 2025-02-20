@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "Sessions";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">Sessions</h2>
+
+    <table class="table bootTable"
+           id="exerciseTable"
+           data-toggle="table"
+           data-url="@Url.Action("GetSessions", "Ledger")"
+           data-pagination="true"
+           data-search="true"
+           data-toolbar-align="left"
+           data-show-refresh="true"
+           data-cache="false"
+           data-show-columns="true"
+           data-mobile-responsive="true"
+           data-page-list="[10, 25, 50, 100, all]"
+           data-side-pagination="client"
+           data-query-params="queryParams"
+           data-sort-order="asc">
+        <thead>
+            <tr>
+                <th data-sortable="true" data-field="Exercise">Exercise</th>
+                <th data-sortable="true" data-field="DateAddedAsString">Date Added</th>
+                <th data-sortable="false" data-field="NumOfSets">Number of Sets</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>

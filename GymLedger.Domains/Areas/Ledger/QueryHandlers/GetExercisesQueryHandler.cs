@@ -49,14 +49,7 @@ namespace GymLedger.Domains.Areas.Ledger.QueryHandlers
             {
                 GetExerciseView view = new GetExerciseView();
 
-                // get cookie from context of current user
-                var authCookie = HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName];
-
-                // Decrypt the auth cookie
-                var userInfo = AuthCookieHelper.DecryptAuthCookie(authCookie.Value);
-
-                // get user
-                var user = db.Users.FirstOrDefault(u => u.Username == userInfo.Username);
+                var user = db.Users.FirstOrDefault(u => u.Username == this.Query.UserIdentity.Username);
 
                 view.Exercises = (from e in db.Exercises.AsNoTracking()
                                   where e.UserId == user.Id

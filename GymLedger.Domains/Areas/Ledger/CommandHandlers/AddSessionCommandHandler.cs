@@ -59,7 +59,7 @@ namespace GymLedger.Domains.Areas.Ledger.CommandHandlers
                 var user = db.Users.FirstOrDefault(u => u.Username == this.Command.UserIdentity.Username);
 
                 var view = this.Command.View;
-                var exerciseId = db.Exercises.Where(e => e.Name == this.Command.View.ExerciseName).SingleOrDefault().Id;
+                var exerciseId = db.Exercises.Where(e => e.Name == this.Command.View.ExerciseName).FirstOrDefault().Id;
 
                 Session exercise = new Session
                 {

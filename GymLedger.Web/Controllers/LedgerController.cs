@@ -62,7 +62,7 @@ namespace GymLedger.Web.Controllers
             {
                 try
                 {
-                    var handler = LedgerFactory.GetExercisesQueryHandler(new GetExercisesQuery());
+                    var handler = LedgerFactory.GetExercisesQueryHandler(new GetExercisesQuery(this.HttpContext));
                     var response = handler.Get();
 
                     return Json(new { total = response.Exercises.Count, rows = response.Exercises }, JsonRequestBehavior.AllowGet);
@@ -81,7 +81,7 @@ namespace GymLedger.Web.Controllers
         {
             try
             {
-                var handler = LedgerFactory.GetExercisesQueryHandler(new GetExercisesQuery());
+                var handler = LedgerFactory.GetExercisesQueryHandler(new GetExercisesQuery(this.HttpContext));
                 var response = handler.Get();
 
                 List<Exercise> exercises = new List<Exercise>();
@@ -105,7 +105,7 @@ namespace GymLedger.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddSession(AddSessionView view)
+        public JsonResult AddSession(AddSessionView view)
         {
             if (ModelState.IsValid)
             {
@@ -122,6 +122,33 @@ namespace GymLedger.Web.Controllers
                 }
             }
             return Json(new { success = false, responseText = "Failed to add session" }, JsonRequestBehavior.AllowGet);
+
+        }
+
+        [HttpGet]
+        public ActionResult Sessions()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public JsonResult GetSessions()
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var handler = LedgerFactory.GetSessionsQueryHandler(new GetSessionsQuery(this.HttpContext));
+                    var response = handler.Get();
+
+                    return Json(new { total = response.Sessions.Count, rows = response.Sessions }, JsonRequestBehavior.AllowGet);
+                }
+                catch (Exception ex)
+                {
+                    return Json(new { success = false, responseText = ex.Message }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            return Json(new { success = false, responseText = "Failed to get sessions" }, JsonRequestBehavior.AllowGet);
 
         }
     }
