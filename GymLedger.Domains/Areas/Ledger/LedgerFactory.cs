@@ -32,6 +32,16 @@ namespace GymLedger.Domains.Areas.Ledger
         {
             return new EditExerciseCommandValidator(new EditExerciseCommandHandler(null, command), command);
         }
+
+        public static ICommandHandler<DeleteExerciseCommand, DataCommandResponse> DeleteExerciseCommandHandler(DeleteExerciseCommand command)
+        {
+            return new DeleteExerciseCommandValidator(new DeleteExerciseCommandHandler(null, command), command);
+        }
+
+        public static ICommandHandler<EditSessionCommand, DataCommandResponse> EditSessionCommandHandler(EditSessionCommand command)
+        {
+            return new EditSessionCommandValidator(new EditSessionCommandHandler(null, command), command);
+        }
         #endregion
 
         #region Querys
@@ -48,6 +58,11 @@ namespace GymLedger.Domains.Areas.Ledger
         public static IQueryHandler<GetExerciseDetailQuery, ExerciseDetailView> GetExerciseDetailsQueryHandler(GetExerciseDetailQuery query)
         {
             return new GetExerciseDetailQueryValidator(new GetExerciseDetailQueryHandler(query), query);
+        }
+
+        public static IQueryHandler<GetSessionDetailQuery, SessionDetailView> GetSessionDetailsQueryHandler(GetSessionDetailQuery query)
+        {
+            return new GetSessionDetailQueryValidator(new GetSessionDetailQueryHandler(query), query);
         }
 
         #endregion

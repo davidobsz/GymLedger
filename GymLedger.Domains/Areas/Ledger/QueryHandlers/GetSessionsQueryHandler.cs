@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using System.Web.Security;
 using System.Web;
 using GymLedger.Models;
+using System.Web.UI.WebControls;
+using GymLedger.Models.Models;
 
 namespace GymLedger.Domains.Areas.Ledger.QueryHandlers
 {
@@ -88,6 +90,7 @@ namespace GymLedger.Domains.Areas.Ledger.QueryHandlers
                                        .ToList();
                     session.Sets = sets2;
                     session.NumOfSets = sets2.Count;
+                    session.DateAddedAsString = $"{session.DateAdded.Value.Day}/{session.DateAdded.Value.Month}/{session.DateAdded.Value.Year}";
                 }
                 getSessionView.Sessions = sessions;
 

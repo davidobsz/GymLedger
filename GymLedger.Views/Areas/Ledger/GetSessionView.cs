@@ -28,6 +28,7 @@ namespace GymLedger.Views.Areas.Ledger
         public List<SetView> Sets { get; set; }
         public DateTime? Date { get; set; }
         public int NumOfSets { get; set; }
+        public DateTime? DateModified { get; set; }
 
     }
 

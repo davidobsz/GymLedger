@@ -12,8 +12,12 @@
 
     <div class="form-group">
         @Html.LabelFor(m => m.Exercises)
-        @Html.DropDownListFor(m => m.ExerciseName, new SelectList(Model.Exercises, "Name", "Name"), "Select Exercise", new { @class = "form-control"})
+        @Html.DropDownListFor(m => m.ExerciseName, new SelectList(Model.Exercises, "Name", "Name"), "Select Exercise", new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.Exercises)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Date) <!-- Label for Date -->
+        <input type="date" class="form-control" name="DateAdded" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
     </div>
 
     <button type="button" class="btn btn-primary" id="add-set">Add Set</button>

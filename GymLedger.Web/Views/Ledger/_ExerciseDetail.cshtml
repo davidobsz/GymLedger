@@ -23,7 +23,15 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Save Changes</button>
-                    <a type="button" href="@Url.Action("DeleteExercise", "Ledger")"><i class="fa-solid fa-trash fa-lg"></i></a>
+                </div>
+            }
+            @using (Html.BeginForm("DeleteExercise", "Ledger", FormMethod.Post, new { id = "deleteExerciseForm" }))
+            {
+                @Html.HiddenFor(m => m.UniqueId) <!-- Hidden field for exercise UniqueId -->
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger">
+                        <i class="fa-solid fa-trash fa-lg"></i> Delete Exercise
+                    </button>
                 </div>
             }
         </div>

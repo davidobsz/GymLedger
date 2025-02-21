@@ -68,6 +68,77 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     // Delegate the form submission event to the document to handle dynamically loaded content
+    $(document).on('submit', '#deleteExerciseForm', function (e) {
+        e.preventDefault(); // Prevent the default form submission
+
+        const $form = $(this);
+        const $submitButton = $form.find('button[type="submit"]');
+
+        $submitButton.prop('disabled', true); // Disable button to prevent multiple clicks
+
+        const formData = $form.serialize(); // Serialize the form data
+        $.ajax({
+            url: $form.attr('action'),
+            type: 'POST',
+            data: formData,
+            success: function (response) {
+
+
+                if (response.success) {
+                    $.growl.notice({ title: "Success", message: response.responseText });
+                    if (response.responseReload) {
+                        setTimeout(() => location.reload(), 2000); // Reload after success
+                    }
+                } else {
+                    $.growl.error({ title: "Error", message: response.responseText });
+                    $submitButton.prop('disabled', false); // Re-enable button if error occurs
+                }
+            },
+            error: function (xhr, status, error) {
+                $.growl.error({ title: "Error", message: "An unexpected error occurred." });
+                $submitButton.prop('disabled', false); // Re-enable button if error occurs
+            }
+        });
+    });
+});
+
+$(document).ready(function () {
+    // Delegate the form submission event to the document to handle dynamically loaded content
+    $(document).on('submit', '#editSessionForm', function (e) {
+        e.preventDefault();
+
+        const $form = $(this);
+        const $submitButton = $form.find('button[type="submit"]');
+
+        $submitButton.prop('disabled', true); // Disable button to prevent multiple clicks
+
+        const formData = $form.serialize();
+        $.ajax({
+            url: $form.attr('action'),
+            type: 'POST',
+            data: formData,
+            success: function (response) {
+                if (response.success) {
+                    $.growl.notice({ title: "Success", message: response.responseText });
+                    if (response.responseReload) {
+                        setTimeout(() => location.reload(), 2000);
+                    }
+                } else {
+                    $.growl.error({ title: "Error", message: response.responseText });
+                    $submitButton.prop('disabled', false); // Re-enable button if error
+                }
+            },
+            error: function () {
+                $.growl.error({ title: "Error", message: "An unexpected error occurred." });
+                $submitButton.prop('disabled', false);
+            }
+        });
+    });
+});
+
+
+$(document).ready(function () {
+    // Delegate the form submission event to the document to handle dynamically loaded content
     $(document).on('submit', '#editExerciseForm', function (e) {
         e.preventDefault();
 
@@ -111,7 +182,6 @@ $(document).ready(function () {
                 type: 'GET',
                 data: { uniqueId: uniqueId },
                 success: function (response) {
-                    console.log("AJAX Success, Response:", response);
 
                     // Check if the modal already exists and remove it if so
                     var existingModal = $('#exerciseModal');
@@ -127,7 +197,6 @@ $(document).ready(function () {
                     modal.show();
                 },
                 error: function (xhr, status, error) {
-                    console.log("AJAX Error:", error);
                     alert("Error loading exercise details.");
                 }
             });
@@ -136,6 +205,42 @@ $(document).ready(function () {
         }
     });
 });
+
+$(document).ready(function () {
+    $('#modalTable').on('click', 'tbody tr', function () {
+        var uniqueId = $(this).attr("data-uniqueid");
+        var url = $('#modalTableContainer').data('url');
+
+        if (uniqueId) {
+            $.ajax({
+                url: url,
+                type: 'GET',
+                data: { uniqueId: uniqueId },
+                success: function (response) {
+
+                    // Check if the modal already exists and remove it if so
+                    var existingModal = $('#modalModal');
+                    if (existingModal.length) {
+                        existingModal.remove();  // Remove the existing modal content
+                    }
+
+                    // Append the new modal content to the body
+                    $("body").append(response);
+
+                    // Ensure modal is initialized and shown
+                    var modal = new bootstrap.Modal(document.getElementById('modalModal'));
+                    modal.show();
+                },
+                error: function (xhr, status, error) {
+                    alert("Error loading modal details.");
+                }
+            });
+        } else {
+            console.log("UniqueId not found!");
+        }
+    });
+});
+
 
 // add set
 $(document).ready(function () {

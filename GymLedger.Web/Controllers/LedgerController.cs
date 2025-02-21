@@ -113,6 +113,27 @@ namespace GymLedger.Web.Controllers
 
         }
 
+        [HttpPost]
+        public JsonResult DeleteExercise(DeleteExerciseView view)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var handler = LedgerFactory.DeleteExerciseCommandHandler(new DeleteExerciseCommand(view, this.HttpContext));
+                    var response = handler.Execute();
+
+                    return Json(new { success = true, responseText = $"{response.Message}", responseReload = true }, JsonRequestBehavior.AllowGet);
+                }
+                catch (Exception ex)
+                {
+                    return Json(new { success = false, responseText = ex.Message }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            return Json(new { success = false, responseText = "Failed to delete exercise" }, JsonRequestBehavior.AllowGet);
+
+        }
+
         [HttpGet]
         public ActionResult AddSession()
         {
@@ -186,6 +207,43 @@ namespace GymLedger.Web.Controllers
                 }
             }
             return Json(new { success = false, responseText = "Failed to get sessions" }, JsonRequestBehavior.AllowGet);
+
+        }
+
+        [HttpGet]
+        public PartialViewResult GetSessionDetails(string uniqueId)
+        {
+            try
+            {
+                var handler = LedgerFactory.GetSessionDetailsQueryHandler(new GetSessionDetailQuery(this.HttpContext, uniqueId));
+                var response = handler.Get();
+
+                return PartialView("_SessionDetail", response);
+            }
+            catch (Exception ex)
+            {
+                return PartialView("_SessionDetail");
+            }
+        }
+
+        [HttpPost]
+        public JsonResult EditSession(EditSessionView view)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var handler = LedgerFactory.EditSessionCommandHandler(new EditSessionCommand(view, this.HttpContext));
+                    var response = handler.Execute();
+
+                    return Json(new { success = true, responseText = $"{response.Message}", responseReload = true }, JsonRequestBehavior.AllowGet);
+                }
+                catch (Exception ex)
+                {
+                    return Json(new { success = false, responseText = ex.Message }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            return Json(new { success = false, responseText = "Failed to edit session" }, JsonRequestBehavior.AllowGet);
 
         }
     }

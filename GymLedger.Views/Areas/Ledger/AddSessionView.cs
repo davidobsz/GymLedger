@@ -11,6 +11,7 @@ namespace GymLedger.Views.Areas.Ledger
     public class AddSessionView
     {
         public string ExerciseName { get; set; }  // Selected Exercise
+        public DateTime? Date { get; set; }
         public List<Exercise> Exercises { get; set; }  // List of Exercises for dropdown
         public List<SetViewModel> Sets { get; set; } 
     }

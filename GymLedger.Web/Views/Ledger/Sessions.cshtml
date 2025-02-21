@@ -7,11 +7,12 @@
     <h2 class="mb-4">Sessions</h2>
 
     <table class="table bootTable"
-           id="exerciseTable"
+           id="modalTable"
            data-toggle="table"
            data-url="@Url.Action("GetSessions", "Ledger")"
            data-pagination="true"
            data-search="true"
+           data-click-to-select="true"
            data-toolbar-align="left"
            data-show-refresh="true"
            data-cache="false"
@@ -20,7 +21,9 @@
            data-page-list="[10, 25, 50, 100, all]"
            data-side-pagination="client"
            data-query-params="queryParams"
-           data-sort-order="asc">
+           @*           data-sort-name="DisplayOrder"*@
+           data-sort-order="asc"
+           data-unique-id="UniqueId">
         <thead>
             <tr>
                 <th data-sortable="false" data-visible="false" data-field="UniqueId">UniqueId</th>
@@ -31,4 +34,8 @@
         </thead>
         <tbody></tbody>
     </table>
+</div>
+
+<div id="modalTableContainer"
+     data-url="@Url.Action("GetSessionDetails", "Ledger")">
 </div>

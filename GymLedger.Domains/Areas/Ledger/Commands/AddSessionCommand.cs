@@ -22,6 +22,10 @@ namespace GymLedger.Domains.Areas.Ledger.Commands
         }
         public void ValidateMe()
         {
+            if (View.Sets == null)
+            {
+                throw new Exception("You must add at least one set");
+            }
             if (View.Sets.Count < 1)
             {
                 throw new Exception("You must add at least one set");
