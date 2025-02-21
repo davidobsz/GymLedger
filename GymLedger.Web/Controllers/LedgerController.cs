@@ -246,5 +246,26 @@ namespace GymLedger.Web.Controllers
             return Json(new { success = false, responseText = "Failed to edit session" }, JsonRequestBehavior.AllowGet);
 
         }
+
+        [HttpPost]
+        public JsonResult DeleteSession(DeleteSessionView view)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var handler = LedgerFactory.DeleteSessionCommandHandler(new DeleteSessionCommand(view, this.HttpContext));
+                    var response = handler.Execute();
+
+                    return Json(new { success = true, responseText = $"{response.Message}", responseReload = true }, JsonRequestBehavior.AllowGet);
+                }
+                catch (Exception ex)
+                {
+                    return Json(new { success = false, responseText = ex.Message }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            return Json(new { success = false, responseText = "Failed to delete session" }, JsonRequestBehavior.AllowGet);
+
+        }
     }
 }

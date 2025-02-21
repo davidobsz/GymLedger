@@ -46,6 +46,7 @@
     <Compile Include="Areas\Ledger\AddExerciseView.cs" />
     <Compile Include="Areas\Ledger\AddSessionView.cs" />
     <Compile Include="Areas\Ledger\DeleteExerciseView.cs" />
+    <Compile Include="Areas\Ledger\DeleteSessionView.cs" />
     <Compile Include="Areas\Ledger\EditExerciseView.cs" />
     <Compile Include="Areas\Ledger\EditSessionView.cs" />
     <Compile Include="Areas\Ledger\GetExerciseView.cs" />

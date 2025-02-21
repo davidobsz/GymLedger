@@ -42,6 +42,11 @@ namespace GymLedger.Domains.Areas.Ledger
         {
             return new EditSessionCommandValidator(new EditSessionCommandHandler(null, command), command);
         }
+
+        public static ICommandHandler<DeleteSessionCommand, DataCommandResponse> DeleteSessionCommandHandler(DeleteSessionCommand command)
+        {
+            return new DeleteSessionCommandValidator(new DeleteSessionCommandHandler(null, command), command);
+        }
         #endregion
 
         #region Querys
