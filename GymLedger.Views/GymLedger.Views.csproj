@@ -45,6 +45,7 @@
     <Compile Include="Account\Registration\RegisterAccountView.cs" />
     <Compile Include="Areas\Ledger\AddExerciseView.cs" />
     <Compile Include="Areas\Ledger\AddSessionView.cs" />
+    <Compile Include="Areas\Ledger\EditExerciseView.cs" />
     <Compile Include="Areas\Ledger\GetExerciseView.cs" />
     <Compile Include="Areas\Ledger\GetSessionView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

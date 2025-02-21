@@ -74,7 +74,6 @@ $(document).ready(function () {
         $submitButton.prop('disabled', true); // Disable button to prevent multiple clicks
 
         const formData = $form.serialize();
-
         $.ajax({
             url: $form.attr('action'),
             type: 'POST',
@@ -133,5 +132,32 @@ $(document).ready(function () {
         } else {
             console.log("UniqueId not found!");
         }
+    });
+});
+
+// add set
+$(document).ready(function () {
+    var setIndex = 0;
+
+    // Handle add set button click
+    $('#add-set').click(function () {
+        var setTemplate = $('#set-template').html();
+        var newSet = setTemplate.replace(/Sets\[0\]/g, 'Sets[' + setIndex + ']');
+        $('#sets-container').append(newSet);
+        setIndex++;
+    });
+
+    // Handle remove set button click
+    $(document).on('click', '.remove-set', function () {
+        $(this).closest('.set-entry').remove();
+    });
+
+    $('form').submit(function () {
+        var exerciseValue = $('#addSessionForm').val();
+        // Make sure the dropdown's value is sent
+        $('<input />').attr('type', 'hidden')
+            .attr('name', 'ExerciseName')
+            .attr('value', exerciseValue)
+            .appendTo('form');
     });
 });

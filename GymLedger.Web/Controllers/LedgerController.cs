@@ -92,6 +92,27 @@ namespace GymLedger.Web.Controllers
             }
         }
 
+        [HttpPost]
+        public JsonResult EditExercise(EditExerciseView view)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var handler = LedgerFactory.EditExerciseCommandHandler(new EditExerciseCommand(view, this.HttpContext));
+                    var response = handler.Execute();
+
+                    return Json(new { success = true, responseText = $"{response.Message}", responseReload = true }, JsonRequestBehavior.AllowGet);
+                }
+                catch (Exception ex)
+                {
+                    return Json(new { success = false, responseText = ex.Message }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            return Json(new { success = false, responseText = "Failed to edit exercise" }, JsonRequestBehavior.AllowGet);
+
+        }
+
         [HttpGet]
         public ActionResult AddSession()
         {

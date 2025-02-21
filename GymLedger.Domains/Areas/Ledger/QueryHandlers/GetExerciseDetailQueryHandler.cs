@@ -55,7 +55,6 @@ namespace GymLedger.Domains.Areas.Ledger.QueryHandlers
                 {
                     Name = exercise.Name,
                     DateAdded = exercise.DateAdded
-                    // Map other necessary fields here
                 };
             }
         }

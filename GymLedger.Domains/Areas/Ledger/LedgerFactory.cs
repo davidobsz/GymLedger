@@ -27,6 +27,11 @@ namespace GymLedger.Domains.Areas.Ledger
         {
             return new AddSessionCommandValidator(new AddSessionCommandHandler(null, command), command);
         }
+
+        public static ICommandHandler<EditExerciseCommand, DataCommandResponse> EditExerciseCommandHandler(EditExerciseCommand command)
+        {
+            return new EditExerciseCommandValidator(new EditExerciseCommandHandler(null, command), command);
+        }
         #endregion
 
         #region Querys
