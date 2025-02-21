@@ -64,8 +64,11 @@ $(document).ready(function () {
             }
         });
     });
+});
 
-    $('#editExerciseForm').on('submit', function (e) {
+$(document).ready(function () {
+    // Delegate the form submission event to the document to handle dynamically loaded content
+    $(document).on('submit', '#editExerciseForm', function (e) {
         e.preventDefault();
 
         const $form = $(this);
@@ -95,7 +98,6 @@ $(document).ready(function () {
             }
         });
     });
-
 });
 
 $(document).ready(function () {
