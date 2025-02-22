@@ -91,6 +91,7 @@ namespace GymLedger.Domains.Areas.Ledger.QueryHandlers
                     session.Sets = sets2;
                     session.NumOfSets = sets2.Count;
                     session.DateAddedAsString = $"{session.DateAdded.Value.Day}/{session.DateAdded.Value.Month}/{session.DateAdded.Value.Year}";
+                    session.DateAsString = $"{session.Date.Value.Day}/{session.Date.Value.Month}/{session.Date.Value.Year}";
                 }
                 getSessionView.Sessions = sessions;
 

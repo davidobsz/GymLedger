@@ -57,7 +57,7 @@ namespace GymLedger.Domains.Account.CommandHandlers
                 User user = new User
                 {
                     Username = this.Command.View.Username,
-                    Password = this.Command.View.Password,
+                    Password = Helpers.PasswordHelper.PasswordHelper.HashPassword(this.Command.View.Password),
                     UserRole = UserRole.User,
                     UniqueId = Guid.NewGuid().ToString("N"),   
                     DateAdded = DateTime.UtcNow,

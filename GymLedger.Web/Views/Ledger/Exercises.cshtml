@@ -15,6 +15,7 @@
            data-click-to-select="true"
            data-toolbar-align="left"
            data-show-refresh="true"
+           data-toolbar="#exerciseToolbar"
            data-cache="false"
            data-show-columns="true"
            data-mobile-responsive="true"
@@ -34,6 +35,10 @@
         <tbody>
         </tbody>
     </table>
+</div>
+
+<div id="exerciseToolbar">
+    <button class="btn btn-light" id="addExercise"><a href="@Url.Action("AddExercise", "Ledger")"><i class="fa-solid fa-plus fa-lg"></i></a></button>
 </div>
 
 <div id="exerciseTableContainer" 

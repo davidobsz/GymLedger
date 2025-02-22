@@ -3,6 +3,7 @@ using GymLedger.Data;
 using GymLedger.Domains.Account.Commands;
 using GymLedger.Domains.BaseCommands;
 using GymLedger.Helpers.CookieAuth;
+using GymLedger.Helpers.PasswordHelper;
 using GymLedger.Models.Models;
 using System;
 using System.Collections.Generic;
@@ -28,11 +29,23 @@ namespace GymLedger.Domains.Account.CommandHandlers
             Command.ValidateMe();
             using (DataContext db = new DataContext())
             {
-                bool creds = db.Users.Where(u => u.Username == this.Command.View.Username && u.Password == this.Command.View.Password).Any();
-                if (!creds)
+                bool exists = db.Users.Any(u => u.Username == this.Command.View.Username);
+
+                if (!exists)
                 {
-                    throw new Exception("Username or password is incorrect");
+                    throw new Exception("Username or password incorrect");
                 }
+
+                if(exists)
+                {
+                    var user = db.Users.Where(u => u.Username == this.Command.View.Username).FirstOrDefault();
+
+                    if (user.Password != PasswordHelper.HashPassword(this.Command.View.Password))
+                    {
+                        throw new Exception("Username or password is incorrect");
+                    }
+                }
+
             }
 
             return this.decorated.Execute();
@@ -55,7 +68,7 @@ namespace GymLedger.Domains.Account.CommandHandlers
             using (DataContext db = new DataContext())
             {
                 // log user in
-                AuthCookieHelper.CreateAuthCookie(this.Command.View.Username, this.Command.View.Password, true);
+                AuthCookieHelper.CreateAuthCookie(this.Command.View.Username, PasswordHelper.HashPassword(this.Command.View.Password), true);
 
                 var response = new DataCommandResponse();
 

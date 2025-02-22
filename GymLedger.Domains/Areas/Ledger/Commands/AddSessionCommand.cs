@@ -30,6 +30,10 @@ namespace GymLedger.Domains.Areas.Ledger.Commands
             {
                 throw new Exception("You must add at least one set");
             }
+            if (View.ExerciseName == null)
+            {
+                throw new Exception("Must select an exercise");
+            }
         }
     }
 }

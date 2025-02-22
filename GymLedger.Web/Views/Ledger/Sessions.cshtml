@@ -17,6 +17,7 @@
            data-show-refresh="true"
            data-cache="false"
            data-show-columns="true"
+           data-toolbar="#sessionToolbar"
            data-mobile-responsive="true"
            data-page-list="[10, 25, 50, 100, all]"
            data-side-pagination="client"
@@ -28,12 +29,17 @@
             <tr>
                 <th data-sortable="false" data-visible="false" data-field="UniqueId">UniqueId</th>
                 <th data-sortable="true" data-field="Exercise">Exercise</th>
+                <th data-sortable="true" data-field="DateAsString">Date</th>
                 <th data-sortable="true" data-field="DateAddedAsString">Date Added</th>
                 <th data-sortable="false" data-field="NumOfSets">Number of Sets</th>
             </tr>
         </thead>
         <tbody></tbody>
     </table>
+</div>
+
+<div id="sessionToolbar">
+    <button class="btn btn-light" id="addSession"><a href="@Url.Action("AddSession", "Ledger")"><i class="fa-solid fa-plus fa-lg"></i></a></button>
 </div>
 
 <div id="modalTableContainer"

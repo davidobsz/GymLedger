@@ -24,6 +24,7 @@ namespace GymLedger.Views.Areas.Ledger
         public string Exercise { get; set; }
         public DateTime? DateAdded { get; set; }
         public string DateAddedAsString { get; set; }
+        public string DateAsString { get; set; }
         public string UniqueId { get; set; }
         public List<SetView> Sets { get; set; }
         public DateTime? Date { get; set; }
