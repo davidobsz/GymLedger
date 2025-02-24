@@ -267,5 +267,25 @@ namespace GymLedger.Web.Controllers
             return Json(new { success = false, responseText = "Failed to delete session" }, JsonRequestBehavior.AllowGet);
 
         }
+
+        [HttpGet]
+        public JsonResult GetExercisesPiechart()
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var handler = LedgerFactory.GetExercisesPiechartDataDetailsQueryHandler(new GetExercisesPiechartDataQuery(this.HttpContext));
+                    var response = handler.Get();
+
+                    return Json(new { success = true, Data = response, responseReload = true }, JsonRequestBehavior.AllowGet);
+                }
+                catch (Exception ex)
+                {
+                    return Json(new { success = false, responseText = ex.Message }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            return Json(new { success = false, responseText = "Failed to get piechart data" }, JsonRequestBehavior.AllowGet);
+        }
     }
 }

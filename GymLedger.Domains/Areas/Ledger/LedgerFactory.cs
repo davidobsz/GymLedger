@@ -70,6 +70,11 @@ namespace GymLedger.Domains.Areas.Ledger
             return new GetSessionDetailQueryValidator(new GetSessionDetailQueryHandler(query), query);
         }
 
+        public static IQueryHandler<GetExercisesPiechartDataQuery, GetExercisesPiechartDataView> GetExercisesPiechartDataDetailsQueryHandler(GetExercisesPiechartDataQuery query)
+        {
+            return new GetExercisesPiechartDataQueryValidator(new GetExercisesPiechartDataQueryHandler(query), query);
+        }
+
         #endregion
     }
 }

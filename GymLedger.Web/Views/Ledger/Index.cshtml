@@ -18,3 +18,20 @@
         <a href="@Url.Action("Sessions", "Ledger")">View your Sessions</a>
     </li>
 </ul>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-4">
+            <canvas id="exercisesPieChart"></canvas>
+        </div>
+        <div class="col-12 col-md-4">
+            <canvas id="sessionsBarChart"></canvas>
+        </div>
+        <div class="col-12 col-md-4">
+            <canvas id="exercisesProgressBarChart"></canvas>
+        </div>
+    </div>
+</div>
+
+<!-- store URL for get exercises LedgerControlerr method -->
+<div id="chartDataUrl" data-url="@Url.Action("GetExercisesPiechart", "Ledger")" style="display:none;"></div>
