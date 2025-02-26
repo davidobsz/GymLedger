@@ -287,5 +287,25 @@ namespace GymLedger.Web.Controllers
             }
             return Json(new { success = false, responseText = "Failed to get piechart data" }, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpGet]
+        public JsonResult GetSessionsLinechart()
+        {
+            if  (ModelState.IsValid)
+            {
+                try
+                {
+                    var handler = LedgerFactory.GetSessionsLinechartDataDetailsQueryHandler(new GetSessionsLinechartDataQuery(this.HttpContext));
+                    var response = handler.Get();
+
+                    return Json(new { success = true, Data = response, responseReload = true }, JsonRequestBehavior.AllowGet);
+                }
+                catch (Exception ex)
+                {
+                    return Json(new { success = false, responseText = ex.Message }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            return Json(new { success = false, responseText = "Failed to get piechart data" }, JsonRequestBehavior.AllowGet);
+        }
     }
 }

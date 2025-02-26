@@ -25,7 +25,7 @@
             <canvas id="exercisesPieChart"></canvas>
         </div>
         <div class="col-12 col-md-4">
-            <canvas id="sessionsBarChart"></canvas>
+            <canvas id="sessionsLineChart"></canvas>
         </div>
         <div class="col-12 col-md-4">
             <canvas id="exercisesProgressBarChart"></canvas>
@@ -35,3 +35,4 @@
 
 <!-- store URL for get exercises LedgerControlerr method -->
 <div id="chartDataUrl" data-url="@Url.Action("GetExercisesPiechart", "Ledger")" style="display:none;"></div>
+<div id="sessionDataUrl" data-url="@Url.Action("GetSessionsLinechart", "Ledger")" style="display:none;"></div>
