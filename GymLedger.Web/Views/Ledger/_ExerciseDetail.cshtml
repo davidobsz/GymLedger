@@ -21,13 +21,16 @@
                     <p>Date Added: @Model.DateAdded</p>
                 </div>
                 <div class="modal-footer">
+                    <a href="@Url.Action("ExerciseDetails", "Ledger", new { uniqueId = Model.UniqueId })" class="btn btn-info me-auto">
+                        <i class="fa-solid fa-arrow-right"></i> Go to Exercise
+                    </a>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Save Changes</button>
                 </div>
             }
             @using (Html.BeginForm("DeleteExercise", "Ledger", FormMethod.Post, new { id = "deleteExerciseForm" }))
             {
-                @Html.HiddenFor(m => m.UniqueId) <!-- Hidden field for exercise UniqueId -->
+                @Html.HiddenFor(m => m.UniqueId)
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-danger">
                         <i class="fa-solid fa-trash fa-lg"></i> Delete Exercise

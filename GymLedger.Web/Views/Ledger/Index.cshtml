@@ -19,19 +19,46 @@
     </li>
 </ul>
 
-<div class="container">
+<div class="container mt-4">
     <div class="row">
+        <!-- Exercises Pie Chart Card -->
         <div class="col-12 col-md-4">
-            <canvas id="exercisesPieChart"></canvas>
+            <div class="card">
+                <div class="card-header">
+                    Exercises Pie Chart
+                </div>
+                <div class="card-body">
+                    <canvas id="exercisesPieChart"></canvas>
+                </div>
+            </div>
         </div>
+
+        <!-- Sessions Line Chart Card -->
         <div class="col-12 col-md-4">
-            <canvas id="sessionsLineChart"></canvas>
+            <div class="card">
+                <div class="card-header">
+                    Sessions Line Chart
+                </div>
+                <div class="card-body">
+                    <canvas id="sessionsLineChart"></canvas>
+                </div>
+            </div>
         </div>
+
+        <!-- Exercises Progress Bar Chart Card -->
         <div class="col-12 col-md-4">
-            <canvas id="exercisesProgressBarChart"></canvas>
+            <div class="card">
+                <div class="card-header">
+                    Exercises Progress Bar Chart
+                </div>
+                <div class="card-body">
+                    <canvas id="exercisesProgressBarChart"></canvas>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
 
 <!-- store URL for get exercises LedgerControlerr method -->
 <div id="chartDataUrl" data-url="@Url.Action("GetExercisesPiechart", "Ledger")" style="display:none;"></div>

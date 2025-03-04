@@ -307,5 +307,14 @@ namespace GymLedger.Web.Controllers
             }
             return Json(new { success = false, responseText = "Failed to get piechart data" }, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpGet]
+        public ActionResult ExerciseDetails(string uniqueId)
+        {
+            // get details for exercise from queryHanlder
+
+
+            return View();
+        }
     }
 }

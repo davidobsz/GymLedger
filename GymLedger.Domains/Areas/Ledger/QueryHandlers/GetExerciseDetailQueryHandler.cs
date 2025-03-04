@@ -54,7 +54,8 @@ namespace GymLedger.Domains.Areas.Ledger.QueryHandlers
                 return new ExerciseDetailView
                 {
                     Name = exercise.Name,
-                    DateAdded = exercise.DateAdded
+                    DateAdded = exercise.DateAdded,
+                    UniqueId = exercise.UniqueId
                 };
             }
         }
