@@ -304,3 +304,9 @@ $(document).ready(function () {
             .appendTo('form');
     });
 });
+
+
+function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    sidebar.classList.toggle('open');
+}
