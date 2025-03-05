@@ -99,7 +99,7 @@ $(document).ready(function () {
 
                     // Create new chart
                     window.sessionsChart = new Chart(ctx, {
-                        type: 'bar',
+                        type: 'line',
                         data: {
                             labels: data.Data.Exercises,
                             datasets: [{
