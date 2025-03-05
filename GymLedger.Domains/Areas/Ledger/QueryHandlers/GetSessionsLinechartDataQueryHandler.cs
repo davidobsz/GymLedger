@@ -41,22 +41,35 @@ namespace GymLedger.Domains.Areas.Ledger.QueryHandlers
 
         public GetSessionsLinechartDataView Get()
         {
-            using (Data.DataContext db = new Data.DataContext())
+            using (var db = new Data.DataContext())
             {
-                GetSessionsLinechartDataView view = new GetSessionsLinechartDataView
+                var view = new GetSessionsLinechartDataView
                 {
-                    Exercises = new List<string>(),  // Initialize the Exercises list
-                    Progress = new List<float>()     // Initialize the Progress list
+                    Exercises = new List<string>(),
+                    Progress = new List<float>()
                 };
 
-                var user = db.Users.FirstOrDefault(u => u.Username == this.Query.UserIdentity.Username);
-                if (user == null) return view; // Handle null user case
+                var user = db.Users.FirstOrDefault(u => u.Username == Query.UserIdentity.Username);
+                if (user == null) return view;
 
                 var exercises = db.Exercises.Where(e => e.User.Id == user.Id).ToList();
                 var sessions = db.Sessions
                                 .Where(s => s.UserId == user.Id)
-                                .Include(s => s.Sets) // Sets not to be null
+                                .Include(s => s.Sets)
                                 .ToList();
+
+                // Apply StartDate and EndDate filtering if provided
+                if (Query.DatesReport != null)
+                {
+                    if (Query.DatesReport.StartDate.HasValue)
+                    {
+                        sessions = sessions.Where(s => s.Date >= Query.DatesReport.StartDate.Value).ToList();
+                    }
+                    if (Query.DatesReport.EndDate.HasValue)
+                    {
+                        sessions = sessions.Where(s => s.Date <= Query.DatesReport.EndDate.Value).ToList();
+                    }
+                }
 
                 foreach (var exercise in exercises)
                 {
@@ -76,7 +89,7 @@ namespace GymLedger.Domains.Areas.Ledger.QueryHandlers
                         }
                         else
                         {
-                            view.Progress.Add(0); // Handle case where no valid session data is found
+                            view.Progress.Add(0);
                         }
                     }
                 }

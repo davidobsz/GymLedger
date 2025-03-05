@@ -15,14 +15,17 @@ namespace GymLedger.Domains.Areas.Ledger.Querys
     public class GetSessionsLinechartDataQuery : IQuery<GetSessionsLinechartDataView>
     {
         public User UserIdentity { get; set; }
+        public GetDatesReportView DatesReport { get; set; }
 
-        public GetSessionsLinechartDataQuery(HttpContextBase httpContext)
+        public GetSessionsLinechartDataQuery(HttpContextBase httpContext, GetDatesReportView datesReportView)
         {
             this.UserIdentity = GymLedger.Helpers.CookieAuth.AuthCookieHelper.getUserIdentity();
+            this.DatesReport = datesReportView;
         }
+
         public void ValidateMe()
         {
-
         }
     }
 }
+

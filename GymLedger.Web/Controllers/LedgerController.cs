@@ -269,13 +269,13 @@ namespace GymLedger.Web.Controllers
         }
 
         [HttpGet]
-        public JsonResult GetExercisesPiechart()
+        public JsonResult GetExercisesPiechart(GetDatesReportView datesReportView)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var handler = LedgerFactory.GetExercisesPiechartDataDetailsQueryHandler(new GetExercisesPiechartDataQuery(this.HttpContext));
+                    var handler = LedgerFactory.GetExercisesPiechartDataDetailsQueryHandler(new GetExercisesPiechartDataQuery(this.HttpContext, datesReportView));
                     var response = handler.Get();
 
                     return Json(new { success = true, Data = response, responseReload = true }, JsonRequestBehavior.AllowGet);
@@ -289,24 +289,21 @@ namespace GymLedger.Web.Controllers
         }
 
         [HttpGet]
-        public JsonResult GetSessionsLinechart()
+        public JsonResult GetSessionsLinechart(GetDatesReportView datesReport)
         {
-            if  (ModelState.IsValid)
-            {
-                try
-                {
-                    var handler = LedgerFactory.GetSessionsLinechartDataDetailsQueryHandler(new GetSessionsLinechartDataQuery(this.HttpContext));
-                    var response = handler.Get();
+            try
+            { 
+                var handler = LedgerFactory.GetSessionsLinechartDataDetailsQueryHandler(new GetSessionsLinechartDataQuery(this.HttpContext, datesReport));
+                var response = handler.Get();
 
-                    return Json(new { success = true, Data = response, responseReload = true }, JsonRequestBehavior.AllowGet);
-                }
-                catch (Exception ex)
-                {
-                    return Json(new { success = false, responseText = ex.Message }, JsonRequestBehavior.AllowGet);
-                }
+                return Json(new { success = true, Data = response }, JsonRequestBehavior.AllowGet);
             }
-            return Json(new { success = false, responseText = "Failed to get piechart data" }, JsonRequestBehavior.AllowGet);
+            catch (Exception ex)
+            {
+                return Json(new { success = false, responseText = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
         }
+
 
         [HttpGet]
         public ActionResult ExerciseDetails(string uniqueId)

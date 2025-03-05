@@ -49,6 +49,7 @@
     <Compile Include="Areas\Ledger\DeleteSessionView.cs" />
     <Compile Include="Areas\Ledger\EditExerciseView.cs" />
     <Compile Include="Areas\Ledger\EditSessionView.cs" />
+    <Compile Include="Areas\Ledger\GetDatesReportView.cs" />
     <Compile Include="Areas\Ledger\GetExercisesPiechartDataView.cs" />
     <Compile Include="Areas\Ledger\GetExerciseView.cs" />
     <Compile Include="Areas\Ledger\GetSessionsLinechartDataView.cs" />

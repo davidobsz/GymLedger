@@ -30,29 +30,41 @@
                 <div class="card-body">
                     <canvas id="exercisesPieChart"></canvas>
                 </div>
+                <div class="card-footer">
+                    <div class="col-md-12 mb-3">
+                        <label for="startDate">Start Date:</label>
+                        <input type="date" id="startDate" class="form-control">
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="endDate">End Date:</label>
+                        <input type="date" id="endDate" class="form-control">
+                    </div>
+                    <div class="col-md-12">
+                        <button id="runReportExercises" class="btn btn-primary">Run Report</button>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- Sessions Line Chart Card -->
+        <!-- Sessions Line Chart Card-->
         <div class="col-12 col-md-4">
             <div class="card">
-                <div class="card-header">
-                    Sessions Line Chart
-                </div>
+                <div class="card-header">Sessions Line Chart</div>
                 <div class="card-body">
                     <canvas id="sessionsLineChart"></canvas>
                 </div>
-            </div>
-        </div>
-
-        <!-- Exercises Progress Bar Chart Card -->
-        <div class="col-12 col-md-4">
-            <div class="card">
-                <div class="card-header">
-                    Exercises Progress Bar Chart
-                </div>
-                <div class="card-body">
-                    <canvas id="exercisesProgressBarChart"></canvas>
+                <div class="card-footer">
+                    <div class="col-md-12 mb-3">
+                        <label for="startDate">Start Date:</label>
+                        <input type="date" id="startDate" class="form-control">
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="endDate">End Date:</label>
+                        <input type="date" id="endDate" class="form-control">
+                    </div>
+                    <div class="col-md-12">
+                        <button id="runReportSessions" class="btn btn-primary">Run Report</button>
+                    </div>
                 </div>
             </div>
         </div>

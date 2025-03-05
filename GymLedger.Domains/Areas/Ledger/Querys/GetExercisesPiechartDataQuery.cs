@@ -13,10 +13,12 @@ namespace GymLedger.Domains.Areas.Ledger.Querys
     public class GetExercisesPiechartDataQuery : IQuery<GetExercisesPiechartDataView>
     {
         public User UserIdentity { get; set; }
+        public GetDatesReportView DatesReport { get; set; }
 
-        public GetExercisesPiechartDataQuery(HttpContextBase httpContext)
+        public GetExercisesPiechartDataQuery(HttpContextBase httpContext, GetDatesReportView datesReport)
         {
             this.UserIdentity = GymLedger.Helpers.CookieAuth.AuthCookieHelper.getUserIdentity();
+            DatesReport = datesReport;
         }
         public void ValidateMe()
         {
