@@ -76,12 +76,14 @@
     <Compile Include="Areas\Ledger\QueryHandlers\GetSessionDetailQueryHandler.cs" />
     <Compile Include="Areas\Ledger\QueryHandlers\GetSessionsLinechartDataQueryHandler.cs" />
     <Compile Include="Areas\Ledger\QueryHandlers\GetSessionsQueryHandler.cs" />
+    <Compile Include="Areas\Ledger\QueryHandlers\GetUniqueExerciseQueryHandler.cs" />
     <Compile Include="Areas\Ledger\Querys\GetExerciseDetailQuery.cs" />
     <Compile Include="Areas\Ledger\Querys\GetExercisesPiechartDataQuery.cs" />
     <Compile Include="Areas\Ledger\Querys\GetExercisesQuery.cs" />
     <Compile Include="Areas\Ledger\Querys\GetSessionDetailQuery.cs" />
     <Compile Include="Areas\Ledger\Querys\GetSessionsLinechartDataQuery.cs" />
     <Compile Include="Areas\Ledger\Querys\GetSessionsQuery.cs" />
+    <Compile Include="Areas\Ledger\Querys\GetUniqueExerciseQuery.cs" />
     <Compile Include="BaseCommands\DataCommandResponse.cs" />
     <Compile Include="BaseCommands\ICommand.cs" />
     <Compile Include="BaseCommands\ICommandHandler.cs" />

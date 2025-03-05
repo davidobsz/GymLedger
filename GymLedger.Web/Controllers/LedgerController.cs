@@ -309,7 +309,17 @@ namespace GymLedger.Web.Controllers
         public ActionResult ExerciseDetails(string uniqueId)
         {
             // get details for exercise from queryHanlder
+            try
+            {
+                var handler = LedgerFactory.GetUniqueExerciseQueryHandler(new GetUniqueExerciseQuery(this.HttpContext, uniqueId));
+                var response = handler.Get();
 
+                return View(response);
+            }
+            catch (Exception ex)
+            {
+                return View();
+            }
 
             return View();
         }
