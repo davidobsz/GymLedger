@@ -21,7 +21,7 @@ $(document).ready(function () {
                     }
 
                     window.exercisesChart = new Chart(ctx, {
-                        type: 'pie',
+                        type: 'doughnut',
                         data: {
                             labels: data.Data.Exercise,  
                             datasets: [{
