@@ -80,6 +80,11 @@ namespace GymLedger.Domains.Areas.Ledger
             return new GetSessionsLinechartDataQueryValidator(new GetSessionsLinechartDataQueryHandler(query), query);
         }
 
+        public static IQueryHandler<GetSetsBarchartDataQuery, GetSetsBarchartDataView> GetSetsBarchartDataDetailsQueryHandler(GetSetsBarchartDataQuery query)
+        {
+            return new GetSetsBarchartDataQueryValidator(new GetSetsBarchartDataQueryHandler(query), query);
+        }
+
         public static IQueryHandler<GetUniqueExerciseQuery, ExerciseDetailView> GetUniqueExerciseQueryHandler(GetUniqueExerciseQuery query)
         {
             return new GetUniqueExerciseQueryValidator(new GetUniqueExerciseQueryHandler(query), query);

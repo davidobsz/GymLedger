@@ -56,11 +56,11 @@
                 <div class="card-footer">
                     <div class="col-md-12 mb-3">
                         <label for="startDate">Start Date:</label>
-                        <input type="date" id="startDate" class="form-control">
+                        <input type="date" id="startDate2" class="form-control">
                     </div>
                     <div class="col-md-12 mb-3">
                         <label for="endDate">End Date:</label>
-                        <input type="date" id="endDate" class="form-control">
+                        <input type="date" id="endDate2" class="form-control">
                     </div>
                     <div class="col-md-12">
                         <button id="runReportSessions" class="btn btn-primary">Run Report</button>
@@ -79,11 +79,11 @@
                 <div class="card-footer">
                     <div class="col-md-12 mb-3">
                         <label for="startDate">Start Date:</label>
-                        <input type="date" id="startDate" class="form-control">
+                        <input type="date" id="startDate3" class="form-control">
                     </div>
                     <div class="col-md-12 mb-3">
                         <label for="endDate">End Date:</label>
-                        <input type="date" id="endDate" class="form-control">
+                        <input type="date" id="endDate3" class="form-control">
                     </div>
                     <div class="col-md-12">
                         <button id="runReportSets" class="btn btn-primary">Run Report</button>
@@ -98,3 +98,4 @@
 <!-- store URL for get exercises LedgerControlerr method -->
 <div id="chartDataUrl" data-url="@Url.Action("GetExercisesPiechart", "Ledger")" style="display:none;"></div>
 <div id="sessionDataUrl" data-url="@Url.Action("GetSessionsLinechart", "Ledger")" style="display:none;"></div>
+<div id="setsDataUrl" data-url="@Url.Action("GetSetsBarchart", "Ledger")" style="display:none;"></div>

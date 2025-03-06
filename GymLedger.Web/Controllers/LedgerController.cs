@@ -291,17 +291,41 @@ namespace GymLedger.Web.Controllers
         [HttpGet]
         public JsonResult GetSessionsLinechart(GetDatesReportView datesReport)
         {
-            try
-            { 
-                var handler = LedgerFactory.GetSessionsLinechartDataDetailsQueryHandler(new GetSessionsLinechartDataQuery(this.HttpContext, datesReport));
-                var response = handler.Get();
-
-                return Json(new { success = true, Data = response }, JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception ex)
+            if (ModelState.IsValid)
             {
-                return Json(new { success = false, responseText = ex.Message }, JsonRequestBehavior.AllowGet);
+                try
+                {
+                    var handler = LedgerFactory.GetSessionsLinechartDataDetailsQueryHandler(new GetSessionsLinechartDataQuery(this.HttpContext, datesReport));
+                    var response = handler.Get();
+
+                    return Json(new { success = true, Data = response }, JsonRequestBehavior.AllowGet);
+                }
+                catch (Exception ex)
+                {
+                    return Json(new { success = false, responseText = ex.Message }, JsonRequestBehavior.AllowGet);
+                }
             }
+            return Json(new { success = false, responseText = "Failed to get linechart data" }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult GetSetsBarchart(GetDatesReportView datesReport)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var handler = LedgerFactory.GetSetsBarchartDataDetailsQueryHandler(new GetSetsBarchartDataQuery(this.HttpContext, datesReport));
+                    var response = handler.Get();
+
+                    return Json(new { success = true, Data = response }, JsonRequestBehavior.AllowGet);
+                }
+                catch (Exception ex)
+                {
+                    return Json(new { success = false, responseText = ex.Message }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            return Json(new { success = false, responseText = "Failed to get piechart data" }, JsonRequestBehavior.AllowGet);
         }
 
 
@@ -320,8 +344,6 @@ namespace GymLedger.Web.Controllers
             {
                 return View();
             }
-
-            return View();
         }
     }
 }
