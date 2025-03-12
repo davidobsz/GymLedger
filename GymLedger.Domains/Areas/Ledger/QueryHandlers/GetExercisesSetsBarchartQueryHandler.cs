@@ -27,6 +27,11 @@ namespace GymLedger.Domains.Areas.Ledger.QueryHandlers
 
             var response = this.decorated.Get();
 
+            if (string.IsNullOrEmpty(this.Query.UniqueId))
+            {
+                throw new Exception("uniqueId not found for the sets barchart");
+            }
+
             return response;
         }
     }
