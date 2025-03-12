@@ -9,11 +9,14 @@
         <!-- Sessions Line Chart Card-->
         <div class="col-12 col-md-4">
             <div class="card">
-                <div class="card-header">Sessions Line Chart</div>
+                <div class="card-header">Sets Progress BarChart</div>
+
                 <div class="card-body">
                     <canvas id="sessionsLineChartExercise"></canvas>
                 </div>
                 <div class="card-footer">
+                    <div class="col-md-12">
+                    </div>
                     <div class="col-md-12 mb-3">
                         <label for="startDate">Start Date:</label>
                         <input type="date" id="startDate" class="form-control">
@@ -22,14 +25,26 @@
                         <label for="endDate">End Date:</label>
                         <input type="date" id="endDate" class="form-control">
                     </div>
-                    <div class="col-md-12">
+                    <hr />
+                    <div class="d-flex justify-content-between col-md-12">
+                        <!-- Run Report button on the left -->
                         <button id="runReportSessions" class="btn btn-primary">Run Report</button>
+                        <!-- Collapse button on the right -->
+                        <small class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#collapseSetsProgressBarchart" aria-expanded="false" aria-controls="collapseExample">
+                            <i class="fa-solid fa-question fa-xs"></i>
+                        </small>
+                    </div>
+                    <div class="collapse" id="collapseSetsProgressBarchart">
+                        <div class="card card-body mt-2">
+                            This graph shows you the difference of strength for this exercise per set as a % in the timeframe you have selected
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 
 <div class="container mt-4">
     <h2 class="mb-4">Sessions</h2>

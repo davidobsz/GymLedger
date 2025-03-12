@@ -46,8 +46,17 @@
                         <label for="endDate">End Date:</label>
                         <input type="date" id="endDate" class="form-control">
                     </div>
-                    <div class="col-md-12">
+                    <div class="d-flex justify-content-between col-md-12">
                         <button id="runReportExercises" class="btn btn-primary">Run Report</button>
+
+                        <small class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#collapseExercisesProgressBarchart" aria-expanded="false" aria-controls="collapseExample">
+                            <i class="fa-solid fa-question fa-xs"></i>
+                        </small>
+                    </div>
+                    <div class="collapse" id="collapseExercisesProgressBarchart">
+                        <div class="card card-body mt-2">
+                            This graph shows you how many sessions per exercise you have entered
+                        </div>
                     </div>
                 </div>
             </div>
@@ -69,8 +78,17 @@
                         <label for="endDate">End Date:</label>
                         <input type="date" id="endDate2" class="form-control">
                     </div>
-                    <div class="col-md-12">
+                    <div class="d-flex justify-content-between col-md-12">
                         <button id="runReportSessions" class="btn btn-primary">Run Report</button>
+
+                        <small class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#collapseSessionsProgressBarchart" aria-expanded="false" aria-controls="collapseExample">
+                            <i class="fa-solid fa-question fa-xs"></i>
+                        </small>
+                    </div>
+                    <div class="collapse" id="collapseSessionsProgressBarchart">
+                        <div class="card card-body mt-2">
+                            This graph shows you the total session volume progress as a % per exercise
+                        </div>
                     </div>
                 </div>
             </div>
@@ -92,8 +110,18 @@
                         <label for="endDate">End Date:</label>
                         <input type="date" id="endDate3" class="form-control">
                     </div>
-                    <div class="col-md-12">
+                    <div class="d-flex justify-content-between col-md-12">
                         <button id="runReportSets" class="btn btn-primary">Run Report</button>
+
+
+                        <small class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#collapseSetsProgressBarchart" aria-expanded="false" aria-controls="collapseExample">
+                            <i class="fa-solid fa-question fa-xs"></i>
+                        </small>
+                    </div>
+                    <div class="collapse" id="collapseSetsProgressBarchart">
+                        <div class="card card-body mt-2">
+                            This graph shows you the total sets per exercise
+                        </div>
                     </div>
                 </div>
             </div>
