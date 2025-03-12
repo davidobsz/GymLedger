@@ -207,3 +207,81 @@ $(document).ready(function () {
         loadChart(datesReport);
     });
 });
+
+$(document).ready(function () {
+    function loadChart(datesReport = null) {
+        var url = $('#setsBarchartDataUrlExercise').data('url');
+
+        $.ajax({
+            url: url,
+            method: 'GET',
+            data: datesReport,
+            dataType: 'json',
+            success: function (data) {
+                if (data.success && data.Data && data.Data.GetExercisesSetsBarchartDetailViews) {
+                    var ctx = $('#setsBarchartExercise')[0].getContext('2d');
+
+                    if (window.setsChart) {
+                        window.setsChart.destroy();
+                    }
+
+                    // Extract SetNumber for X-axis labels and SetProgress for Y-axis data
+                    var labels = data.Data.GetExercisesSetsBarchartDetailViews.map(item => "Set " + item.SetNumber);
+                    var setProgressData = data.Data.GetExercisesSetsBarchartDetailViews.map(item => item.SetProgress);
+
+                    // Create new chart
+                    window.setsChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: 'Total Volume (Reps × Weight)',
+                                data: setProgressData,
+                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                legend: { position: 'top' },
+                                tooltip: {
+                                    callbacks: {
+                                        label: function (tooltipItem) {
+                                            return tooltipItem.label + ": " + tooltipItem.raw;
+                                        }
+                                    }
+                                }
+                            },
+                            scales: {
+                                y: { beginAtZero: true }
+                            }
+                        }
+                    });
+                } else {
+                    console.error('Error: Invalid response structure', data);
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error('Error fetching chart data:', error);
+            }
+        });
+    }
+
+    loadChart();
+
+    $('#runReportSetsExercise').click(function () {
+        var startDate = $('#startDate3').val();
+        var endDate = $('#endDate3').val();
+
+        var datesReport = {
+            StartDate: startDate ? startDate : null,
+            EndDate: endDate ? endDate : null
+        };
+        console.log(datesReport);
+
+        loadChart(datesReport);
+    });
+});
+

@@ -12,7 +12,7 @@
                 <div class="card-header">Sets Progress Bar Chart</div>
 
                 <div class="card-body">
-                    <canvas id="sessionsLineChartExercise"></canvas>
+                    <canvas id="setsBarchartExercise"></canvas>
                 </div>
                 <div class="card-footer">
                     <div class="col-md-12">
@@ -28,7 +28,7 @@
                     <hr />
                     <div class="d-flex justify-content-between col-md-12">
                         <!-- Run Report button on the left -->
-                        <button id="runReportSessions" class="btn btn-primary">Run Report</button>
+                        <button id="runReportSetsExercise" class="btn btn-primary">Run Report</button>
                         <!-- Collapse button on the right -->
                         <small class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#collapseSetsProgressBarchart" aria-expanded="false" aria-controls="collapseExample">
                             <i class="fa-solid fa-question fa-xs"></i>
@@ -90,4 +90,4 @@
 </div>
 
 <!-- store URL for get exercises LedgerControlerr method -->
-@*<div id="chartDataUrlExercise" data-url="@Url.Action("", "")" style="display:none;"></div>*@
+<div id="setsBarchartDataUrlExercise" data-url="@Url.Action("GetExerciseSetsBarchart", "Ledger", new {uniqueId = Model.UniqueId})" style="display:none;"></div>

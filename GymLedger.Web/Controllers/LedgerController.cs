@@ -285,7 +285,7 @@ namespace GymLedger.Web.Controllers
                     return Json(new { success = false, responseText = ex.Message }, JsonRequestBehavior.AllowGet);
                 }
             }
-            return Json(new { success = false, responseText = "Failed to get piechart data" }, JsonRequestBehavior.AllowGet);
+            return Json(new { success = false, responseText = "Failed to get exercises piechart data" }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
@@ -305,7 +305,7 @@ namespace GymLedger.Web.Controllers
                     return Json(new { success = false, responseText = ex.Message }, JsonRequestBehavior.AllowGet);
                 }
             }
-            return Json(new { success = false, responseText = "Failed to get linechart data" }, JsonRequestBehavior.AllowGet);
+            return Json(new { success = false, responseText = "Failed to get sessions linechart data" }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
@@ -325,7 +325,27 @@ namespace GymLedger.Web.Controllers
                     return Json(new { success = false, responseText = ex.Message }, JsonRequestBehavior.AllowGet);
                 }
             }
-            return Json(new { success = false, responseText = "Failed to get piechart data" }, JsonRequestBehavior.AllowGet);
+            return Json(new { success = false, responseText = "Failed to get sets barchart data" }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult GetExerciseSetsBarchart(GetDatesReportView datesReport, string uniqueId)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var handler = LedgerFactory.GetExercisesSetsBarchartQueryHandler(new GetExercisesSetsBarchartQuery(this.HttpContext, datesReport, uniqueId));
+                    var response = handler.Get();
+
+                    return Json(new { success = true, Data = response }, JsonRequestBehavior.AllowGet);
+                }
+                catch (Exception ex)
+                {
+                    return Json(new { success = false, responseText = ex.Message }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            return Json(new { success = false, responseText = "Failed to get sets barchart data" }, JsonRequestBehavior.AllowGet);
         }
 
 
