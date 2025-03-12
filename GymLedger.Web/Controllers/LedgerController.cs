@@ -190,13 +190,13 @@ namespace GymLedger.Web.Controllers
         }
 
         [HttpGet]
-        public JsonResult GetSessions()
+        public JsonResult GetSessions(string? uniqueId)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var handler = LedgerFactory.GetSessionsQueryHandler(new GetSessionsQuery(this.HttpContext));
+                    var handler = LedgerFactory.GetSessionsQueryHandler(new GetSessionsQuery(this.HttpContext, string.IsNullOrEmpty(uniqueId) ? "0000" : uniqueId));
                     var response = handler.Get();
 
                     return Json(new { total = response.Sessions.Count, rows = response.Sessions }, JsonRequestBehavior.AllowGet);

@@ -10,7 +10,7 @@
         <div class="col-12 col-md-4">
             <div class="card">
                 <div class="card-header">Sessions Line Chart</div>
-                <div class="card-body"> 
+                <div class="card-body">
                     <canvas id="sessionsLineChartExercise"></canvas>
                 </div>
                 <div class="card-footer">
@@ -31,5 +31,48 @@
     </div>
 </div>
 
+<div class="container mt-4">
+    <h2 class="mb-4">Sessions</h2>
+
+    <table class="table bootTable"
+           id="modalTable"
+           data-toggle="table"
+           data-url="@Url.Action("GetSessions", "Ledger", new {uniqueId = Model.UniqueId})"
+           data-pagination="true"
+           data-search="true"
+           data-click-to-select="true"
+           data-toolbar-align="left"
+           data-show-refresh="true"
+           data-cache="false"
+           data-show-columns="true"
+           data-toolbar="#sessionToolbar"
+           data-mobile-responsive="true"
+           data-page-list="[10, 25, 50, 100, all]"
+           data-side-pagination="client"
+           data-query-params="queryParams"
+           @*           data-sort-name="DisplayOrder"*@
+           data-sort-order="asc"
+           data-unique-id="UniqueId">
+        <thead>
+            <tr>
+                <th data-sortable="false" data-visible="false" data-field="UniqueId">UniqueId</th>
+                <th data-sortable="true" data-field="Exercise">Exercise</th>
+                <th data-sortable="true" data-field="DateAsString">Date</th>
+                <th data-sortable="true" data-field="DateAddedAsString">Date Added</th>
+                <th data-sortable="false" data-field="NumOfSets">Number of Sets</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<div id="sessionToolbar">
+    <button class="btn btn-light" id="addSession"><a href="@Url.Action("AddSession", "Ledger")"><i class="fa-solid fa-plus fa-lg"></i></a></button>
+</div>
+
+<div id="modalTableContainer"
+     data-url="@Url.Action("GetSessionDetails", "Ledger")">
+</div>
+
 <!-- store URL for get exercises LedgerControlerr method -->
-<div id="chartDataUrlExercise" data-url="@Url.Action("", "")" style="display:none;"></div>
+@*<div id="chartDataUrlExercise" data-url="@Url.Action("", "")" style="display:none;"></div>*@

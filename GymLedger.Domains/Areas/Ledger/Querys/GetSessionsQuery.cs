@@ -14,9 +14,12 @@ namespace GymLedger.Domains.Areas.Ledger.Querys
     {
         public User UserIdentity { get; set; }
 
-        public GetSessionsQuery(HttpContextBase httpContext) 
+        public string UniqueId { get; set; }
+
+        public GetSessionsQuery(HttpContextBase httpContext, string uniqueId) 
         { 
             this.UserIdentity = GymLedger.Helpers.CookieAuth.AuthCookieHelper.getUserIdentity();
+            this.UniqueId = uniqueId;
         }
         public void ValidateMe()
         {
