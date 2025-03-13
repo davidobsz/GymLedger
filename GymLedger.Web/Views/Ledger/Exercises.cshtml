@@ -38,9 +38,15 @@
 </div>
 
 <div id="exerciseToolbar">
-    <button class="btn btn-light" id="addExercise"><a href="@Url.Action("AddExercise", "Ledger")"><i class="fa-solid fa-plus fa-lg"></i></a></button>
+    <button class="btn btn-light" id="addExercise"><a><i class="fa-solid fa-plus fa-lg"></i></a></button>
 </div>
 
 <div id="exerciseTableContainer" 
      data-url="@Url.Action("GetExerciseDetails", "Ledger")">
 </div>
+
+<div id="addExerciseContainer"
+     data-url="@Url.Action("AddExercisePartial", "Ledger")">
+</div>
+
+@Html.Hidden("AddExerciseUrl", Url.Action("AddExercise", "Ledger"))

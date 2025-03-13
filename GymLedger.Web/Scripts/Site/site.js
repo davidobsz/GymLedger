@@ -33,7 +33,7 @@ $(document).ready(function () {
         });
     });
 
-    $('#addExerciseForm').on('submit', function (e) {
+    $(document).on('submit', '#addExerciseForm', function (e) {
         e.preventDefault();
 
         const $form = $(this);
@@ -42,14 +42,24 @@ $(document).ready(function () {
         $submitButton.prop('disabled', true); // Disable button to prevent multiple clicks
 
         const formData = $form.serialize();
+        const addExerciseUrl = $('#AddExerciseUrl').val(); // Get the correct URL from the hidden input
 
         $.ajax({
-            url: $form.attr('action'),
+            url: addExerciseUrl, // Use the hidden input value as the URL
             type: 'POST',
             data: formData,
             success: function (response) {
                 if (response.success) {
-                    $.growl.notice({ title: "Success", message: response.responseText });
+                    // Close the modal before showing Growl
+                    var modalEl = document.getElementById('modalModal');
+                    var modal = bootstrap.Modal.getInstance(modalEl);
+                    if (modal) {
+                        modal.hide();
+                    }
+                    setTimeout(() => {
+                        $.growl.notice({ title: "Success", message: response.responseText });
+                    }, 200); // Delay slightly to allow modal animation to complete
+
                     if (response.responseReload) {
                         setTimeout(() => location.reload(), 2000);
                     }
@@ -276,6 +286,35 @@ $(document).ready(function () {
         }
     });
 });
+
+$(document).ready(function () {
+    // Bind click event to the addExercise button
+    $('#addExercise').on('click', function (e) {
+        e.preventDefault();  // Prevent default link behavior
+        
+        var url = $('#addExerciseContainer').data('url');
+
+        $.ajax({
+            url: url,
+            type: 'GET',
+            success: function (response) {
+                // Remove existing modal if any
+                $('#modalModal').remove();
+
+                // Append new modal content to body
+                $("body").append(response);
+
+                // Initialize and show modal
+                var modal = new bootstrap.Modal(document.getElementById('modalModal'));
+                modal.show();
+            },
+            error: function (xhr, status, error) {
+                $.growl.error({ message: "Error loading modal details." }); // Use $.growl instead of alert
+            }
+        });
+    });
+});
+
 
 
 // add set
