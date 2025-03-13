@@ -235,7 +235,7 @@ $(document).ready(function () {
                         data: {
                             labels: labels,
                             datasets: [{
-                                label: 'Total Volume (Reps × Weight)',
+                                label: 'Total Progress Per Set',
                                 data: setProgressData,
                                 backgroundColor: 'rgba(75, 192, 192, 0.2)',
                                 borderColor: 'rgba(75, 192, 192, 1)',
