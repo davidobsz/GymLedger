@@ -1,7 +1,7 @@
 ﻿
 
 $(document).ready(function () {
-    $('#addSessionForm').on('submit', function (e) {
+    $(document).on('submit', '#addSessionForm', function (e) {
         e.preventDefault();
 
         const $form = $(this);
@@ -10,14 +10,24 @@ $(document).ready(function () {
         $submitButton.prop('disabled', true); // Disable button to prevent multiple clicks
 
         const formData = $form.serialize();
+        const addSessionUrl = $('#AddSessionUrl').val(); // Get the correct URL from the hidden input
 
         $.ajax({
-            url: $form.attr('action'),
+            url: addSessionUrl, // Use the hidden input value as the URL
             type: 'POST',
             data: formData,
             success: function (response) {
                 if (response.success) {
-                    $.growl.notice({ title: "Success", message: response.responseText });
+                    // Close the modal before showing Growl
+                    var modalEl = document.getElementById('sessionModal');
+                    var modal = bootstrap.Modal.getInstance(modalEl);
+                    if (modal) {
+                        modal.hide();
+                    }
+                    setTimeout(() => {
+                        $.growl.notice({ title: "Success", message: response.responseText });
+                    }, 200); // Delay slightly to allow modal animation to complete
+
                     if (response.responseReload) {
                         setTimeout(() => location.reload(), 2000);
                     }
@@ -252,11 +262,12 @@ $(document).ready(function () {
     });
 });
 
+// gets the sessionDetails
 $(document).ready(function () {
-    $('#modalTable').on('click', 'tbody tr', function () {
+    $('#sessionTable').on('click', 'tbody tr', function () {
         var uniqueId = $(this).attr("data-uniqueid");
-        var url = $('#modalTableContainer').data('url');
-
+        var url = $('#sessionTableContainer').data('url');
+        console.log(url);
         if (uniqueId) {
             $.ajax({
                 url: url,
@@ -265,7 +276,7 @@ $(document).ready(function () {
                 success: function (response) {
 
                     // Check if the modal already exists and remove it if so
-                    var existingModal = $('#modalModal');
+                    var existingModal = $('#sessionDetailModal');
                     if (existingModal.length) {
                         existingModal.remove();  // Remove the existing modal content
                     }
@@ -274,7 +285,7 @@ $(document).ready(function () {
                     $("body").append(response);
 
                     // Ensure modal is initialized and shown
-                    var modal = new bootstrap.Modal(document.getElementById('modalModal'));
+                    var modal = new bootstrap.Modal(document.getElementById('sessionDetailModal'));
                     modal.show();
                 },
                 error: function (xhr, status, error) {
@@ -315,6 +326,24 @@ $(document).ready(function () {
     });
 });
 
+$(document).on('click', '#addSession', function (e) {
+    e.preventDefault(); // Prevent any unwanted navigation
+
+    const modalUrl = $('#addSessionContainer').data('url'); // URL for the partial view
+    $.ajax({
+        url: modalUrl,
+        type: 'GET',
+        success: function (response) {
+            $('#addSessionContainer').html(response); // Load the modal content
+            const sessionModal = new bootstrap.Modal(document.getElementById('sessionModal'));
+            sessionModal.show(); // Open the modal
+        },
+        error: function () {
+            $.growl.error({ title: "Error", message: "Failed to load Add Session form." });
+        }
+    });
+});
+
 
 
 // add set
@@ -322,12 +351,13 @@ $(document).ready(function () {
     var setIndex = 0;
 
     // Handle add set button click
-    $('#add-set').click(function () {
+    $(document).on('click', '#add-set', function () {
         var setTemplate = $('#set-template').html();
+        var setIndex = $('#sets-container .set-entry').length; // Count current sets
         var newSet = setTemplate.replace(/Sets\[0\]/g, 'Sets[' + setIndex + ']');
         $('#sets-container').append(newSet);
-        setIndex++;
     });
+
 
     // Handle remove set button click
     $(document).on('click', '.remove-set', function () {

@@ -200,6 +200,7 @@
     <Content Include="Views\Ledger\_SessionDetail.cshtml" />
     <Content Include="Views\Ledger\ExerciseDetails.cshtml" />
     <Content Include="Views\Ledger\_AddExercise.cshtml" />
+    <Content Include="Views\Ledger\_AddSession.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

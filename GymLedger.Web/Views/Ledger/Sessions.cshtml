@@ -7,7 +7,7 @@
     <h2 class="mb-4">Sessions</h2>
 
     <table class="table bootTable"
-           id="modalTable"
+           id="sessionTable"
            data-toggle="table"
            data-url="@Url.Action("GetSessions", "Ledger")"
            data-pagination="true"
@@ -39,9 +39,15 @@
 </div>
 
 <div id="sessionToolbar">
-    <button class="btn btn-light" id="addSession"><a href="@Url.Action("AddSession", "Ledger")"><i class="fa-solid fa-plus fa-lg"></i></a></button>
+    <button class="btn btn-light" id="addSession"><a><i class="fa-solid fa-plus fa-lg"></i></a></button>
 </div>
 
-<div id="modalTableContainer"
+<div id="sessionTableContainer"
      data-url="@Url.Action("GetSessionDetails", "Ledger")">
 </div>
+
+<div id="addSessionContainer"
+     data-url="@Url.Action("AddSessionPartial", "Ledger")">
+</div>
+
+@Html.Hidden("AddSessionUrl", Url.Action("AddSession", "Ledger"))

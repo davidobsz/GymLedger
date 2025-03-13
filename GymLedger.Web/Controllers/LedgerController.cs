@@ -141,7 +141,7 @@ namespace GymLedger.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult AddSession()
+        public PartialViewResult AddSessionPartial()
         {
             try
             {
@@ -160,11 +160,11 @@ namespace GymLedger.Web.Controllers
                     exercises.Add(exercise);
                 }
                 var view = new AddSessionView { Exercises = exercises };
-                return View(view);
+                return PartialView("_AddSession",view);
             }
             catch (Exception ex)
             {
-                return View();
+                return PartialView("AddSession");
             }
         }
 

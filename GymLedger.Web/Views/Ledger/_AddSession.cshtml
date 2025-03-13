@@ -1,0 +1,56 @@
+﻿@model GymLedger.Views.Areas.Ledger.AddSessionView
+
+<div class="modal fade" id="sessionModal" tabindex="-1" aria-labelledby="modalModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalModalLabel">Add Session</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <small>Add a session using the details below</small>
+                @using (Html.BeginForm("AddSession", "Ledger", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "addSessionForm" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Exercises)
+                        @Html.DropDownListFor(m => m.ExerciseName, new SelectList(Model.Exercises, "Name", "Name"), "Select Exercise", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Exercises)
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Date) <!-- Label for Date -->
+                        <input type="date" class="form-control" name="DateAdded" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                    </div>
+
+                    <button type="button" class="btn btn-primary" id="add-set">Add Set</button>
+
+                    <div id="sets-container"></div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success">Save Session</button>
+                    </div>
+                }
+
+                <!-- Hidden template for Set inputs -->
+                <div id="set-template" style="display:none;">
+                    <div class="set-entry">
+                        <div class="form-group">
+                            <label for="SetNumber">Set Number</label>
+                            <input type="number" name="Sets[0].SetNumber" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="Weight">Weight</label>
+                            <input type="number" name="Sets[0].Weight" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="Reps">Reps</label>
+                            <input type="number" name="Sets[0].Reps" class="form-control" />
+                        </div>
+                        <button type="button" class="btn btn-danger remove-set">Remove</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
