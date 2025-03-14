@@ -272,8 +272,8 @@ $(document).ready(function () {
     loadChart();
 
     $('#runReportSetsExercise').click(function () {
-        var startDate = $('#startDate3').val();
-        var endDate = $('#endDate3').val();
+        var startDate = $('#startDate4').val();
+        var endDate = $('#endDate4').val();
 
         var datesReport = {
             StartDate: startDate ? startDate : null,

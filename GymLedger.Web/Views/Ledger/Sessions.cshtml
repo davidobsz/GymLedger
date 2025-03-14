@@ -6,36 +6,71 @@
 <div class="container mt-4">
     <h2 class="mb-4">Sessions</h2>
 
-    <table class="table bootTable"
-           id="sessionTable"
-           data-toggle="table"
-           data-url="@Url.Action("GetSessions", "Ledger")"
-           data-pagination="true"
-           data-search="true"
-           data-click-to-select="true"
-           data-toolbar-align="left"
-           data-show-refresh="true"
-           data-cache="false"
-           data-show-columns="true"
-           data-toolbar="#sessionToolbar"
-           data-mobile-responsive="true"
-           data-page-list="[10, 25, 50, 100, all]"
-           data-side-pagination="client"
-           data-query-params="queryParams"
-           @*           data-sort-name="DisplayOrder"*@
-           data-sort-order="asc"
-           data-unique-id="UniqueId">
-        <thead>
-            <tr>
-                <th data-sortable="false" data-visible="false" data-field="UniqueId">UniqueId</th>
-                <th data-sortable="true" data-field="Exercise">Exercise</th>
-                <th data-sortable="true" data-field="DateAsString">Date</th>
-                <th data-sortable="true" data-field="DateAddedAsString">Date Added</th>
-                <th data-sortable="false" data-field="NumOfSets">Number of Sets</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
+    <div class="row">
+        <div class="col-12 col-md-4">
+            <div class="card">
+                <div class="card-header">Sessions Bar Chart</div>
+                <div class="card-body justify-content-center">
+                    <canvas id="setsLineChart"></canvas>
+                </div>
+                <div class="card-footer">
+                    <div class="col-md-12 mb-3">
+                        <label for="startDate">Start Date:</label>
+                        <input type="date" id="startDate3" class="form-control">
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="endDate">End Date:</label>
+                        <input type="date" id="endDate3" class="form-control">
+                    </div>
+                    <div class="d-flex justify-content-between col-md-12">
+                        <button id="runReportSets" class="btn btn-primary">Run Report</button>
+
+
+                        <small class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#collapseSetsProgressBarchart" aria-expanded="false" aria-controls="collapseExample">
+                            <i class="fa-solid fa-question fa-xs"></i>
+                        </small>
+                    </div>
+                    <div class="collapse" id="collapseSetsProgressBarchart">
+                        <div class="card card-body mt-2">
+                            This graph shows you the total sets per exercise
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <table class="table bootTable"
+               id="sessionTable"
+               data-toggle="table"
+               data-url="@Url.Action("GetSessions", "Ledger")"
+               data-pagination="true"
+               data-search="true"
+               data-click-to-select="true"
+               data-toolbar-align="left"
+               data-show-refresh="true"
+               data-cache="false"
+               data-show-columns="true"
+               data-toolbar="#sessionToolbar"
+               data-mobile-responsive="true"
+               data-page-list="[10, 25, 50, 100, all]"
+               data-side-pagination="client"
+               data-query-params="queryParams"
+               @*           data-sort-name="DisplayOrder"*@
+               data-sort-order="asc"
+               data-unique-id="UniqueId">
+            <thead>
+                <tr>
+                    <th data-sortable="false" data-visible="false" data-field="UniqueId">UniqueId</th>
+                    <th data-sortable="true" data-field="Exercise">Exercise</th>
+                    <th data-sortable="true" data-field="DateAsString">Date</th>
+                    <th data-sortable="true" data-field="DateAddedAsString">Date Added</th>
+                    <th data-sortable="false" data-field="NumOfSets">Number of Sets</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>   
 </div>
 
 <div id="sessionToolbar">
