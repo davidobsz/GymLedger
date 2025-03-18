@@ -59,14 +59,14 @@ namespace GymLedger.Domains.Areas.Ledger.CommandHandlers
                 var user = db.Users.FirstOrDefault(u => u.Username == this.Command.UserIdentity.Username);
 
                 var view = this.Command.View;
-                var exerciseId = db.Exercises.Where(e => e.Name == this.Command.View.ExerciseName).FirstOrDefault().Id;
+                var exerciseId = db.Exercises.Where(e => e.Name == this.Command.View.ExerciseName && e.UserId == user.Id).FirstOrDefault().Id;
 
                 Session exercise = new Session
                 {
                     UniqueId = Guid.NewGuid().ToString("N"),
                     UserId = user.Id,
                     User = user,
-                    Date = DateTime.UtcNow,
+                    Date = this.Command.View.Date,
                     DateAdded = DateTime.UtcNow,
                     DateModified = DateTime.UtcNow,
                     ExerciseId = exerciseId
