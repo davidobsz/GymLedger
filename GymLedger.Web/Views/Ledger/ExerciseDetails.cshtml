@@ -42,6 +42,22 @@
                 </div>
             </div>
         </div>
+
+        <div class="col-12 col-md-4">
+            <div class="card">
+                <div class="card-header">One-Rep Max Progress</div>
+                <div class="card-body">
+                    <canvas id="oneRepMaxChart"></canvas>
+                </div>
+                <div class="card-footer">
+                    <label for="startDate5">Start Date:</label>
+                    <input type="date" id="startDate5" class="form-control mb-2">
+                    <label for="endDate5">End Date:</label>
+                    <input type="date" id="endDate5" class="form-control mb-3">
+                    <button id="runReportOneRepMax" class="btn btn-primary">Run Report</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -97,3 +113,4 @@
 
 <!-- store URL for get exercises LedgerControlerr method -->
 <div id="setsBarchartDataUrlExercise" data-url="@Url.Action("GetExerciseSetsBarchart", "Ledger", new {uniqueId = Model.UniqueId})" style="display:none;"></div>
+<div id="oneRepMaxDataUrlExercise" data-url="@Url.Action("GetOneRepMaxLineChart", "Ledger", new {uniqueId = Model.UniqueId})" style="display:none;"></div>

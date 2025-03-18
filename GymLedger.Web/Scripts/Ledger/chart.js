@@ -221,9 +221,6 @@ $(document).ready(function () {
                 if (data.success && data.Data && data.Data.GetExercisesSetsBarchartDetailViews) {
                     var ctx = $('#setsBarchartExercise')[0].getContext('2d');
 
-                    if (window.setsChart) {
-                        window.setsChart.destroy();
-                    }
 
                     // Extract SetNumber for X-axis labels and SetProgress for Y-axis data
                     var labels = data.Data.GetExercisesSetsBarchartDetailViews.map(item => "Set " + item.SetNumber);
@@ -285,3 +282,86 @@ $(document).ready(function () {
     });
 });
 
+$(document).ready(function () {
+    function loadOneRepMaxChart(datesReport = null) {
+        var url = $('#oneRepMaxDataUrlExercise').data('url');
+
+        $.ajax({
+            url: url,
+            method: 'GET',
+            data: datesReport,
+            dataType: 'json',
+            success: function (data) {
+                if (data.success && data.Data && data.Data.DataPoints) {
+                    var ctx = $('#oneRepMaxChart')[0].getContext('2d');
+                    console.log(data.Data.DataPoints);
+
+                    var labels = data.Data.DataPoints.map(item => formatDate(item.Date));
+                    var oneRepMaxData = data.Data.DataPoints.map(item => item.EstimatedOneRepMax);
+
+/*                    if (window.oneRepMaxChart) {
+                        window.oneRepMaxChart.destroy();
+                    }*/
+
+                    console.log("Hello");
+                    window.oneRepMaxChart = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: 'Estimated One-Rep Max',
+                                data: oneRepMaxData,
+                                borderColor: 'rgba(255, 99, 132, 1)',
+                                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                                borderWidth: 2,
+                                tension: 0.4,
+                                pointRadius: 4
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                legend: { position: 'top' },
+                                tooltip: {
+                                    callbacks: {
+                                        label: function (tooltipItem) {
+                                            return tooltipItem.label + ": " + tooltipItem.raw.toFixed(2) + " kg";
+                                        }
+                                    }
+                                }
+                            },
+                            scales: {
+                                y: { beginAtZero: true }
+                            }
+                        }
+                    });
+                } else {
+                    console.error('Error: Invalid response structure', data);
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error('Error fetching One-Rep Max chart data:', error);
+            }
+        });
+    }
+
+    function formatDate(dotNetDate) {
+        var timestamp = parseInt(dotNetDate.replace(/\D/g, '')); // Extract numbers from /Date(XXXXXXXXXXXX)/
+        var date = new Date(timestamp); // Convert to JavaScript Date object
+        return date.toISOString().split('T')[0]; // Format as YYYY-MM-DD
+    }
+
+    loadOneRepMaxChart();
+
+    $('#runReportOneRepMax').click(function () {
+        var startDate = $('#startDate5').val();
+        var endDate = $('#endDate5').val();
+
+        var datesReport = {
+            StartDate: startDate ? startDate : null,
+            EndDate: endDate ? endDate : null
+        };
+
+        loadOneRepMaxChart(datesReport);
+    });
+});

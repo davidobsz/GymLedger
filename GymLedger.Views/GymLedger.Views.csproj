@@ -53,6 +53,7 @@
     <Compile Include="Areas\Ledger\GetExercisesPiechartDataView.cs" />
     <Compile Include="Areas\Ledger\GetExercisesSetsBarchartView.cs" />
     <Compile Include="Areas\Ledger\GetExerciseView.cs" />
+    <Compile Include="Areas\Ledger\GetOneRepMaxLineChartView.cs" />
     <Compile Include="Areas\Ledger\GetSessionsLinechartDataView.cs" />
     <Compile Include="Areas\Ledger\GetSessionView.cs" />
     <Compile Include="Areas\Ledger\GetSetsBarchartDataView.cs" />

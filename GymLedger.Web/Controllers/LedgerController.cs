@@ -354,6 +354,27 @@ namespace GymLedger.Web.Controllers
             return Json(new { success = false, responseText = "Failed to get sets barchart data" }, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpGet]
+        public JsonResult GetOneRepMaxLineChart(GetDatesReportView datesReport, string uniqueId)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var handler = LedgerFactory.GetOneRepMaxLineChartQueryHandler(new GetOneRepMaxLineChartQuery(this.HttpContext, datesReport, uniqueId));
+                    var response = handler.Get();
+
+                    return Json(new { success = true, Data = response }, JsonRequestBehavior.AllowGet);
+                }
+                catch (Exception ex)
+                {
+                    return Json(new { success = false, responseText = ex.Message }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            return Json(new { success = false, responseText = "Failed to get One-Rep Max chart data" }, JsonRequestBehavior.AllowGet);
+        }
+
+
 
         [HttpGet]
         public ActionResult ExerciseDetails(string uniqueId)
