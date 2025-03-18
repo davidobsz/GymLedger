@@ -79,22 +79,23 @@ namespace GymLedger.Helpers.CookieAuth
             {
                 return db.Users.Any(u => u.Username == username && u.Password == password);
             }
-        } 
+        }
 
         public static User getUserIdentity()
         {
-            // get cookie from context of current user
             var authCookie = HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName];
-
-            // Decrypt the auth cookie
-            var userInfo = AuthCookieHelper.DecryptAuthCookie(authCookie.Value);
-
-            User user = new User
+            if (authCookie == null)
             {
-                Username = userInfo.Username
-            };
+                return null;  // No cookie = no logged-in user
+            }
 
-            return user;
+            var userInfo = DecryptAuthCookie(authCookie.Value);
+            if (userInfo == null)
+            {
+                return null;  // Decryption failed
+            }
+
+            return new User { Username = userInfo.Username };
         }
 
         public static void Logout()
