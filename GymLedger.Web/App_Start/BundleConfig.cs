@@ -33,7 +33,8 @@ namespace GymLedger.Web
             bundles.Add(new ScriptBundle("~/bundles/site").Include(
                 "~/Scripts/Site/site.js",
                 "~/Scripts/bootstrap-table.min.js",
-                "~/Scripts/Ledger/chart.js"
+                "~/Scripts/Ledger/chart.js",
+                "~/Scripts/Site/Profile/profile.js"
                 ));
 
             bundles.Add(new ScriptBundle("~/bundles/growl").Include(

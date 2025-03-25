@@ -92,6 +92,9 @@
     <Compile Include="Areas\Ledger\Querys\GetSetsBarchartDataQuery.cs" />
     <Compile Include="Areas\Ledger\Querys\GetUniqueExerciseQuery.cs" />
     <Compile Include="Areas\Ledger\Querys\GetVolumePerSessionQuery.cs" />
+    <Compile Include="Areas\Profile\ProfileFactory.cs" />
+    <Compile Include="Areas\Profile\QueryHandlers\AccountDetailsGetQueryHandler.cs" />
+    <Compile Include="Areas\Profile\Querys\AccountDetailsGetQuery.cs" />
     <Compile Include="BaseCommands\DataCommandResponse.cs" />
     <Compile Include="BaseCommands\ICommand.cs" />
     <Compile Include="BaseCommands\ICommandHandler.cs" />

@@ -23,12 +23,6 @@ namespace GymLedger.Web.Controllers
             return View("Index");
         }
 
-/*        [HttpGet]
-        public ActionResult AddExercise()
-        {
-            return View();
-        }*/
-
         [HttpGet]
         public PartialViewResult AddExercisePartial()
         {

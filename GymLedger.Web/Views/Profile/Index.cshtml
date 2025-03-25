@@ -1,0 +1,25 @@
+﻿@*@model GymLedger.Views.Profile.MyProfileView*@
+
+@{
+    ViewBag.Title = "Profile";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h5 class="card-title text-center mb-3">Options</h5>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <a href="@Url.Action("Exercises", "Ledger")"  class="text-decoration-none"><i class="fa-solid fa-lock"></i> Change Password</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="@Url.Action("AccountDetails", "Profile")" id="getAccountDetails" class="text-decoration-none"><i class="fa-solid fa-circle-info"></i> Account Details</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div id="AccountDetailsPartial"
+     data-url="@Url.Action("AccountDetails", "Profile")">
+</div>
