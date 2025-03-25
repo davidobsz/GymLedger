@@ -37,6 +37,10 @@ namespace GymLedger.Models.Mappings
 
             Property(u => u.UserRole).IsRequired();
 
+            Property(u => u.IsLockedOut).IsOptional();
+            Property(u => u.LockedOutDate).IsOptional();
+            Property(u => u.FailedLoginAttempts).IsOptional();
+
             // Relationships
             HasMany(u => u.Sessions)
                 .WithRequired(s => s.User) 

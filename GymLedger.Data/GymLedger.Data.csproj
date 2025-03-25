@@ -60,6 +60,10 @@
     <Compile Include="Migrations\202502191447035_v_1.0.Designer.cs">
       <DependentUpon>202502191447035_v_1.0.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202503251221555_v_1.1_FailedLogin.cs" />
+    <Compile Include="Migrations\202503251221555_v_1.1_FailedLogin.Designer.cs">
+      <DependentUpon>202503251221555_v_1.1_FailedLogin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -80,6 +84,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202502191447035_v_1.0.resx">
       <DependentUpon>202502191447035_v_1.0.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202503251221555_v_1.1_FailedLogin.resx">
+      <DependentUpon>202503251221555_v_1.1_FailedLogin.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

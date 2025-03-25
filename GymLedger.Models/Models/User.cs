@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GymLedger.Models.Models
 {
-    public class User: BaseModel
+    public class User : BaseModel
     {
         [Required]
         public string Username { get; set; }
@@ -18,5 +18,9 @@ namespace GymLedger.Models.Models
         public string UniqueId { get; set; }
         public DateTime? LastLogin { get; set; }
         public ICollection<Session> Sessions { get; set; }
+
+        public int FailedLoginAttempts { get; set; }
+        public DateTime? LockedOutDate { get; set; }
+        public bool IsLockedOut { get; set; }
     }
 }
