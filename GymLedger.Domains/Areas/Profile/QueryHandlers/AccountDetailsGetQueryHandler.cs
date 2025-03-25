@@ -1,6 +1,7 @@
 ﻿using GymLedger.Domains.Areas.Ledger.Querys;
 using GymLedger.Domains.Areas.Profile.Querys;
 using GymLedger.Domains.BaseQuerys;
+using GymLedger.Models.Models;
 using GymLedger.Views.Areas.Ledger;
 using GymLedger.Views.Profile;
 using System;
@@ -46,11 +47,18 @@ namespace GymLedger.Domains.Areas.Profile.QueryHandlers
             using (Data.DataContext db = new Data.DataContext())
             {
                 var user = db.Users.SingleOrDefault(u => u.Username == this.Query.UserIdentity.Username);
+                var previousLogins = db.PreviousLogins.Where(u => u.UserId == user.Id).OrderByDescending(u => u.LoginDate).ToList().Take(5).ToList();
                 MyProfileView view = new MyProfileView
                 {
                     Username = user.Username,
                     DateAdded = user.DateAdded,
                 };
+
+                if (user.PreviousLogins == null)
+                {
+                    user.PreviousLogins = new List<PreviousLogin>();
+                }
+                view.PreviousLogins = previousLogins;
 
                 return view;
             }

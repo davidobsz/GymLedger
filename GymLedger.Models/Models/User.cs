@@ -22,5 +22,9 @@ namespace GymLedger.Models.Models
         public int FailedLoginAttempts { get; set; }
         public DateTime? LockedOutDate { get; set; }
         public bool IsLockedOut { get; set; }
+
+        public ICollection<PreviousLogin> PreviousLogins { get; set; }
+
+        public ICollection<PreviousPassword> PreviousPasswords { get; set; }
     }
 }

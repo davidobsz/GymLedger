@@ -101,8 +101,23 @@ namespace GymLedger.Domains.Account.CommandHandlers
                 // log user in
                 AuthCookieHelper.CreateAuthCookie(this.Command.View.Username, PasswordHelper.HashPassword(this.Command.View.Password), true);
                 var user = db.Users.SingleOrDefault(u => u.Username == this.Command.View.Username);
+                var login = new PreviousLogin
+                {
+                    UniqueId = Guid.NewGuid().ToString("N"),
+                    LoginDate = DateTime.UtcNow,
+                    DateAdded = DateTime.UtcNow,
+                    DateModified = DateTime.UtcNow,
+                    UserId = user.Id,
+                    User = user
+                };
 
-                user.LastLogin = DateTime.UtcNow;
+                if (user.PreviousLogins == null)
+                {
+                    user.PreviousLogins = new List<PreviousLogin>();
+                }
+                user.PreviousLogins.Add(login);
+
+
                 db.SaveChanges();
 
                 var response = new DataCommandResponse();

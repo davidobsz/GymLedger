@@ -47,6 +47,16 @@ namespace GymLedger.Models.Mappings
                 .HasForeignKey(s => s.UserId)
                 .WillCascadeOnDelete(false); 
 
+            HasMany(u => u.PreviousLogins)
+                .WithRequired(u => u.User)
+                .HasForeignKey(u => u.UserId)
+                .WillCascadeOnDelete(true);
+
+            HasMany(u => u.PreviousPasswords)
+                .WithRequired(u => u.User)
+                .HasForeignKey(u => u.UserId)
+                .WillCascadeOnDelete(true);
+
             // Table name
             ToTable("Users");
         }

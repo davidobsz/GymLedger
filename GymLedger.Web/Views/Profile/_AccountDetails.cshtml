@@ -10,6 +10,14 @@
             <div class="modal-body">
                 <p><b>Username:</b> @Model.Username</p>
                 <p><b>Date Added:</b> @Model.DateAdded</p>
+
+                <p>Previous 5 Logins:</p>
+                <ul>
+                    @foreach (var previousLogin in Model.PreviousLogins)
+                    {
+                        <li>@previousLogin.LoginDate</li>
+                    }
+                </ul>
             </div>
         </div>
     </div>

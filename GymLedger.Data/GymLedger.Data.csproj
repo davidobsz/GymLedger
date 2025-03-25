@@ -53,6 +53,8 @@
   <ItemGroup>
     <Compile Include="DataContext.cs" />
     <Compile Include="Mappings\ExerciseMap.cs" />
+    <Compile Include="Mappings\PreviousLoginMap.cs" />
+    <Compile Include="Mappings\PreviousPasswordMap.cs" />
     <Compile Include="Mappings\SessionMap.cs" />
     <Compile Include="Mappings\SetMap.cs" />
     <Compile Include="Mappings\UserMap.cs" />
@@ -63,6 +65,10 @@
     <Compile Include="Migrations\202503251221555_v_1.1_FailedLogin.cs" />
     <Compile Include="Migrations\202503251221555_v_1.1_FailedLogin.Designer.cs">
       <DependentUpon>202503251221555_v_1.1_FailedLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202503251425521_v_1.2_PreviousLoginAndPasswords.cs" />
+    <Compile Include="Migrations\202503251425521_v_1.2_PreviousLoginAndPasswords.Designer.cs">
+      <DependentUpon>202503251425521_v_1.2_PreviousLoginAndPasswords.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -87,6 +93,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202503251221555_v_1.1_FailedLogin.resx">
       <DependentUpon>202503251221555_v_1.1_FailedLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202503251425521_v_1.2_PreviousLoginAndPasswords.resx">
+      <DependentUpon>202503251425521_v_1.2_PreviousLoginAndPasswords.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
