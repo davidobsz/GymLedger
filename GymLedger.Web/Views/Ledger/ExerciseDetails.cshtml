@@ -54,7 +54,25 @@
                     <input type="date" id="startDate5" class="form-control mb-2">
                     <label for="endDate5">End Date:</label>
                     <input type="date" id="endDate5" class="form-control mb-3">
+                    <hr />
                     <button id="runReportOneRepMax" class="btn btn-primary">Run Report</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-4">
+            <div class="card">
+                <div class="card-header">Volume Per Session</div>
+                <div class="card-body">
+                    <canvas id="volumePerSessionChart"></canvas>
+                </div>
+                <div class="card-footer">
+                    <label for="startDateVolume">Start Date:</label>
+                    <input type="date" id="startDateVolume" class="form-control mb-2">
+                    <label for="endDateVolume">End Date:</label>
+                    <input type="date" id="endDateVolume" class="form-control mb-3">
+                    <hr />
+                    <button id="runReportVolume" class="btn btn-primary">Run Report</button>
                 </div>
             </div>
         </div>
@@ -114,3 +132,4 @@
 <!-- store URL for get exercises LedgerControlerr method -->
 <div id="setsBarchartDataUrlExercise" data-url="@Url.Action("GetExerciseSetsBarchart", "Ledger", new {uniqueId = Model.UniqueId})" style="display:none;"></div>
 <div id="oneRepMaxDataUrlExercise" data-url="@Url.Action("GetOneRepMaxLineChart", "Ledger", new {uniqueId = Model.UniqueId})" style="display:none;"></div>
+<div id="volumePerSessionDataUrlExercise" data-url="@Url.Action("GetVolumePerSession", "Ledger", new {uniqueId = Model.UniqueId})" style="display:none;"></div>

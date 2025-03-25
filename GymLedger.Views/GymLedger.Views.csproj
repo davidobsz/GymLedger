@@ -57,6 +57,7 @@
     <Compile Include="Areas\Ledger\GetSessionsLinechartDataView.cs" />
     <Compile Include="Areas\Ledger\GetSessionView.cs" />
     <Compile Include="Areas\Ledger\GetSetsBarchartDataView.cs" />
+    <Compile Include="Areas\Ledger\GetVolumePerSessionView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

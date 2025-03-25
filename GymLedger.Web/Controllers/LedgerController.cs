@@ -374,6 +374,26 @@ namespace GymLedger.Web.Controllers
             return Json(new { success = false, responseText = "Failed to get One-Rep Max chart data" }, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpGet]
+        public JsonResult GetVolumePerSession(GetDatesReportView datesReport, string uniqueId)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var handler = LedgerFactory.GetVolumePerSessionQueryHandler(new GetVolumePerSessionQuery(this.HttpContext, datesReport, uniqueId));
+                    var response = handler.Get();
+
+                    return Json(new { success = true, Data = response }, JsonRequestBehavior.AllowGet);
+                }
+                catch (Exception ex)
+                {
+                    return Json(new { success = false, responseText = ex.Message }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            return Json(new { success = false, responseText = "Failed to get volume per session chart data" }, JsonRequestBehavior.AllowGet);
+        }
+
 
 
         [HttpGet]

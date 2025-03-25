@@ -80,6 +80,7 @@
     <Compile Include="Areas\Ledger\QueryHandlers\GetSessionsQueryHandler.cs" />
     <Compile Include="Areas\Ledger\QueryHandlers\GetSetsBarchartDataQueryHandler.cs" />
     <Compile Include="Areas\Ledger\QueryHandlers\GetUniqueExerciseQueryHandler.cs" />
+    <Compile Include="Areas\Ledger\QueryHandlers\GetVolumePerSessionQueryHandler.cs" />
     <Compile Include="Areas\Ledger\Querys\GetExerciseDetailQuery.cs" />
     <Compile Include="Areas\Ledger\Querys\GetExercisesPiechartDataQuery.cs" />
     <Compile Include="Areas\Ledger\Querys\GetExercisesQuery.cs" />
@@ -90,6 +91,7 @@
     <Compile Include="Areas\Ledger\Querys\GetSessionsQuery.cs" />
     <Compile Include="Areas\Ledger\Querys\GetSetsBarchartDataQuery.cs" />
     <Compile Include="Areas\Ledger\Querys\GetUniqueExerciseQuery.cs" />
+    <Compile Include="Areas\Ledger\Querys\GetVolumePerSessionQuery.cs" />
     <Compile Include="BaseCommands\DataCommandResponse.cs" />
     <Compile Include="BaseCommands\ICommand.cs" />
     <Compile Include="BaseCommands\ICommandHandler.cs" />
