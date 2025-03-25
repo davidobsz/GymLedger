@@ -100,6 +100,10 @@ namespace GymLedger.Domains.Account.CommandHandlers
             {
                 // log user in
                 AuthCookieHelper.CreateAuthCookie(this.Command.View.Username, PasswordHelper.HashPassword(this.Command.View.Password), true);
+                var user = db.Users.SingleOrDefault(u => u.Username == this.Command.View.Username);
+
+                user.LastLogin = DateTime.UtcNow;
+                db.SaveChanges();
 
                 var response = new DataCommandResponse();
 
