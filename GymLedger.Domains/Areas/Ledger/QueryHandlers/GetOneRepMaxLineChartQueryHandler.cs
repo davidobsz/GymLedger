@@ -57,9 +57,11 @@ namespace GymLedger.Domains.Areas.Ledger.QueryHandlers
                 var sessions = db.Sessions
                                 .Where(s => s.ExerciseId == exercise.Id)
                                 .Include(s => s.Sets)
-                                .OrderBy(s => s.Date)
+                                .OrderByDescending(s => s.Date)
+                                .Take(10)
+                                .ToList()
+                                .OrderBy(s => s.Date) // Reorder chronologically
                                 .ToList();
-
                 if (Query.DatesReport?.StartDate.HasValue == true)
                 {
                     sessions = sessions.Where(s => s.Date >= Query.DatesReport.StartDate.Value).ToList();
