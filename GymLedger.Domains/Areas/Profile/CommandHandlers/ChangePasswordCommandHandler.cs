@@ -40,6 +40,7 @@ namespace GymLedger.Domains.Areas.Profile.CommandHandlers
                 if (exists)
                 {
                     var user = db.Users.Where(u => u.Username == this.Command.UserIdentity.Username).FirstOrDefault();
+                    var previousPasswords = db.PreviousPasswords.Where(u => u.UserId == user.Id).OrderByDescending(u => u.DateAdded).Take(5).ToList();
 
                     if (user.IsLockedOut)
                     {
@@ -76,6 +77,17 @@ namespace GymLedger.Domains.Areas.Profile.CommandHandlers
 
                         throw new Exception("Username or password is incorrect");
                     }
+
+                    if (previousPasswords.Any())
+                    {
+                        foreach (var pass in previousPasswords)
+                        {
+                            if (PasswordHelper.HashPassword(this.Command.View.NewPassword) == pass.Password)
+                            {
+                                throw new Exception("New Password cannot be the same as previous passwords");
+                            }
+                        }
+                    }
                 }
             }
 
@@ -101,6 +113,29 @@ namespace GymLedger.Domains.Areas.Profile.CommandHandlers
                 // get user
                 var user = db.Users.FirstOrDefault(u => u.Username == this.Command.UserIdentity.Username);
 
+                if (user.PreviousPasswords == null)
+                {
+                    user.PreviousPasswords = new List<PreviousPassword>();
+                }
+
+                var previousPasswords = db.PreviousPasswords
+                                        .Where(u => u.UserId == user.Id)
+                                        .OrderByDescending(u => u.DateAdded)
+                                        .ToList();
+
+                // remove any passwords after the 4th most recent one
+                db.PreviousPasswords.RemoveRange(previousPasswords.Skip(4));
+
+                PreviousPassword previousPassword = new PreviousPassword
+                {
+                    Password = user.Password,
+                    User = user,
+                    UserId = user.Id,
+                    DateAdded = DateTime.UtcNow,
+                    DateModified = DateTime.UtcNow,
+                };
+
+                user.PreviousPasswords.Add(previousPassword);
                 user.Password = PasswordHelper.HashPassword(this.Command.View.NewPassword);
                 db.SaveChanges();
 
