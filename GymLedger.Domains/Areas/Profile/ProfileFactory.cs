@@ -1,7 +1,10 @@
 ﻿using GymLedger.Domains.Areas.Ledger.QueryHandlers;
 using GymLedger.Domains.Areas.Ledger.Querys;
+using GymLedger.Domains.Areas.Profile.CommandHandlers;
+using GymLedger.Domains.Areas.Profile.Commands;
 using GymLedger.Domains.Areas.Profile.QueryHandlers;
 using GymLedger.Domains.Areas.Profile.Querys;
+using GymLedger.Domains.BaseCommands;
 using GymLedger.Domains.BaseQuerys;
 using GymLedger.Views.Areas.Ledger;
 using GymLedger.Views.Profile;
@@ -20,6 +23,15 @@ namespace GymLedger.Domains.Areas.Profile
         public static IQueryHandler<AccountDetailsGetQuery, MyProfileView> AccountDetailsGetQueryHandler(AccountDetailsGetQuery query) 
         {
             return new AccountDetailsGetQueryValidator(new  AccountDetailsGetQueryHandler(query), query);
+        }
+
+        #endregion
+
+        #region Commands
+
+        public static ICommandHandler<ChangePasswordCommand, DataCommandResponse> ChangePasswordCommandHandler(ChangePasswordCommand command)
+        {
+            return new ChangePasswordCommandValidator(new ChangePasswordCommandHandler(null, command), command);
         }
 
         #endregion

@@ -10,7 +10,7 @@
             <h5 class="card-title text-center mb-3">Options</h5>
             <ul class="list-group">
                 <li class="list-group-item">
-                    <a href="@Url.Action("Exercises", "Ledger")"  class="text-decoration-none"><i class="fa-solid fa-lock"></i> Change Password</a>
+                    <a href="@Url.Action("ChangePassword", "Profile")" id="ChangeAccountPassword" class="text-decoration-none"><i class="fa-solid fa-lock"></i> Change Password</a>
                 </li>
                 <li class="list-group-item">
                     <a href="@Url.Action("AccountDetails", "Profile")" id="getAccountDetails" class="text-decoration-none"><i class="fa-solid fa-circle-info"></i> Account Details</a>
@@ -22,4 +22,8 @@
 
 <div id="AccountDetailsPartial"
      data-url="@Url.Action("AccountDetails", "Profile")">
+</div>
+
+<div id="ChangePasswordPartial"
+     data-url="@Url.Action("ChangePassword", "Profile")">
 </div>
