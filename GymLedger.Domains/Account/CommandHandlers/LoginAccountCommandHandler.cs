@@ -40,8 +40,39 @@ namespace GymLedger.Domains.Account.CommandHandlers
                 {
                     var user = db.Users.Where(u => u.Username == this.Command.View.Username).FirstOrDefault();
 
+                    if (user.IsLockedOut)
+                    {
+                        if (user.LockedOutDate.Value.AddMinutes(15) > DateTime.UtcNow)
+                        {
+                            throw new Exception("You have been locked out of your account for multiple failed login attempts");
+                        }
+
+                        if (user.LockedOutDate.Value.AddMinutes(15) < DateTime.UtcNow)
+                        {
+                            user.LockedOutDate = null;
+                            user.IsLockedOut = false;
+                            user.FailedLoginAttempts = 0;
+
+                            db.SaveChanges();
+                        }
+                        
+                    }
+
                     if (user.Password != PasswordHelper.HashPassword(this.Command.View.Password))
                     {
+                        user.FailedLoginAttempts += 1;
+                        db.SaveChanges();
+
+                        if (user.FailedLoginAttempts > 4)
+                        {
+                            user.LockedOutDate = DateTime.UtcNow;
+                            user.IsLockedOut = true;
+
+                            db.SaveChanges();
+
+                            throw new Exception("You have been locked out of your account for multiple failed login attempts");
+                        }
+
                         throw new Exception("Username or password is incorrect");
                     }
                 }
