@@ -226,8 +226,12 @@ $(document).ready(function () {
                     var labels = data.Data.GetExercisesSetsBarchartDetailViews.map(item => "Set " + item.SetNumber);
                     var setProgressData = data.Data.GetExercisesSetsBarchartDetailViews.map(item => item.SetProgress);
 
+                    if (window.setsChartGetExercises && typeof window.setsChartGetExercises.destroy === 'function') {
+                        window.setsChartGetExercises.destroy();
+                    }
+
                     // Create new chart
-                    window.setsChart = new Chart(ctx, {
+                    window.setsChartGetExercises = new Chart(ctx, {
                         type: 'bar',
                         data: {
                             labels: labels,
@@ -299,11 +303,10 @@ $(document).ready(function () {
                     var labels = data.Data.DataPoints.map(item => formatDate(item.Date));
                     var oneRepMaxData = data.Data.DataPoints.map(item => item.EstimatedOneRepMax);
 
-/*                    if (window.oneRepMaxChart) {
+                    if (window.oneRepMaxChart && typeof window.oneRepMaxChart.destroy === 'function') {
                         window.oneRepMaxChart.destroy();
-                    }*/
+                    }
 
-                    console.log("Hello");
                     window.oneRepMaxChart = new Chart(ctx, {
                         type: 'line',
                         data: {
@@ -382,6 +385,11 @@ $(document).ready(function () {
 
                     var labels = data.Data.DataPoints.map(item => formatDate(item.Date));
                     var volumeData = data.Data.DataPoints.map(item => item.TotalVolume);
+
+                    if (window.volumePerSessionChart && typeof window.volumePerSessionChart.destroy === 'function') {
+                        window.volumePerSessionChart.destroy();
+                    }
+
 
                     window.volumePerSessionChart = new Chart(ctx, {
                         type: 'line',
