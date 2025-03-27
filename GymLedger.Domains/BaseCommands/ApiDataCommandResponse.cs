@@ -11,5 +11,6 @@ namespace GymLedger.Domains.BaseCommands
         public bool Success { get; set; }
         public string Message { get; set; }
         public string Token { get; set; }
+        public Object Data { get; set; }
     }
 }

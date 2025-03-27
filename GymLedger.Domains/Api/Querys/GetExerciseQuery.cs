@@ -10,19 +10,20 @@ using System.Web;
 
 namespace GymLedger.Domains.Areas.Ledger.Querys
 {
-    public class GetExercisesQueryApi : IQuery<GetExerciseView>
+    public class GetExerciseQueryApi : IQuery<ExerciseDetailView>
     {
         public User UserIdentity { get; set; }
+        public string UniqueId { get; set; }
 
-        public GetExercisesQueryApi(string token)
+        public GetExerciseQueryApi(string token, string uniqueId)
         {
-            // Decode and validate the JWT token to get user info
             this.UserIdentity = GymLedger.Helpers.JwtAuth.JwtTokenHelper.GetUserFromToken(token);
+            this.UniqueId = uniqueId;
         }
 
         public void ValidateMe()
         {
-            // Add any validation logic if needed
+
         }
     }
 }

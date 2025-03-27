@@ -23,7 +23,6 @@ namespace GymLedger.Domains.Areas.Ledger.QueryHandlers
             // Validate the query before executing it
             _query.ValidateMe();
 
-            // Delegate to the decorated handler (which will actually get the data)
             return _decorated.Get();
         }
     }

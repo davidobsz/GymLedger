@@ -22,12 +22,27 @@ namespace GymLedger.Domains.Api
         {
             return new LoginApiAccountCommandValidator(new LoginApiAccountCommandHandler(command),command);
         }
+
+        public static ICommandHandler<AddExerciseCommand, ApiDataCommandResponse> AddExerciseCommandHandlerApi(AddExerciseCommand command)
+        {
+            return new AddExerciseCommandValidatorApi(new AddExerciseCommandHandlerApi(null,command), command);
+        }
+
+        public static ICommandHandler<EditExerciseCommandApi, ApiDataCommandResponse> EditExerciseCommandHandlerApi(EditExerciseCommandApi command)
+        {
+            return new EditExerciseCommandValidatorApi(new EditExerciseCommandApiHandler(null, command), command);
+        }
         #endregion
 
         #region Querys
         public static IQueryHandler<GetExercisesQueryApi, GetExerciseView> GetExercisesQueryHandlerApi(GetExercisesQueryApi query)
         {
             return new GetExercisesQueryValidatorApi(new GetExercisesQueryHandlerApi(query), query);
+        }
+
+        public static IQueryHandler<GetExerciseQueryApi, ExerciseDetailView> GetExerciseQueryHandlerApi(GetExerciseQueryApi query)
+        {
+            return new GetExerciseQueryValidatorApi(new GetExerciseQueryHandlerApi(query), query);
         }
         #endregion
     }
