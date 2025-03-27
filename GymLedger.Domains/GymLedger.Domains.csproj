@@ -68,8 +68,12 @@
     <Compile Include="Api\Commands\LoginApiAccountCommand.cs" />
     <Compile Include="Api\QueryHandler\GetExerciseQueryHandler.cs" />
     <Compile Include="Api\QueryHandler\GetExercisesQueryHandler.cs" />
+    <Compile Include="Api\QueryHandler\GetSessionQueryHandlerApi.cs" />
+    <Compile Include="Api\QueryHandler\GetSessionsQueryHandlerApi.cs" />
     <Compile Include="Api\Querys\GetExerciseQuery.cs" />
     <Compile Include="Api\Querys\GetExercisesQuery.cs" />
+    <Compile Include="Api\Querys\GetSessionQueryApi.cs" />
+    <Compile Include="Api\Querys\GetSessionsQueryApi.cs" />
     <Compile Include="Areas\Ledger\CommandHandlers\AddExerciseCommandHandler.cs" />
     <Compile Include="Areas\Ledger\CommandHandlers\AddSessionCommandHandler.cs" />
     <Compile Include="Areas\Ledger\CommandHandlers\DeleteExerciseCommandHandler.cs" />

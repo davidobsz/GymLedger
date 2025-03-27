@@ -146,5 +146,60 @@ namespace GymLedger.Api.Controllers
                 return BadRequest(ex.Message); // Invalid token or error handling
             }
         }
+
+        [HttpGet]
+        [Route("getsessions")]
+        public IHttpActionResult GetSessions()
+        {
+            var token = Request.Headers.Authorization?.Parameter;
+            if (token == null)
+            {
+                return Unauthorized(); // Token missing
+            }
+
+            try
+            {
+                var handler = ApiFactory.GetSessionsQueryHandlerApi(new Domains.Api.Querys.GetSessionsQueryApi(token));
+                var response = handler.Get();
+
+                return Ok(new
+                {
+                    total = response.Sessions.Count,
+                    rows = response.Sessions
+                    
+                });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message); // Invalid token or error handling
+            }
+        }
+
+        [HttpGet]
+        [Route("getsession")]
+        public IHttpActionResult GetSession(string uniqueId)
+        {
+            var token = Request.Headers.Authorization?.Parameter;
+            if (token == null)
+            {
+                return Unauthorized(); // Token missing
+            }
+
+            try
+            {
+                var handler = ApiFactory.GetSessionQueryHandlerApi(new Domains.Api.Querys.GetSessionQueryApi(token, uniqueId));
+                var response = handler.Get();
+
+                return Ok(new
+                {
+                    rows = response
+
+                });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message); // Invalid token or error handling
+            }
+        }
     }
 }

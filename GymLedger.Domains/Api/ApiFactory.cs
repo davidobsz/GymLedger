@@ -2,6 +2,8 @@
 using GymLedger.Domains.Account.Commands;
 using GymLedger.Domains.Api.CommandHandlers;
 using GymLedger.Domains.Api.Commands;
+using GymLedger.Domains.Api.QueryHandler;
+using GymLedger.Domains.Api.Querys;
 using GymLedger.Domains.Areas.Ledger.QueryHandlers;
 using GymLedger.Domains.Areas.Ledger.Querys;
 using GymLedger.Domains.BaseCommands;
@@ -48,6 +50,16 @@ namespace GymLedger.Domains.Api
         public static IQueryHandler<GetExerciseQueryApi, ExerciseDetailView> GetExerciseQueryHandlerApi(GetExerciseQueryApi query)
         {
             return new GetExerciseQueryValidatorApi(new GetExerciseQueryHandlerApi(query), query);
+        }
+
+        public static IQueryHandler<GetSessionsQueryApi, GetSessionView> GetSessionsQueryHandlerApi(GetSessionsQueryApi query)
+        {
+            return new GetSessionsQueryValidatorApi(new GetSessionsQueryHandlerApi(query), query);
+        }
+
+        public static IQueryHandler<GetSessionQueryApi, SessionDetailView> GetSessionQueryHandlerApi(GetSessionQueryApi query)
+        {
+            return new GetSessionQueryValidatorApi(new GetSessionQueryHandlerApi(query), query);
         }
         #endregion
     }

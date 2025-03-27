@@ -30,6 +30,7 @@ namespace GymLedger.Views.Areas.Ledger
         public DateTime? Date { get; set; }
         public int NumOfSets { get; set; }
         public DateTime? DateModified { get; set; }
+        public int? UserId { get; set; }
 
     }
 
