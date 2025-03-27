@@ -32,6 +32,11 @@ namespace GymLedger.Domains.Api
         {
             return new EditExerciseCommandValidatorApi(new EditExerciseCommandApiHandler(null, command), command);
         }
+
+        public static ICommandHandler<DeleteExerciseCommandApi, ApiDataCommandResponse> DeleteExerciseCommandHandlerApi(DeleteExerciseCommandApi command)
+        {
+            return new DeleteExerciseCommandValidatorApi(new DeleteExerciseCommandHandlerApi(null, command), command);
+        }
         #endregion
 
         #region Querys

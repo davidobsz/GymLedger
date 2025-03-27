@@ -1,5 +1,6 @@
 ﻿using GymLedger.Data;
 using GymLedger.Domains.Api.Commands;
+using GymLedger.Domains.Areas.Ledger.Commands;
 using GymLedger.Domains.BaseCommands;
 using System;
 using System.Collections.Generic;
@@ -9,12 +10,12 @@ using System.Threading.Tasks;
 
 namespace GymLedger.Domains.Api.CommandHandlers
 {
-    public class EditExerciseCommandValidatorApi : ICommandHandler<EditExerciseCommandApi, ApiDataCommandResponse>
+    public class DeleteExerciseCommandValidatorApi : ICommandHandler<DeleteExerciseCommandApi, ApiDataCommandResponse>
     {
-        readonly ICommandHandler<EditExerciseCommandApi, ApiDataCommandResponse> decorated;
-        EditExerciseCommandApi Command;
+        readonly ICommandHandler<DeleteExerciseCommandApi, ApiDataCommandResponse> decorated;
+        DeleteExerciseCommandApi Command;
 
-        public EditExerciseCommandValidatorApi(ICommandHandler<EditExerciseCommandApi, ApiDataCommandResponse> decorated, EditExerciseCommandApi command)
+        public DeleteExerciseCommandValidatorApi(ICommandHandler<DeleteExerciseCommandApi, ApiDataCommandResponse> decorated, DeleteExerciseCommandApi command)
         {
             this.decorated = decorated;
             this.Command = command;
@@ -23,31 +24,27 @@ namespace GymLedger.Domains.Api.CommandHandlers
         public ApiDataCommandResponse Execute()
         {
             Command.ValidateMe();
+
             using (DataContext db = new DataContext())
             {
-                bool exists = db.Exercises.Any(e => e.Name == this.Command.View.Name && e.User.Username == this.Command.UserIdentity.Username);
+                var exists = db.Exercises.Where(e => e.UniqueId == this.Command.View.UniqueId).Any();
 
-                if (exists)
-                {
-                    throw new Exception("This exercise already exists");
-                }
                 if (!exists)
                 {
                     throw new Exception("This exercise does not exist");
                 }
-
-            }
+            };
 
             return this.decorated.Execute();
         }
     }
 
-    public class EditExerciseCommandApiHandler : ICommandHandler<EditExerciseCommandApi, ApiDataCommandResponse>
+    public class DeleteExerciseCommandHandlerApi : ICommandHandler<DeleteExerciseCommandApi, ApiDataCommandResponse>
     {
-        readonly ICommandHandler<EditExerciseCommandApi, ApiDataCommandResponse> decorated;
-        EditExerciseCommandApi Command;
+        readonly ICommandHandler<DeleteExerciseCommandApi, ApiDataCommandResponse> decorated;
+        DeleteExerciseCommandApi Command;
 
-        public EditExerciseCommandApiHandler(ICommandHandler<EditExerciseCommandApi, ApiDataCommandResponse> decorated, EditExerciseCommandApi command)
+        public DeleteExerciseCommandHandlerApi(ICommandHandler<DeleteExerciseCommandApi, ApiDataCommandResponse> decorated, DeleteExerciseCommandApi command)
         {
             this.decorated = decorated;
             this.Command = command;
@@ -63,10 +60,7 @@ namespace GymLedger.Domains.Api.CommandHandlers
 
                 var exercise = db.Exercises.Where(e => e.UniqueId == this.Command.View.UniqueId).SingleOrDefault();
 
-                // update exercise value
-                exercise.Name = this.Command.View.Name;
-                exercise.DateModified = DateTime.UtcNow;
-
+                db.Exercises.Remove(exercise);
                 db.SaveChanges();
 
                 return new ApiDataCommandResponse
@@ -80,7 +74,7 @@ namespace GymLedger.Domains.Api.CommandHandlers
                         DateAdded = exercise.DateAdded,
                         DateModified = exercise.DateModified
                     },
-                    Message = "Exercise edited successfully"
+                    Message = "Exercise deleted successfully"
                 };
             }
         }

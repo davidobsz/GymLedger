@@ -81,6 +81,7 @@ namespace GymLedger.Api.Controllers
                 return Ok(new
                 {
                     Status = "Success",
+                    Message = "Successfully Added Exercise",
                     response.Data
                 });
             }
@@ -90,7 +91,7 @@ namespace GymLedger.Api.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPut]
         [Route("editexercise")]
         public IHttpActionResult EditExercise(EditExerciseView view)
         {
@@ -108,6 +109,35 @@ namespace GymLedger.Api.Controllers
                 return Ok(new
                 {
                     Status = "Success",
+                    Message = "Successfully Edited Exercise",
+                    response.Data
+                });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message); // Invalid token or error handling
+            }
+        }
+
+        [HttpDelete]
+        [Route("deleteexercise")]
+        public IHttpActionResult DeleteExercise(DeleteExerciseView view)
+        {
+            var token = Request.Headers.Authorization?.Parameter;
+            if (token == null)
+            {
+                return Unauthorized(); // Token missing
+            }
+
+            try
+            {
+                var handler = ApiFactory.DeleteExerciseCommandHandlerApi(new Domains.Api.Commands.DeleteExerciseCommandApi(view, token));
+                var response = handler.Execute();
+
+                return Ok(new
+                {
+                    Status = "Success",
+                    Message = "Successfully Deleted Exercise",
                     response.Data
                 });
             }

@@ -92,7 +92,7 @@ namespace GymLedger.Web.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPut]
         public JsonResult EditExercise(EditExerciseView view)
         {
             if (ModelState.IsValid)

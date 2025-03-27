@@ -59,9 +59,11 @@
     <Compile Include="Account\Commands\RegisterAccountCommand.cs" />
     <Compile Include="Api\ApiFactory.cs" />
     <Compile Include="Api\CommandHandlers\AddExerciseCommandHandler.cs" />
+    <Compile Include="Api\CommandHandlers\DeleteExerciseCommandHandler.cs" />
     <Compile Include="Api\CommandHandlers\EditExerciseCommandHandler.cs" />
     <Compile Include="Api\CommandHandlers\LoginApiAccountCommandHandler.cs" />
     <Compile Include="Api\Commands\AddExerciseCommand.cs" />
+    <Compile Include="Api\Commands\DeleteExerciseCommand.cs" />
     <Compile Include="Api\Commands\EditExerciseCommand.cs" />
     <Compile Include="Api\Commands\LoginApiAccountCommand.cs" />
     <Compile Include="Api\QueryHandler\GetExerciseQueryHandler.cs" />
