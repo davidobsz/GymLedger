@@ -4,23 +4,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GymLedger.Data;
+using GymLedger.Domains.Api.Commands;
 using GymLedger.Domains.Areas.Ledger.Commands;
 using GymLedger.Domains.BaseCommands;
 
-namespace GymLedger.Domains.Areas.Ledger.CommandHandlers
+namespace GymLedger.Domains.Api.CommandHandlers
 {
-    public class DeleteSessionCommandValidator : ICommandHandler<DeleteSessionCommand, DataCommandResponse>
+    public class DeleteSessionCommandValidatorApi : ICommandHandler<DeleteSessionCommandApi, ApiDataCommandResponse>
     {
-        readonly ICommandHandler<DeleteSessionCommand, DataCommandResponse> decorated;
-        DeleteSessionCommand Command;
+        readonly ICommandHandler<DeleteSessionCommandApi, ApiDataCommandResponse> decorated;
+        DeleteSessionCommandApi Command;
 
-        public DeleteSessionCommandValidator(ICommandHandler<DeleteSessionCommand, DataCommandResponse> decorated, DeleteSessionCommand command)
+        public DeleteSessionCommandValidatorApi(ICommandHandler<DeleteSessionCommandApi, ApiDataCommandResponse> decorated, DeleteSessionCommandApi command)
         {
             this.decorated = decorated;
             this.Command = command;
         }
 
-        public DataCommandResponse Execute()
+        public ApiDataCommandResponse Execute()
         {
             Command.ValidateMe();
 
@@ -38,18 +39,18 @@ namespace GymLedger.Domains.Areas.Ledger.CommandHandlers
         }
     }
 
-    public class DeleteSessionCommandHandler : ICommandHandler<DeleteSessionCommand, DataCommandResponse>
+    public class DeleteSessionCommandHandlerApi : ICommandHandler<DeleteSessionCommandApi, ApiDataCommandResponse>
     {
-        readonly ICommandHandler<DeleteSessionCommand, DataCommandResponse> decorated;
-        DeleteSessionCommand Command;
+        readonly ICommandHandler<DeleteSessionCommandApi, ApiDataCommandResponse> decorated;
+        DeleteSessionCommandApi Command;
 
-        public DeleteSessionCommandHandler(ICommandHandler<DeleteSessionCommand, DataCommandResponse> decorated, DeleteSessionCommand command)
+        public DeleteSessionCommandHandlerApi(ICommandHandler<DeleteSessionCommandApi, ApiDataCommandResponse> decorated, DeleteSessionCommandApi command)
         {
             this.decorated = decorated;
             this.Command = command;
         }
 
-        public DataCommandResponse Execute()
+        public ApiDataCommandResponse Execute()
         {
             using (DataContext db = new DataContext())
             {
@@ -62,10 +63,11 @@ namespace GymLedger.Domains.Areas.Ledger.CommandHandlers
                 db.Sessions.Remove(session);
                 db.SaveChanges();
 
-                var response = new DataCommandResponse();
+                var response = new ApiDataCommandResponse();
 
                 response.Success = true;
                 response.Message = "Session Deleted successfully";
+                response.Data = session;
 
                 return response;
             }

@@ -65,7 +65,7 @@ namespace GymLedger.Api.Controllers
 
         [HttpPost]
         [Route("addexercise")]
-        public IHttpActionResult AddExercise(AddExerciseView view)
+        public IHttpActionResult AddExercise(AddExerciseView view) 
         {
             var token = Request.Headers.Authorization?.Parameter;
             if (token == null)
@@ -194,6 +194,62 @@ namespace GymLedger.Api.Controllers
                 {
                     rows = response
 
+                });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message); // Invalid token or error handling
+            }
+        }
+
+        [HttpPost]
+        [Route("addsession")]
+        public IHttpActionResult AddSession(AddSessionApiView view)
+        {
+            var token = Request.Headers.Authorization?.Parameter;
+            if (token == null)
+            {
+                return Unauthorized(); // Token missing
+            }
+
+            try
+            {
+                var handler = ApiFactory.AddSessionCommandHandlerApi(new Domains.Api.Commands.AddSessionCommandApi(view, token));
+                var response = handler.Execute();
+
+                return Ok(new
+                {
+                    Status = "Success",
+                    Message = "Successfully Added Session",
+                    response.Data
+                });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message); // Invalid token or error handling
+            }
+        }
+
+        [HttpDelete]
+        [Route("deletesession")]
+        public IHttpActionResult DeleteSession(DeleteSessionView view)
+        {
+            var token = Request.Headers.Authorization?.Parameter;
+            if (token == null)
+            {
+                return Unauthorized(); // Token missing
+            }
+
+            try
+            {
+                var handler = ApiFactory.DeleteSessionCommandHandlerApi(new Domains.Api.Commands.DeleteSessionCommandApi(view, token));
+                var response = handler.Execute();
+
+                return Ok(new
+                {
+                    Status = "Success",
+                    Message = "Successfully Deleted Session",
+                    response.Data
                 });
             }
             catch (Exception ex)

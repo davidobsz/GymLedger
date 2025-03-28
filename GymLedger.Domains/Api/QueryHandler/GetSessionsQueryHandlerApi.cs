@@ -59,7 +59,8 @@ namespace GymLedger.Domains.Api.QueryHandler
                                     DateAdded = s.DateAdded,
                                     Date = s.Date,
                                     UniqueId = s.UniqueId,
-                                    UserId = user.Id
+                                    UserId = user.Id,
+                                    DateModified = s.DateModified
                                 }).ToList();
                 // Retrieve sets and map them to their corresponding session
                 var sets = db.Sets

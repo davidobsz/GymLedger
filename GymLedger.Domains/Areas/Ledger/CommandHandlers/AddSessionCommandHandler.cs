@@ -99,7 +99,7 @@ namespace GymLedger.Domains.Areas.Ledger.CommandHandlers
                 var response = new DataCommandResponse();
 
                 response.Success = true;
-                response.Message = "Exercise added successfully";
+                response.Message = "Session added successfully";
 
                 return response;
             }

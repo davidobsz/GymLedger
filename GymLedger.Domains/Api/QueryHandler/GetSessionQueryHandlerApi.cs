@@ -1,9 +1,11 @@
-﻿using GymLedger.Domains.Api.Querys;
+﻿using GymLedger.Data;
+using GymLedger.Domains.Api.Querys;
 using GymLedger.Domains.BaseQuerys;
 using GymLedger.Models;
 using GymLedger.Views.Areas.Ledger;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Metadata.Edm;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +26,16 @@ namespace GymLedger.Domains.Api.QueryHandler
         public SessionDetailView Get()
         {
             Query.ValidateMe();
+
+            using (DataContext db = new DataContext())
+            {
+                var exists = db.Sessions.Any(s => s.UniqueId == this.Query.UniqueId);
+
+                if (!exists)
+                {
+                    throw new Exception("This session does not exist");
+                }
+            }
 
             var response = this.decorated.Get();
 
