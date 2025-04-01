@@ -70,10 +70,12 @@
     <Compile Include="Api\Commands\DeleteSessionCommandApi.cs" />
     <Compile Include="Api\Commands\EditExerciseCommand.cs" />
     <Compile Include="Api\Commands\LoginApiAccountCommand.cs" />
+    <Compile Include="Api\QueryHandler\AccountDetailsGetApiQueryHandler.cs" />
     <Compile Include="Api\QueryHandler\GetExerciseQueryHandler.cs" />
     <Compile Include="Api\QueryHandler\GetExercisesQueryHandler.cs" />
     <Compile Include="Api\QueryHandler\GetSessionQueryHandlerApi.cs" />
     <Compile Include="Api\QueryHandler\GetSessionsQueryHandlerApi.cs" />
+    <Compile Include="Api\Querys\AccountDetailsGetApiQuery.cs" />
     <Compile Include="Api\Querys\GetExerciseQuery.cs" />
     <Compile Include="Api\Querys\GetExercisesQuery.cs" />
     <Compile Include="Api\Querys\GetSessionQueryApi.cs" />

@@ -1,0 +1,42 @@
+﻿using GymLedger.Domains.Api;
+using GymLedger.Domains.Areas.Ledger.Querys;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
+
+namespace GymLedger.Api.Controllers
+{
+    [RoutePrefix("api/account")]
+    public class AccountController : ApiController
+    {
+        [HttpGet]
+        [Route("accountdetails")]
+        public IHttpActionResult GetAccountDetails()
+        {
+            var token = Request.Headers.Authorization?.Parameter;
+            if (token == null)
+            {
+                return Unauthorized(); // Token missing
+            }
+
+            try
+            {
+                var handler = ApiFactory.AccountDetailsGetApiQueryHandlerApi(new Domains.Api.Querys.AccountDetailsGetApiQuery(token));
+                var response = handler.Get();
+
+                return Ok(new
+                {
+                    Status = "Success",
+                    Data = response
+                });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message); // Invalid token or error handling
+            }
+        }
+    }
+}

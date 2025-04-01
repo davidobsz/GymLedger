@@ -9,6 +9,7 @@ using GymLedger.Domains.Areas.Ledger.Querys;
 using GymLedger.Domains.BaseCommands;
 using GymLedger.Domains.BaseQuerys;
 using GymLedger.Views.Areas.Ledger;
+using GymLedger.Views.Areas.Profile;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -70,6 +71,11 @@ namespace GymLedger.Domains.Api
         public static IQueryHandler<GetSessionQueryApi, SessionDetailView> GetSessionQueryHandlerApi(GetSessionQueryApi query)
         {
             return new GetSessionQueryValidatorApi(new GetSessionQueryHandlerApi(query), query);
+        }
+
+        public static IQueryHandler<AccountDetailsGetApiQuery, MyProfileApiView> AccountDetailsGetApiQueryHandlerApi(AccountDetailsGetApiQuery query)
+        {
+            return new AccountDetailsGetQueryValidatorApi(new AccountDetailsGetQueryHandlerApi(query), query);
         }
         #endregion
     }
