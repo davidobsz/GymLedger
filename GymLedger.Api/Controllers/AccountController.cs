@@ -38,5 +38,32 @@ namespace GymLedger.Api.Controllers
                 return BadRequest(ex.Message); // Invalid token or error handling
             }
         }
+
+        [HttpGet]
+        [Route("previouslogins")]
+        public IHttpActionResult GetPreviousLogins()
+        {
+            var token = Request.Headers.Authorization?.Parameter;
+            if (token == null)
+            {
+                return Unauthorized(); // Token missing
+            }
+
+            try
+            {
+                var handler = ApiFactory.GetPreviousLoginsQueryHandlerApi(new Domains.Api.Querys.GetPreviousLoginsQueryApi(token));
+                var response = handler.Get();
+
+                return Ok(new
+                {
+                    Status = "Success",
+                    Data = response
+                });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message); // Invalid token or error handling
+            }
+        }
     }
 }

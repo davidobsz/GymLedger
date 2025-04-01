@@ -77,6 +77,11 @@ namespace GymLedger.Domains.Api
         {
             return new AccountDetailsGetQueryValidatorApi(new AccountDetailsGetQueryHandlerApi(query), query);
         }
+
+        public static IQueryHandler<GetPreviousLoginsQueryApi, PreviousLoginsView> GetPreviousLoginsQueryHandlerApi(GetPreviousLoginsQueryApi query)
+        {
+            return new GetPreviousLoginsQueryValidatorApi(new GetPreviousLoginsQueryHandlerApi(query), query);
+        }
         #endregion
     }
 }

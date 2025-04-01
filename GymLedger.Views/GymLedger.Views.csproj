@@ -63,6 +63,7 @@
     <Compile Include="Areas\Profile\ChangePasswordView.cs" />
     <Compile Include="Areas\Profile\MyProfileApiView.cs" />
     <Compile Include="Areas\Profile\MyProfileView.cs" />
+    <Compile Include="Areas\Profile\PreviousLoginView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
