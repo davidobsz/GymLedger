@@ -62,6 +62,7 @@ namespace GymLedger.Domains.Api.QueryHandler
                 {
                     Username = user.Username,
                     DateAdded = user.DateAdded,
+                    UniqueId = user.UniqueId
                 };
 
                 return view;

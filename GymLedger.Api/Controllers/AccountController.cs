@@ -1,5 +1,6 @@
 ﻿using GymLedger.Domains.Api;
 using GymLedger.Domains.Areas.Ledger.Querys;
+using GymLedger.Views.Areas.Profile;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -58,6 +59,34 @@ namespace GymLedger.Api.Controllers
                 {
                     Status = "Success",
                     Data = response
+                });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message); // Invalid token or error handling
+            }
+        }
+
+        [HttpDelete]
+        [Route("deleteaccount")]
+        public IHttpActionResult DeleteAccount(DeleteUserApiView view)
+        {
+            var token = Request.Headers.Authorization?.Parameter;
+            if (token == null)
+            {
+                return Unauthorized(); // Token missing
+            }
+
+            try
+            {
+                var handler = ApiFactory.DeleteUserCommandHandlerApi(new Domains.Api.Commands.DeleteUserCommandApi(view, token));
+                var response = handler.Execute();
+
+                return Ok(new
+                {
+                    Status = "Success",
+                    Data = response.Data,
+                    Message = response.Message
                 });
             }
             catch (Exception ex)

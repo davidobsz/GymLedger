@@ -61,6 +61,7 @@
     <Compile Include="Areas\Ledger\GetSetsBarchartDataView.cs" />
     <Compile Include="Areas\Ledger\GetVolumePerSessionView.cs" />
     <Compile Include="Areas\Profile\ChangePasswordView.cs" />
+    <Compile Include="Areas\Profile\DeleteUserApiView.cs" />
     <Compile Include="Areas\Profile\MyProfileApiView.cs" />
     <Compile Include="Areas\Profile\MyProfileView.cs" />
     <Compile Include="Areas\Profile\PreviousLoginView.cs" />
