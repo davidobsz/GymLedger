@@ -1,22 +1,31 @@
 ﻿@model GymLedger.Views.Areas.Ledger.AddExerciseView
 
 <div class="modal fade" id="modalModal" tabindex="-1" aria-labelledby="modalModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalModalLabel">Add Exercise</h5>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content shadow-lg rounded-4 border-0">
+            <!-- Modal Header -->
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title fw-bold" id="modalModalLabel">Add Exercise</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+
+            <!-- Modal Body -->
             <div class="modal-body">
-                <small>Add an exercise using the details below</small>
-                @using (Html.BeginForm("AddExercise", "Ledger", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "addExerciseForm" }))
+                <p class="text-muted mb-3">Add an exercise using the details below.</p>
+
+                @using (Html.BeginForm("AddExercise", "Ledger", FormMethod.Post, new { @class = "needs-validation", role = "form", id = "addExerciseForm", novalidate = "novalidate" }))
                 {
-                    <div>
-                        @Html.LabelFor(m => m.Name)
+                    <div class="mb-3">
+                        @Html.LabelFor(m => m.Name, new { @class = "form-label fw-semibold" })
                         @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Name)
+                        @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger small" })
                     </div>
-                    <button type="submit" class="btn btn-primary mt-2">Submit</button>
+
+                    <div class="text-end mt-3">
+                        <button type="submit" class="btn btn-success px-4">
+                            <i class="fa-solid fa-check"></i> Submit
+                        </button>
+                    </div>
                 }
             </div>
         </div>
