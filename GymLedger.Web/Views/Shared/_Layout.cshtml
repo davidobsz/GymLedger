@@ -1,8 +1,8 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@ViewBag.Title - GymLedger</title>
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/growl")
@@ -10,7 +10,9 @@
     <script src="https://kit.fontawesome.com/045efef042.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body>
+<body class="bg-light">
+
+    <!-- Sidebar -->
     <button class="hamburger" onclick="toggleSidebar()">
         <i class="fas fa-bars"></i>
     </button>
@@ -37,23 +39,33 @@
             else
             {
                 <a href="@Url.Action("Login", "Account")" title="Login / Register">
-                    <i class="fas fa-user"></i>
+                    <i class="fas fa-sign-in-alt"></i>
                 </a>
             }
         }
     </div>
 
+    <!-- Main Content -->
     <div class="content">
-        <div class="text-center m-2">
-            <p class="h2">@ViewBag.Title</p>
+        <div class="container">
+
+            @if (ViewBag.ShowTitle != false)
+            {
+                <div class="card p-2">
+                    <div class="text-center">
+                        <h2 class="">@ViewBag.Title</h2>
+                    </div>
+                </div>
+            }
+
+            <div class="body-content">
+                @RenderBody()
+            </div>
         </div>
-        <hr />
-        <div class="body-content mt-5">
-            @RenderBody()
-        </div>
-        <hr />
-        <footer>
-            <p class="text-center">&copy; @DateTime.Now.Year - GymLedger</p>
+
+        <!-- Footer -->
+        <footer class="bg-primary text-light text-center py-3 mt-5 rounded-4">
+            <p class="mb-0">&copy; @DateTime.Now.Year - GymLedger</p>
         </footer>
     </div>
 
@@ -63,5 +75,6 @@
     @Scripts.Render("~/bundles/growl")
     @Scripts.Render("~/bundles/site")
     @RenderSection("scripts", required: false)
+
 </body>
 </html>

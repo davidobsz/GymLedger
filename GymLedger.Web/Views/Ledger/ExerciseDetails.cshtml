@@ -3,165 +3,165 @@
 @{
     ViewBag.Title = $"{Model.Name} Exercise Details";
 }
-
-<div class="container mt-4">
-    <div class="row">
-        <!-- Sessions Line Chart Card-->
-        <div class="col-12 col-md-4">
-            <div class="card">
-                <div class="card-header">Sets Progress Bar Chart</div>
-
-                <div class="card-body">
-                    <canvas id="setsBarchartExercise"></canvas>
-                </div>
-                <div class="card-footer">
-                    <div class="col-md-12">
+<div class="card card-body">
+    <div class="container mt-4">
+        <div class="row">
+            <!-- Sets Progress Bar Chart Card-->
+            <div class="col-12 col-md-4">
+                <div class="card shadow-lg rounded-4 border-0">
+                    <div class="card-header bg-primary text-white fw-bold">Sets Progress Bar Chart</div>
+                    <div class="card-body">
+                        <canvas id="setsBarchartExercise"></canvas>
                     </div>
-                    <div class="col-md-12 mb-3">
-                        <label for="startDate4">Start Date:</label>
-                        <input type="date" id="startDate4" class="form-control">
-                    </div>
-                    <div class="col-md-12 mb-3">
-                        <label for="endDate4">End Date:</label>
-                        <input type="date" id="endDate4" class="form-control">
-                    </div>
-                    <hr />
-                    <div class="d-flex justify-content-between col-md-12">
-                        <!-- Run Report button on the left -->
-                        <button id="runReportSetsExercise" class="btn btn-primary">Run Report</button>
-                        <!-- Collapse button on the right -->
-                        <small class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#collapseSetsProgressBarchart" aria-expanded="false" aria-controls="collapseExample">
-                            <i class="fa-solid fa-question fa-xs"></i>
-                        </small>
-                    </div>
-                    <div class="collapse" id="collapseSetsProgressBarchart">
-                        <div class="card card-body mt-2">
-                            This graph shows you the difference of strength for this exercise per set as a % in the timeframe you have selected
+                    <div class="card-footer">
+                        <div class="col-md-12 mb-3">
+                            <label for="startDate4" class="form-label">Start Date:</label>
+                            <input type="date" id="startDate4" class="form-control">
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label for="endDate4" class="form-label">End Date:</label>
+                            <input type="date" id="endDate4" class="form-control">
+                        </div>
+                        <hr />
+                        <div class="d-flex justify-content-between">
+                            <!-- Run Report button on the left -->
+                            <button id="runReportSetsExercise" class="btn btn-primary">Run Report</button>
+                            <!-- Collapse button on the right -->
+                            <small class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#collapseSetsProgressBarchart" aria-expanded="false" aria-controls="collapseSetsProgressBarchart">
+                                <i class="fa-solid fa-question fa-xs"></i>
+                            </small>
+                        </div>
+                        <div class="collapse mt-2" id="collapseSetsProgressBarchart">
+                            <div class="card card-body">
+                                This graph shows you the difference of strength for this exercise per set as a % in the timeframe you have selected.
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="col-12 col-md-4">
-            <div class="card">
-                <div class="card-header">One-Rep Max Progress</div>
-                <div class="card-body">
-                    <canvas id="oneRepMaxChart"></canvas>
-                </div>
-                <div class="card-footer">
-                    <div class="col-md-12 mb-3">
-                        <label for="startDate5">Start Date:</label>
-                        <input type="date" id="startDate5" class="form-control">
+            <!-- One-Rep Max Progress Card-->
+            <div class="col-12 col-md-4">
+                <div class="card shadow-lg rounded-4 border-0">
+                    <div class="card-header bg-primary text-white fw-bold">One-Rep Max Progress</div>
+                    <div class="card-body">
+                        <canvas id="oneRepMaxChart"></canvas>
                     </div>
-                    <div class="col-md-12 mb-3">
-                        <label for="endDate5">End Date:</label>
-                        <input type="date" id="endDate5" class="form-control">
-                    </div>
-                    <hr />
-                    <div class="d-flex justify-content-between col-md-12">
-                        <!-- Run Report button on the left -->
-                        <button id="runReportOneRepMax" class="btn btn-primary">Run Report</button>
-                        <!-- Collapse button on the right -->
-                        <small class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#collapseOneRepMaxProgress" aria-expanded="false" aria-controls="collapseExample">
-                            <i class="fa-solid fa-question fa-xs"></i>
-                        </small>
-                    </div>
-                    <div class="collapse" id="collapseOneRepMaxProgress">
-                        <div class="card card-body mt-2">
-                            This graph shows you the predicted one rep max per session for this specific exercise, taking the 10 most recent sessions
+                    <div class="card-footer">
+                        <div class="col-md-12 mb-3">
+                            <label for="startDate5" class="form-label">Start Date:</label>
+                            <input type="date" id="startDate5" class="form-control">
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label for="endDate5" class="form-label">End Date:</label>
+                            <input type="date" id="endDate5" class="form-control">
+                        </div>
+                        <hr />
+                        <div class="d-flex justify-content-between">
+                            <!-- Run Report button on the left -->
+                            <button id="runReportOneRepMax" class="btn btn-primary">Run Report</button>
+                            <!-- Collapse button on the right -->
+                            <small class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#collapseOneRepMaxProgress" aria-expanded="false" aria-controls="collapseOneRepMaxProgress">
+                                <i class="fa-solid fa-question fa-xs"></i>
+                            </small>
+                        </div>
+                        <div class="collapse mt-2" id="collapseOneRepMaxProgress">
+                            <div class="card card-body">
+                                This graph shows you the predicted one-rep max per session for this specific exercise, taking the 10 most recent sessions.
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="col-12 col-md-4">
-            <div class="card">
-                <div class="card-header">Volume Per Session</div>
-                <div class="card-body">
-                    <canvas id="volumePerSessionChart"></canvas>
-                </div>
-                <div class="card-footer">
-                    <div class="col-md-12 mb-3">
-                        <label for="startDateVolume">Start Date:</label>
-                        <input type="date" id="startDateVolume" class="form-control">
+            <!-- Volume Per Session Card-->
+            <div class="col-12 col-md-4">
+                <div class="card shadow-lg rounded-4 border-0">
+                    <div class="card-header bg-primary text-white fw-bold">Volume Per Session</div>
+                    <div class="card-body">
+                        <canvas id="volumePerSessionChart"></canvas>
                     </div>
-                    <div class="col-md-12 mb-3">
-                        <label for="endDateVolume">End Date:</label>
-                        <input type="date" id="endDateVolume" class="form-control">
-                    </div>
-                    <hr />
-                    <div class="d-flex justify-content-between col-md-12">
-                        <!-- Run Report button on the left -->
-                        <button id="runReportVolume" class="btn btn-primary">Run Report</button>
-                        <!-- Collapse button on the right -->
-                        <small class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#collapseVolumePerSession" aria-expanded="false" aria-controls="collapseExample">
-                            <i class="fa-solid fa-question fa-xs"></i>
-                        </small>
-                    </div>
-                    <div class="collapse" id="collapseVolumePerSession">
-                        <div class="card card-body mt-2">
-                            This graph shows you the total volume per session
+                    <div class="card-footer">
+                        <div class="col-md-12 mb-3">
+                            <label for="startDateVolume" class="form-label">Start Date:</label>
+                            <input type="date" id="startDateVolume" class="form-control">
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label for="endDateVolume" class="form-label">End Date:</label>
+                            <input type="date" id="endDateVolume" class="form-control">
+                        </div>
+                        <hr />
+                        <div class="d-flex justify-content-between">
+                            <!-- Run Report button on the left -->
+                            <button id="runReportVolume" class="btn btn-primary">Run Report</button>
+                            <!-- Collapse button on the right -->
+                            <small class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#collapseVolumePerSession" aria-expanded="false" aria-controls="collapseVolumePerSession">
+                                <i class="fa-solid fa-question fa-xs"></i>
+                            </small>
+                        </div>
+                        <div class="collapse mt-2" id="collapseVolumePerSession">
+                            <div class="card card-body">
+                                This graph shows you the total volume per session.
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+
+    <div class="container mt-4">
+        <h2 class="mb-4">Sessions</h2>
+
+        <table class="table bootTable"
+               id="sessionTable"
+               data-toggle="table"
+               data-url="@Url.Action("GetSessions", "Ledger", new {uniqueId = Model.UniqueId})"
+               data-pagination="true"
+               data-search="true"
+               data-click-to-select="true"
+               data-toolbar-align="left"
+               data-show-refresh="true"
+               data-cache="false"
+               data-show-columns="true"
+               data-toolbar="#sessionToolbar"
+               data-mobile-responsive="true"
+               data-page-list="[10, 25, 50, 100, all]"
+               data-side-pagination="client"
+               data-query-params="queryParams"
+               @*           data-sort-name="DisplayOrder"*@
+               data-sort-order="asc"
+               data-unique-id="UniqueId">
+            <thead>
+                <tr>
+                    <th data-sortable="false" data-visible="false" data-field="UniqueId">UniqueId</th>
+                    <th data-sortable="true" data-field="Exercise">Exercise</th>
+                    <th data-sortable="true" data-field="DateAsString">Date</th>
+                    <th data-sortable="true" data-field="DateAddedAsString">Date Added</th>
+                    <th data-sortable="false" data-field="NumOfSets">Number of Sets</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <div id="sessionToolbar">
+        <button class="btn btn-light" id="addSession"><a><i class="fa-solid fa-plus fa-lg"></i></a></button>
+    </div>
+
+    <div id="sessionTableContainer"
+         data-url="@Url.Action("GetSessionDetails", "Ledger")">
+    </div>
+
+    <div id="addSessionContainer"
+         data-url="@Url.Action("AddSessionPartial", "Ledger")">
+    </div>
+
+    @Html.Hidden("AddSessionUrl", Url.Action("AddSession", "Ledger"))
+
+    <!-- store URL for get exercises LedgerControlerr method -->
+    <div id="setsBarchartDataUrlExercise" data-url="@Url.Action("GetExerciseSetsBarchart", "Ledger", new {uniqueId = Model.UniqueId})" style="display:none;"></div>
+    <div id="oneRepMaxDataUrlExercise" data-url="@Url.Action("GetOneRepMaxLineChart", "Ledger", new {uniqueId = Model.UniqueId})" style="display:none;"></div>
+    <div id="volumePerSessionDataUrlExercise" data-url="@Url.Action("GetVolumePerSession", "Ledger", new {uniqueId = Model.UniqueId})" style="display:none;"></div>
 </div>
-
-
-<div class="container mt-4">
-    <h2 class="mb-4">Sessions</h2>
-
-    <table class="table bootTable"
-           id="sessionTable"
-           data-toggle="table"
-           data-url="@Url.Action("GetSessions", "Ledger", new {uniqueId = Model.UniqueId})"
-           data-pagination="true"
-           data-search="true"
-           data-click-to-select="true"
-           data-toolbar-align="left"
-           data-show-refresh="true"
-           data-cache="false"
-           data-show-columns="true"
-           data-toolbar="#sessionToolbar"
-           data-mobile-responsive="true"
-           data-page-list="[10, 25, 50, 100, all]"
-           data-side-pagination="client"
-           data-query-params="queryParams"
-           @*           data-sort-name="DisplayOrder"*@
-           data-sort-order="asc"
-           data-unique-id="UniqueId">
-        <thead>
-            <tr>
-                <th data-sortable="false" data-visible="false" data-field="UniqueId">UniqueId</th>
-                <th data-sortable="true" data-field="Exercise">Exercise</th>
-                <th data-sortable="true" data-field="DateAsString">Date</th>
-                <th data-sortable="true" data-field="DateAddedAsString">Date Added</th>
-                <th data-sortable="false" data-field="NumOfSets">Number of Sets</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
-</div>
-
-<div id="sessionToolbar">
-    <button class="btn btn-light" id="addSession"><a><i class="fa-solid fa-plus fa-lg"></i></a></button>
-</div>
-
-<div id="sessionTableContainer"
-     data-url="@Url.Action("GetSessionDetails", "Ledger")">
-</div>
-
-<div id="addSessionContainer"
-     data-url="@Url.Action("AddSessionPartial", "Ledger")">
-</div>
-
-@Html.Hidden("AddSessionUrl", Url.Action("AddSession", "Ledger"))
-
-<!-- store URL for get exercises LedgerControlerr method -->
-<div id="setsBarchartDataUrlExercise" data-url="@Url.Action("GetExerciseSetsBarchart", "Ledger", new {uniqueId = Model.UniqueId})" style="display:none;"></div>
-<div id="oneRepMaxDataUrlExercise" data-url="@Url.Action("GetOneRepMaxLineChart", "Ledger", new {uniqueId = Model.UniqueId})" style="display:none;"></div>
-<div id="volumePerSessionDataUrlExercise" data-url="@Url.Action("GetVolumePerSession", "Ledger", new {uniqueId = Model.UniqueId})" style="display:none;"></div>
