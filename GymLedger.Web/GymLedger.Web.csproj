@@ -206,6 +206,7 @@
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Profile\_AccountDetails.cshtml" />
     <Content Include="Views\Profile\_ChangePassword.cshtml" />
+    <Content Include="Views\Profile\_DeleteAccount.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

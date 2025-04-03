@@ -34,6 +34,11 @@ namespace GymLedger.Domains.Areas.Profile
             return new ChangePasswordCommandValidator(new ChangePasswordCommandHandler(null, command), command);
         }
 
+        public static ICommandHandler<DeleteUserCommand, DataCommandResponse> DeleteUserCommandHandler(DeleteUserCommand command)
+        {
+            return new DeleteUserCommandValidator(new DeleteUserCommandHandler(null, command), command);
+        }
+
         #endregion
     }
 }
