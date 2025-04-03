@@ -47,25 +47,29 @@
 
     <!-- Main Content -->
     <div class="content">
+        <!-- Container for consistent width -->
         <div class="container">
 
+            <!-- Title Section -->
             @if (ViewBag.ShowTitle != false)
             {
-                <div class="card p-2">
+                <div class="card p-2 mb-3">
                     <div class="text-center">
                         <h2 class="">@ViewBag.Title</h2>
                     </div>
                 </div>
             }
 
-            <div class="body-content">
+            <!-- Body Content -->
+            <div class="body-content px-0 mx-0">
                 @RenderBody()
             </div>
-        </div>
-
+        </div> <!-- End of .container -->
         <!-- Footer -->
         <footer class="bg-primary text-light text-center py-3 mt-5 rounded-4">
-            <p class="mb-0">&copy; @DateTime.Now.Year - GymLedger</p>
+            <div class="container">
+                <p class="mb-0">&copy; @DateTime.Now.Year - GymLedger</p>
+            </div>
         </footer>
     </div>
 
