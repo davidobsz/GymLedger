@@ -7,13 +7,14 @@
     <div class="container mt-4">
         <div class="row">
             <!-- Sets Progress Bar Chart Card-->
-            <div class="col-12 col-md-4 pb-3">
+            <div class="col-12 col-md-4 pb-3 graph-container">
                 <div class="card shadow-lg rounded-4 border-0">
                     <div class="card-header bg-primary text-white fw-bold">Sets Progress Bar Chart</div>
                     <div class="card-body">
                         <canvas id="setsBarchartExercise"></canvas>
                     </div>
-                    <button class="btn btn-light" id="downloadSetsProgressChart"><a><i class="fa-solid fa-download text-primary"></i></a> Download Image</button>
+                    <button class="btn btn-light" id="downloadSetsProgressChart"><i class="fa-solid fa-download text-primary"></i> Download Image</button>
+                    <button class="btn btn-light expand-chart" data-bs-toggle="modal" data-bs-target="#chartModal" data-chart="setsBarchartExercise"><i class="fa-solid fa-maximize text-primary"></i> Expand</button>
                     <div class="card-footer">
                         <div class="col-md-12 mb-3">
                             <label for="startDate4" class="form-label">Start Date:</label>
@@ -28,7 +29,7 @@
                             <!-- Run Report button on the left -->
                             <button id="runReportSetsExercise" class="btn btn-primary">Run Report</button>
                             <!-- Collapse button on the right -->
-                            <small class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#collapseSetsProgressBarchart" aria-expanded="false" aria-controls="collapseSetsProgressBarchart">
+                            <small class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#collapseSetsProgressBarchart">
                                 <i class="fa-solid fa-question fa-xs"></i>
                             </small>
                         </div>
@@ -40,15 +41,15 @@
                     </div>
                 </div>
             </div>
-
             <!-- One-Rep Max Progress Card-->
-            <div class="col-12 col-md-4 pb-3">
+            <div class="col-12 col-md-4 pb-3 graph-container">
                 <div class="card shadow-lg rounded-4 border-0">
                     <div class="card-header bg-primary text-white fw-bold">One-Rep Max Progress</div>
                     <div class="card-body">
                         <canvas id="oneRepMaxChart"></canvas>
                     </div>
                     <button class="btn btn-light" id="downloadORMChart"><a><i class="fa-solid fa-download text-primary"></i></a> Download Image</button>
+                    <button class="btn btn-light expand-chart" data-bs-toggle="modal" data-bs-target="#chartModal" data-chart="oneRepMaxChart"><i class="fa-solid fa-maximize text-primary"></i> Expand</button>
                     <div class="card-footer">
                         <div class="col-md-12 mb-3">
                             <label for="startDate5" class="form-label">Start Date:</label>
@@ -77,13 +78,14 @@
             </div>
 
             <!-- Volume Per Session Card-->
-            <div class="col-12 col-md-4">
+            <div class="col-12 col-md-4 graph-container">
                 <div class="card shadow-lg rounded-4 border-0">
                     <div class="card-header bg-primary text-white fw-bold">Volume Per Session</div>
                     <div class="card-body">
                         <canvas id="volumePerSessionChart"></canvas>
                     </div>
                     <button class="btn btn-light" id="downloadVolumeChart"><a><i class="fa-solid fa-download text-primary"></i></a> Download Image</button>
+                    <button class="btn btn-light expand-chart" data-bs-toggle="modal" data-bs-target="#chartModal" data-chart="volumePerSessionChart"><i class="fa-solid fa-maximize text-primary"></i> Expand</button>
                     <div class="card-footer">
                         <div class="col-md-12 mb-3">
                             <label for="startDateVolume" class="form-label">Start Date:</label>
@@ -166,4 +168,22 @@
     <div id="setsBarchartDataUrlExercise" data-url="@Url.Action("GetExerciseSetsBarchart", "Ledger", new {uniqueId = Model.UniqueId})" style="display:none;"></div>
     <div id="oneRepMaxDataUrlExercise" data-url="@Url.Action("GetOneRepMaxLineChart", "Ledger", new {uniqueId = Model.UniqueId})" style="display:none;"></div>
     <div id="volumePerSessionDataUrlExercise" data-url="@Url.Action("GetVolumePerSession", "Ledger", new {uniqueId = Model.UniqueId})" style="display:none;"></div>
+</div>
+
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="chartModal" tabindex="-1" aria-labelledby="chartModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content shadow-lg rounded-4 border-0">
+            <!-- Modal Header -->
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title fw-bold" id="chartModalLabel">Expanded Chart</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body text-center">
+                <canvas id="expandedChart"></canvas>
+            </div>
+        </div>
+    </div>
 </div>

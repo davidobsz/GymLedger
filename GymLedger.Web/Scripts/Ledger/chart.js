@@ -452,3 +452,33 @@ $(document).ready(function () {
         loadVolumePerSessionChart(datesReport);
     });
 });
+
+
+
+// expand chart: 
+document.addEventListener("DOMContentLoaded", function () {
+    const expandButtons = document.querySelectorAll(".expand-chart");
+    expandButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            const chartId = this.getAttribute("data-chart");
+            const originalCanvas = document.getElementById(chartId);
+            const expandedCanvas = document.getElementById("expandedChart");
+
+            // Clone chart data
+            expandedCanvas.width = originalCanvas.width;
+            expandedCanvas.height = originalCanvas.height;
+
+            // Destroy previous chart instance
+            if (window.expandedChartInstance) {
+                window.expandedChartInstance.destroy();
+            }
+
+            // Copy chart data and re-render
+            const chartInstance = Chart.getChart(chartId);
+            if (chartInstance) {
+                const chartConfig = chartInstance.config;
+                window.expandedChartInstance = new Chart(expandedCanvas, chartConfig);
+            }
+        });
+    });
+});

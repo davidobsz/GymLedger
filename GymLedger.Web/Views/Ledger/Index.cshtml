@@ -33,6 +33,7 @@
                         <canvas id="exercisesPieChart"></canvas>
                     </div>
                     <button class="btn btn-light" id="downloadExercisesPieChart"><a><i class="fa-solid fa-download text-primary"></i></a> Download Image</button>
+                    <button class="btn btn-light expand-chart" data-bs-toggle="modal" data-bs-target="#chartModal" data-chart="exercisesPieChart"><i class="fa-solid fa-maximize text-primary"></i> Expand</button>
                     <div class="card-footer bg-light rounded-bottom-4">
                         <div class="mb-3">
                             <label for="startDate" class="fw-semibold">Start Date:</label>
@@ -68,6 +69,7 @@
                         <canvas id="sessionsLineChart"></canvas>
                     </div>
                     <button class="btn btn-light" id="downloadSessionsLineChart"><a><i class="fa-solid fa-download text-primary"></i></a> Download Image</button>
+                    <button class="btn btn-light expand-chart" data-bs-toggle="modal" data-bs-target="#chartModal" data-chart="sessionsLineChart"><i class="fa-solid fa-maximize text-primary"></i> Expand</button>
                     <div class="card-footer bg-light rounded-bottom-4">
                         <div class="mb-3">
                             <label for="startDate2" class="fw-semibold">Start Date:</label>
@@ -103,6 +105,7 @@
                         <canvas id="setsLineChart"></canvas>
                     </div>
                     <button class="btn btn-light" id="downloadSetsBarChart"><a><i class="fa-solid fa-download text-primary"></i></a> Download Image</button>
+                    <button class="btn btn-light expand-chart" data-bs-toggle="modal" data-bs-target="#chartModal" data-chart="setsLineChart"><i class="fa-solid fa-maximize text-primary"></i> Expand</button>
                     <div class="card-footer bg-light rounded-bottom-4">
                         <div class="mb-3">
                             <label for="startDate3" class="fw-semibold">Start Date:</label>
@@ -130,6 +133,25 @@
         </div>
     </div>
 </div>
+
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="chartModal" tabindex="-1" aria-labelledby="chartModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content shadow-lg rounded-4 border-0">
+            <!-- Modal Header -->
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title fw-bold" id="chartModalLabel">Expanded Chart</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body text-center">
+                <canvas id="expandedChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 <!-- store URL for get exercises LedgerControlerr method -->
