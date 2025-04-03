@@ -1,17 +1,21 @@
 ﻿@model GymLedger.Views.Profile.MyProfileView
 
 <div class="modal fade" id="modalModal" tabindex="-1" aria-labelledby="modalModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalModalLabel">Account Details</h5>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content shadow-lg rounded-4 border-0">
+
+            <!-- Modal Header -->
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title fw-bold" id="modalModalLabel">Account Details</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+
+            <!-- Modal Body -->
             <div class="modal-body">
                 <p><b>Username:</b> @Model.Username</p>
                 <p><b>Date Added:</b> @Model.DateAdded</p>
 
-                <p>Previous 5 Logins:</p>
+                <p><b>Previous 5 Logins:</b></p>
                 <ul>
                     @foreach (var previousLogin in Model.PreviousLogins)
                     {
@@ -19,6 +23,7 @@
                     }
                 </ul>
             </div>
+
         </div>
     </div>
 </div>

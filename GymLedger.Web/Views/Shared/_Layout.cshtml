@@ -17,12 +17,12 @@
         <i class="fas fa-bars"></i>
     </button>
 
-    <div class="sidebar" id="sidebar">
+    <div class="sidebar bg-light" id="sidebar">
         <a href="@Url.Action("Index", "Home")" title="Home">
-            <i class="fas fa-home"></i>
+            <i class="fas fa-home text-primary"></i>
         </a>
         <a href="@Url.Action("Home", "Ledger")" title="Ledger">
-            <i class="fas fa-book"></i>
+            <i class="fas fa-book text-primary"></i>
         </a>
         @{
             var authCookie = HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName];
@@ -30,16 +30,16 @@
             if (authCookie != null)
             {
                 <a href="@Url.Action("Index", "Profile")" title="Profile">
-                    <i class="fas fa-user"></i>
+                    <i class="fas fa-user text-primary"></i>
                 </a>
                 <a href="@Url.Action("Logout", "Account")" title="Logout">
-                    <i class="fas fa-sign-out-alt"></i>
+                    <i class="fas fa-sign-out-alt text-primary"></i>
                 </a>
             }
             else
             {
                 <a href="@Url.Action("Login", "Account")" title="Login / Register">
-                    <i class="fas fa-sign-in-alt"></i>
+                    <i class="fas fa-sign-in-alt text-primary"></i>
                 </a>
             }
         }
@@ -54,7 +54,7 @@
             @if (ViewBag.ShowTitle != false)
             {
                 <div class="card p-2 mb-3">
-                    <div class="text-center">
+                    <div class="text-center text-primary">
                         <h2 class="">@ViewBag.Title</h2>
                     </div>
                 </div>
