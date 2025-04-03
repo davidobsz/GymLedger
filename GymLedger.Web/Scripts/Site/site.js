@@ -529,3 +529,75 @@ function prepCSVRow(arr, columnCount, initial) {
     return initial + row;
 }
 
+// chart download functionality 
+$(document).ready(function () {
+    $("#downloadExercisesPieChart").click(function () {
+        var canvas = document.getElementById("exercisesPieChart");
+        var image = canvas.toDataURL("image/png"); // Convert canvas to image URL
+
+        var link = document.createElement("a");
+        link.href = image;
+        link.download = "exercises_pie_chart.png";
+        link.click();
+    });
+});
+
+$(document).ready(function () {
+    $("#downloadSessionsLineChart").click(function () {
+        var canvas = document.getElementById("sessionsLineChart");
+        var image = canvas.toDataURL("image/png"); // Convert canvas to image URL
+
+        var link = document.createElement("a");
+        link.href = image;
+        link.download = "sessions_line_chart.png"; 
+        link.click();
+    });
+});
+
+$(document).ready(function () {
+    $("#downloadSetsBarChart").click(function () {
+        var canvas = document.getElementById("setsLineChart");
+        var image = canvas.toDataURL("image/png"); // Convert canvas to image URL
+
+        var link = document.createElement("a");
+        link.href = image;
+        link.download = "sets_bar_chart.png";
+        link.click();
+    });
+});
+
+$(document).ready(function () {
+    $("#downloadSetsProgressChart").click(function () {
+        var canvas = document.getElementById("setsBarchartExercise");
+        var image = canvas.toDataURL("image/png"); // Convert canvas to image URL
+
+        var link = document.createElement("a");
+        link.href = image;
+        link.download = "sets_progress_chart.png";
+        link.click();
+    });
+});
+
+$(document).ready(function () {
+    $("#downloadORMChart").click(function () {
+        var canvas = document.getElementById("oneRepMaxChart");
+        var image = canvas.toDataURL("image/png"); // Convert canvas to image URL
+
+        var link = document.createElement("a");
+        link.href = image;
+        link.download = "one_rep_max_chart.png";
+        link.click();
+    });
+});
+
+$(document).ready(function () {
+    $("#downloadVolumeChart").click(function () {
+        var canvas = document.getElementById("volumePerSessionChart");
+        var image = canvas.toDataURL("image/png"); // Convert canvas to image URL
+
+        var link = document.createElement("a");
+        link.href = image;
+        link.download = "volume_chart.png";
+        link.click();
+    });
+});
