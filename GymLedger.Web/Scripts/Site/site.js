@@ -379,3 +379,153 @@ function toggleSidebar() {
     const sidebar = document.getElementById('sidebar');
     sidebar.classList.toggle('open');
 }
+
+// download all sessions to csv
+$('#sessionTable').on('load-success.bs.table', function () {
+    $('#downloadallSessions').click(function () {
+        var titles = [];
+        var data = [];
+
+        // get the table headers for CSV headers
+        $('#sessionTable th').each(function () {
+            titles.push($(this).text());
+        });
+
+        // het the actual data from table rows
+        $('#sessionTable tbody tr').each(function () {
+            var rowData = [];
+            $(this).find('td').each(function () {
+                rowData.push($(this).text());
+            });
+            data.push(rowData); 
+        });
+
+        // convert the data to CSV string
+        var CSVString = prepCSVRow(titles, titles.length, '');
+        CSVString = prepCSVRow(data.flat(), titles.length, CSVString);
+
+        // make CSV downloadable
+        var downloadLink = document.createElement("a");
+        var blob = new Blob(["\ufeff", CSVString]);
+        var url = URL.createObjectURL(blob);
+        downloadLink.href = url;
+        downloadLink.download = "allSessions.csv";
+
+        // actually download
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+    });
+});
+
+$('#sessionTable').on('load-success.bs.table', function () {
+    $('#downloadSessions').click(function () {
+        var titles = [];
+        var data = [];
+
+        // get the table headers for CSV headers
+        $('#sessionTable th').each(function () {
+            titles.push($(this).text());
+        });
+
+        // het the actual data from table rows
+        $('#sessionTable tbody tr').each(function () {
+            var rowData = [];
+            $(this).find('td').each(function () {
+                rowData.push($(this).text());
+            });
+            data.push(rowData);
+        });
+
+        // convert the data to CSV string
+        var CSVString = prepCSVRow(titles, titles.length, '');
+        CSVString = prepCSVRow(data.flat(), titles.length, CSVString);
+
+        // make CSV downloadable
+        var downloadLink = document.createElement("a");
+        var blob = new Blob(["\ufeff", CSVString]);
+        var url = URL.createObjectURL(blob);
+        downloadLink.href = url;
+        downloadLink.download = "allSessions.csv";
+
+        // actually download
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+    });
+});
+
+
+$('#exerciseTable').on('load-success.bs.table', function () {
+    $('#downloadAllExercises').click(function () {
+        var titles = [];
+        var data = [];
+
+        // get the table headers for CSV headers
+        $('#exerciseTable th').each(function () {
+            titles.push($(this).text());
+        });
+
+        // het the actual data from table rows
+        $('#exerciseTable tbody tr').each(function () {
+            var rowData = [];
+            $(this).find('td').each(function () {
+                rowData.push($(this).text());
+            });
+            data.push(rowData);
+        });
+
+        // convert the data to CSV string
+        var CSVString = prepCSVRow(titles, titles.length, '');
+        CSVString = prepCSVRow(data.flat(), titles.length, CSVString);
+
+        // make CSV downloadable
+        var downloadLink = document.createElement("a");
+        var blob = new Blob(["\ufeff", CSVString]);
+        var url = URL.createObjectURL(blob);
+        downloadLink.href = url;
+        downloadLink.download = "allExercises.csv";
+
+        // actually download
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+    });
+});
+
+
+
+// function to prepare CSV rows
+function prepCSVRow(arr, columnCount, initial) {
+    var row = '';
+    var delimeter = ','; 
+    var newLine = '\r\n';
+
+    // Split the array into chunks of the column count (for rows)
+    function splitArray(_arr, _count) {
+        var splitted = [];
+        var result = [];
+        _arr.forEach(function (item, idx) {
+            if ((idx + 1) % _count === 0) {
+                splitted.push(item);
+                result.push(splitted);
+                splitted = [];
+            } else {
+                splitted.push(item);
+            }
+        });
+        return result;
+    }
+
+    var plainArr = splitArray(arr, columnCount);
+
+    // Convert array to CSV string
+    plainArr.forEach(function (arrItem) {
+        arrItem.forEach(function (item, idx) {
+            row += item + ((idx + 1) === arrItem.length ? '' : delimeter);
+        });
+        row += newLine;
+    });
+    return initial + row;
+}
+
