@@ -1,4 +1,13 @@
-﻿
+﻿$(document).ready(function () {
+    // Check if BootstrapTable is available
+    if (typeof $ !== 'undefined' && $.fn.bootstrapTable) {
+        console.log("Initializing Bootstrap Tables...");
+        $(".bootstrap-table").bootstrapTable();
+    } else {
+        console.error("BootstrapTable library is not loaded.");
+    }
+});
+
 
 $(document).ready(function () {
     $(document).on('submit', '#addSessionForm', function (e) {
@@ -379,6 +388,7 @@ function toggleSidebar() {
     const sidebar = document.getElementById('sidebar');
     sidebar.classList.toggle('open');
 }
+
 
 // download all sessions to csv
 $('#sessionTable').on('load-success.bs.table', function () {
