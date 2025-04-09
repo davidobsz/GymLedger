@@ -94,5 +94,33 @@ namespace GymLedger.Api.Controllers
                 return BadRequest(ex.Message); // Invalid token or error handling
             }
         }
+
+        [HttpPut]
+        [Route("changepassword")]
+        public IHttpActionResult ChangePassword(ChangePasswordView view)
+        {
+            var token = Request.Headers.Authorization?.Parameter;
+            if (token == null)
+            {
+                return Unauthorized(); // Token missing
+            }
+
+            try
+            {
+                var handler = ApiFactory.ChangePasswordCommandHandlerApi(new Domains.Api.Commands.ChangePasswordCommandApi(token, view));
+                var response = handler.Execute();
+
+                return Ok(new
+                {
+                    Status = "Success",
+                    Data = response.Data,
+                    Message = response.Message
+                });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message); // Invalid token or error handling
+            }
+        }
     }
 }

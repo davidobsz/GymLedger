@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "One Rep Maxes";
+}
+
+<div class="container px-0 mt-4">
+    <div class="card card-body">
+
+        <div class="row">
+            <table class="table bootTable"
+                   id="OneRepMaxesTable"
+                   data-toggle="table"
+                   data-url="@Url.Action("GetOneRepMaxes", "Ledger")"
+                   data-pagination="true"
+                   data-search="true"
+                   data-click-to-select="true"
+                   data-toolbar-align="left"
+                   data-show-refresh="true"
+                   data-cache="false"
+                   data-show-columns="true"
+                   data-toolbar="#sessionToolbar"
+                   data-mobile-responsive="true"
+                   data-page-list="[10, 25, 50, 100, all]"
+                   data-side-pagination="client"
+                   data-query-params="queryParams"
+                   @*           data-sort-name="DisplayOrder"*@
+                   data-sort-order="asc"
+                   data-unique-id="UniqueId">
+                <thead>
+                    <tr>
+                        <th data-sortable="false" data-visible="false" data-field="UniqueId">UniqueId</th>
+                        <th data-sortable="true" data-field="Exercise">Exercise</th>
+                        <th data-sortable="true" data-field="DateAsString">Date</th>
+                        <th data-sortable="true" data-field="Weight">Weight</th>
+                        <th data-sortable="true" data-field="DateAddedAsString">Date Added</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div id="sessionToolbar">
+    <button class="btn btn-light" id="addOneRepMax"><a><i class="fa-solid fa-plus fa-lg text-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add a One Rep Max"></i></a></button>
+    <button class="btn btn-light" id="downloadallOneRepMaxes" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Download All Sessions as CSV"><a><i class="fa-solid fa-download text-primary"></i></a></button>
+</div>
+
+<div id="sessionTableContainer"
+     data-url="@Url.Action("GetSessionDetails", "Ledger")">
+</div>
+
+<div id="addOneRepMaxContainer"
+     data-url="@Url.Action("AddOneRepMaxPartial", "Ledger")">
+</div>
+
+@Html.Hidden("AddSessionUrl", Url.Action("AddOneRepMax", "Ledger"))
+

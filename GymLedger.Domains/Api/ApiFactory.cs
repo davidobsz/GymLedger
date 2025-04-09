@@ -26,6 +26,16 @@ namespace GymLedger.Domains.Api
             return new LoginApiAccountCommandValidator(new LoginApiAccountCommandHandler(command),command);
         }
 
+        public static ICommandHandler<RegisterAccountCommandApi, ApiDataCommandResponse> RegisterAccountCommandHandlerApi(RegisterAccountCommandApi command)
+        {
+            return new RegisterAccountCommandValidatorApi(new RegisterAccountCommandHandlerApi(null, command), command);
+        }
+
+        public static ICommandHandler<ChangePasswordCommandApi, ApiDataCommandResponse> ChangePasswordCommandHandlerApi(ChangePasswordCommandApi command)
+        {
+            return new ChangePasswordCommandValidatorApi(new ChangePasswordCommandHandlerApi(null, command), command);
+        }
+
         public static ICommandHandler<AddExerciseCommand, ApiDataCommandResponse> AddExerciseCommandHandlerApi(AddExerciseCommand command)
         {
             return new AddExerciseCommandValidatorApi(new AddExerciseCommandHandlerApi(null,command), command);

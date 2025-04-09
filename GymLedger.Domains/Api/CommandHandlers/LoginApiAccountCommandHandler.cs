@@ -3,7 +3,9 @@ using GymLedger.Domains.Api.Commands;
 using GymLedger.Domains.BaseCommands;
 using GymLedger.Helpers.JwtAuth;
 using GymLedger.Helpers.PasswordHelper;
+using GymLedger.Models.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace GymLedger.Domains.Api.CommandHandlers
@@ -76,6 +78,24 @@ namespace GymLedger.Domains.Api.CommandHandlers
             using (var db = new DataContext())
             {
                 var user = db.Users.SingleOrDefault(u => u.Username == command.View.Username);
+
+                var login = new PreviousLogin
+                {
+                    UniqueId = Guid.NewGuid().ToString("N"),
+                    LoginDate = DateTime.UtcNow,
+                    DateAdded = DateTime.UtcNow,
+                    DateModified = DateTime.UtcNow,
+                    UserId = user.Id,
+                    User = user
+                };
+
+                if (user.PreviousLogins == null)
+                {
+                    user.PreviousLogins = new List<PreviousLogin>();
+                }
+
+                user.PreviousLogins.Add(login);
+                db.SaveChanges();
 
                 string token = JwtTokenHelper.GenerateToken(user);
 

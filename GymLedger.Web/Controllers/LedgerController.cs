@@ -406,5 +406,75 @@ namespace GymLedger.Web.Controllers
                 return View();
             }
         }
+
+        [HttpGet]
+        public ActionResult OneRepMax()
+        {
+            return View("OneRepMaxes");
+        }
+
+        [HttpGet]
+        public JsonResult GetOneRepMaxes(string? uniqueId)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var handler = LedgerFactory.GetOneRepMaxesQueryHandler(new GetOneRepMaxesQuery(this.HttpContext, string.IsNullOrEmpty(uniqueId) ? "0000" : uniqueId));
+                    var response = handler.Get();
+
+                    return Json(new { total = response.OneRepMaxes.Count, rows = response.OneRepMaxes }, JsonRequestBehavior.AllowGet);
+                }
+                catch (Exception ex)
+                {
+                    return Json(new { success = false, responseText = ex.Message }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            return Json(new { success = false, responseText = "Failed to get one rep maxes" }, JsonRequestBehavior.AllowGet);
+
+        }
+
+        [HttpGet]
+        public PartialViewResult AddOneRepMaxPartial()
+        {
+            var handler = LedgerFactory.GetExercisesQueryHandler(new GetExercisesQuery(this.HttpContext));
+            var response = handler.Get();
+
+            List<Exercise> exercises = new List<Exercise>();
+
+            foreach (var resp in response.Exercises)
+            {
+                Exercise exercise = new Exercise
+                {
+                    Name = resp.Name
+                };
+
+                exercises.Add(exercise);
+            }
+            var view = new AddOneRepMaxView { Exercises = exercises };
+
+            return PartialView("_AddOneRepMax", view);
+        }
+
+        [HttpPost]
+        public JsonResult AddOneRepMax(AddOneRepMaxView view)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var handler = LedgerFactory.AddOneRepMaxCommandHandler(new AddOneRepMaxCommand(view, this.HttpContext));
+                    var response = handler.Execute();
+
+                    return Json(new { success = true, responseText = $"{response.Message}", responseReload = true }, JsonRequestBehavior.AllowGet);
+                }
+                catch (Exception ex)
+                {
+                    return Json(new { success = false, responseText = ex.Message }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            return Json(new { success = false, responseText = "Failed to add session" }, JsonRequestBehavior.AllowGet);
+
+        }
     }
 }

@@ -28,6 +28,11 @@ namespace GymLedger.Domains.Areas.Ledger
             return new AddSessionCommandValidator(new AddSessionCommandHandler(null, command), command);
         }
 
+        public static ICommandHandler<AddOneRepMaxCommand, DataCommandResponse> AddOneRepMaxCommandHandler(AddOneRepMaxCommand command)
+        {
+            return new AddOneRepMaxCommandValidator(new AddOneRepMaxCommandHandler(null, command), command);
+        }
+
         public static ICommandHandler<EditExerciseCommand, DataCommandResponse> EditExerciseCommandHandler(EditExerciseCommand command)
         {
             return new EditExerciseCommandValidator(new EditExerciseCommandHandler(null, command), command);
@@ -58,6 +63,11 @@ namespace GymLedger.Domains.Areas.Ledger
         public static IQueryHandler<GetSessionsQuery, GetSessionView> GetSessionsQueryHandler(GetSessionsQuery query)
         {
             return new GetSessionsQueryValidator(new GetSessionsQueryHandler(query), query);
+        }
+
+        public static IQueryHandler<GetOneRepMaxesQuery, GetOneRepMaxesView> GetOneRepMaxesQueryHandler(GetOneRepMaxesQuery query)
+        {
+            return new GetOneRepMaxesQueryValidator(new GetOneRepMaxesQueryHandler(query), query);
         }
 
         public static IQueryHandler<GetExerciseDetailQuery, ExerciseDetailView> GetExerciseDetailsQueryHandler(GetExerciseDetailQuery query)

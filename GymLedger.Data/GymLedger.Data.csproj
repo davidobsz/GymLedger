@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="DataContext.cs" />
     <Compile Include="Mappings\ExerciseMap.cs" />
+    <Compile Include="Mappings\OneRepMaxMap.cs" />
     <Compile Include="Mappings\PreviousLoginMap.cs" />
     <Compile Include="Mappings\PreviousPasswordMap.cs" />
     <Compile Include="Mappings\SessionMap.cs" />
@@ -69,6 +70,10 @@
     <Compile Include="Migrations\202503251425521_v_1.2_PreviousLoginAndPasswords.cs" />
     <Compile Include="Migrations\202503251425521_v_1.2_PreviousLoginAndPasswords.Designer.cs">
       <DependentUpon>202503251425521_v_1.2_PreviousLoginAndPasswords.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202504081402179_v_1.3_OneRepMaxes.cs" />
+    <Compile Include="Migrations\202504081402179_v_1.3_OneRepMaxes.Designer.cs">
+      <DependentUpon>202504081402179_v_1.3_OneRepMaxes.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -96,6 +101,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202503251425521_v_1.2_PreviousLoginAndPasswords.resx">
       <DependentUpon>202503251425521_v_1.2_PreviousLoginAndPasswords.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202504081402179_v_1.3_OneRepMaxes.resx">
+      <DependentUpon>202504081402179_v_1.3_OneRepMaxes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -26,5 +26,7 @@ namespace GymLedger.Models.Models
         public ICollection<PreviousLogin> PreviousLogins { get; set; }
 
         public ICollection<PreviousPassword> PreviousPasswords { get; set; }
+
+        public ICollection<OneRepMax> OneRepMaxes { get; set; }
     }
 }

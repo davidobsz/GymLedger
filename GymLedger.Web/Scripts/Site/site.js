@@ -326,6 +326,61 @@ $(document).ready(function () {
     });
 });
 
+$(document).on('click', '#addOneRepMax', function (e) {
+    e.preventDefault(); // Prevent any unwanted navigation
+
+    const modalUrl = $('#addOneRepMaxContainer').data('url'); // URL for the partial view
+    $.ajax({
+        url: modalUrl,
+        type: 'GET',
+        success: function (response) {
+            $('#addOneRepMaxContainer').html(response); // Load the modal content
+            const sessionModal = new bootstrap.Modal(document.getElementById('addOneRepMaxModal'));
+            sessionModal.show(); // Open the modal
+        },
+        error: function () {
+            $.growl.error({ title: "Error", message: "Failed to load Add One Rep Max form." });
+        }
+    });
+});
+
+$(document).ready(function () {
+    // Delegate the form submission event to the document to handle dynamically loaded content
+    $(document).on('submit', '#addOneRepMaxForm', function (e) {
+        e.preventDefault(); // Prevent the default form submission
+
+        const $form = $(this);
+        const $submitButton = $form.find('button[type="submit"]');
+
+        $submitButton.prop('disabled', true); // Disable button to prevent multiple clicks
+
+        const formData = $form.serialize(); // Serialize the form data
+        $.ajax({
+            url: $form.attr('action'),
+            type: 'POST',
+            data: formData,
+            success: function (response) {
+
+
+                if (response.success) {
+                    $.growl.notice({ title: "Success", message: response.responseText });
+                    if (response.responseReload) {
+                        setTimeout(() => location.reload(), 2000); // Reload after success
+                    }
+                } else {
+                    $.growl.error({ title: "Error", message: response.responseText });
+                    $submitButton.prop('disabled', false); // Re-enable button if error occurs
+                }
+            },
+            error: function (xhr, status, error) {
+                $.growl.error({ title: "Error", message: "An unexpected error occurred." });
+                $submitButton.prop('disabled', false); // Re-enable button if error occurs
+            }
+        });
+    });
+});
+
+
 $(document).on('click', '#addSession', function (e) {
     e.preventDefault(); // Prevent any unwanted navigation
 

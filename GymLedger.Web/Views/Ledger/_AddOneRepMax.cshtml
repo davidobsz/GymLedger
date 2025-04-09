@@ -1,0 +1,46 @@
+﻿@model GymLedger.Views.Areas.Ledger.AddOneRepMaxView
+
+<div class="modal fade" id="addOneRepMaxModal" tabindex="-1" aria-labelledby="addOneRepMaxModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content shadow-lg rounded-4 border-0">
+            <!-- Modal Header -->
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title fw-bold" id="addOneRepMaxModalLabel">Add One Rep Max</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <p class="text-muted mb-3">Add an exercise using the details below.</p>
+
+                @using (Html.BeginForm("AddOneRepMax", "Ledger", FormMethod.Post, new { @class = "needs-validation", role = "form", id = "addOneRepMaxForm", novalidate = "novalidate" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="mb-3">
+                        @Html.LabelFor(m => m.Exercises, new { @class = "form-label fw-semibold" })
+                        @Html.DropDownListFor(m => m.ExerciseName, new SelectList(Model.Exercises, "Name", "Name"), "Select Exercise", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.ExerciseName, "", new { @class = "text-danger small" })
+                    </div>
+
+                    <div class="mb-3">
+                        @Html.LabelFor(m => m.Weight, new { @class = "form-label fw-semibold" })
+                        @Html.TextBoxFor(m => m.Weight, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Weight, "", new { @class = "text-danger small" })
+                    </div>
+
+                    <div class="mb-3">
+                        @Html.LabelFor(m => m.Date, new { @class = "form-label fw-semibold" })
+                        <input type="date" class="form-control" name="Date" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                    </div>
+
+                    <div class="text-end mt-3">
+                        <button type="submit" class="btn btn-success px-4">
+                            <i class="fa-solid fa-check"></i> Submit
+                        </button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

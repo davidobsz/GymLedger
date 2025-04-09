@@ -23,5 +23,6 @@ namespace GymLedger.Data
         public DbSet<Exercise> Exercises { get; set; }
         public DbSet<PreviousLogin> PreviousLogins { get; set; }
         public DbSet<PreviousPassword> PreviousPasswords { get; set; }
+        public DbSet<OneRepMax> OneRepMaxes { get; set; }
     }
 }

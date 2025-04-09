@@ -45,6 +45,7 @@
     <Compile Include="Account\Login\LoginAccountView.cs" />
     <Compile Include="Account\Registration\RegisterAccountView.cs" />
     <Compile Include="Areas\Ledger\AddExerciseView.cs" />
+    <Compile Include="Areas\Ledger\AddOneRepMaxView.cs" />
     <Compile Include="Areas\Ledger\AddSessionApiView.cs" />
     <Compile Include="Areas\Ledger\AddSessionView.cs" />
     <Compile Include="Areas\Ledger\DeleteExerciseView.cs" />
@@ -55,6 +56,7 @@
     <Compile Include="Areas\Ledger\GetExercisesPiechartDataView.cs" />
     <Compile Include="Areas\Ledger\GetExercisesSetsBarchartView.cs" />
     <Compile Include="Areas\Ledger\GetExerciseView.cs" />
+    <Compile Include="Areas\Ledger\GetOneRepMaxesView.cs" />
     <Compile Include="Areas\Ledger\GetOneRepMaxLineChartView.cs" />
     <Compile Include="Areas\Ledger\GetSessionsLinechartDataView.cs" />
     <Compile Include="Areas\Ledger\GetSessionView.cs" />

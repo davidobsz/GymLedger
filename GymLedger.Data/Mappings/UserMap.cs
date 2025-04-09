@@ -45,7 +45,12 @@ namespace GymLedger.Models.Mappings
             HasMany(u => u.Sessions)
                 .WithRequired(s => s.User) 
                 .HasForeignKey(s => s.UserId)
-                .WillCascadeOnDelete(false); 
+                .WillCascadeOnDelete(false);
+
+            HasMany(u => u.OneRepMaxes)
+                .WithRequired(s => s.User)
+                .HasForeignKey(s => s.UserId)
+                .WillCascadeOnDelete(true);
 
             HasMany(u => u.PreviousLogins)
                 .WithRequired(u => u.User)

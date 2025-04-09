@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\Exercise.cs" />
+    <Compile Include="Models\OneRepMax.cs" />
     <Compile Include="Models\PreviousLogin.cs" />
     <Compile Include="Models\PreviousPassword.cs" />
     <Compile Include="Models\Session.cs" />

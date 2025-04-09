@@ -3,19 +3,17 @@ using GymLedger.Views.Account.Registration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http.Headers;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.Windows.Input;
 
-namespace GymLedger.Domains.Account.Commands
+namespace GymLedger.Domains.Api.Commands
 {
-    public class RegisterAccountCommand: ICommand<DataCommandResponse>
+    public class RegisterAccountCommandApi : ICommand<ApiDataCommandResponse>
     {
         public RegisterAccountView View { get; set; }
 
-        public RegisterAccountCommand(RegisterAccountView view)
+        public RegisterAccountCommandApi(RegisterAccountView view)
         {
             this.View = view;
         }

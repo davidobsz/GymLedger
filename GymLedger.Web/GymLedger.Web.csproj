@@ -207,6 +207,8 @@
     <Content Include="Views\Profile\_AccountDetails.cshtml" />
     <Content Include="Views\Profile\_ChangePassword.cshtml" />
     <Content Include="Views\Profile\_DeleteAccount.cshtml" />
+    <Content Include="Views\Ledger\OneRepMaxes.cshtml" />
+    <Content Include="Views\Ledger\_AddOneRepMax.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
