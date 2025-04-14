@@ -271,6 +271,41 @@ $(document).ready(function () {
     });
 });
 
+$(document).ready(function () {
+    $('#OneRepMaxesTable').on('click', 'tbody tr', function () {
+        var uniqueId = $(this).attr("data-uniqueid");
+        var url = $('#oneRepMaxTableContainer').data('url');
+
+        if (uniqueId) {
+            $.ajax({
+                url: url,
+                type: 'GET',
+                data: { uniqueId: uniqueId },
+                success: function (response) {
+
+                    // Check if the modal already exists and remove it if so
+                    var existingModal = $('#oneRepMaxModal');
+                    if (existingModal.length) {
+                        existingModal.remove();  // Remove the existing modal content
+                    }
+
+                    // Append the new modal content to the body
+                    $("body").append(response);
+
+                    // Ensure modal is initialized and shown
+                    var modal = new bootstrap.Modal(document.getElementById('oneRepMaxModal'));
+                    modal.show();
+                },
+                error: function (xhr, status, error) {
+                    alert("Error loading one rep max details.");
+                }
+            });
+        } else {
+            console.log("UniqueId not found!");
+        }
+    });
+});
+
 // gets the sessionDetails
 $(document).ready(function () {
     $('#sessionTable').on('click', 'tbody tr', function () {
@@ -558,7 +593,42 @@ $('#exerciseTable').on('load-success.bs.table', function () {
     });
 });
 
+$('#OneRepMaxesTable').on('load-success.bs.table', function () {
+    $('#downloadallOneRepMaxes').click(function () {
+        var titles = [];
+        var data = [];
 
+        // get the table headers for CSV headers
+        $('#OneRepMaxesTable th').each(function () {
+            titles.push($(this).text());
+        });
+
+        // het the actual data from table rows
+        $('#OneRepMaxesTable tbody tr').each(function () {
+            var rowData = [];
+            $(this).find('td').each(function () {
+                rowData.push($(this).text());
+            });
+            data.push(rowData);
+        });
+
+        // convert the data to CSV string
+        var CSVString = prepCSVRow(titles, titles.length, '');
+        CSVString = prepCSVRow(data.flat(), titles.length, CSVString);
+
+        // make CSV downloadable
+        var downloadLink = document.createElement("a");
+        var blob = new Blob(["\ufeff", CSVString]);
+        var url = URL.createObjectURL(blob);
+        downloadLink.href = url;
+        downloadLink.download = "allOneRepMaxes.csv";
+
+        // actually download
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+    });
+});
 
 // function to prepare CSV rows
 function prepCSVRow(arr, columnCount, initial) {

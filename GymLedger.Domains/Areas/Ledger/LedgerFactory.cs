@@ -114,6 +114,11 @@ namespace GymLedger.Domains.Areas.Ledger
         {
             return new GetUniqueExerciseQueryValidator(new GetUniqueExerciseQueryHandler(query), query);
         }
+
+        public static IQueryHandler<GetOneRepMaxDetailQuery, OneRepMaxView> GetOneRepMaxDetailQueryHandler(GetOneRepMaxDetailQuery query)
+        {
+            return new GetOneRepMaxDetailQueryValidator(new GetOneRepMaxDetailQueryHandler(query), query);
+        }
         #endregion
     }
 }

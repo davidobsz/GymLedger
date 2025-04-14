@@ -476,5 +476,22 @@ namespace GymLedger.Web.Controllers
             return Json(new { success = false, responseText = "Failed to add session" }, JsonRequestBehavior.AllowGet);
 
         }
+
+
+        [HttpGet]
+        public PartialViewResult GetOneRepMaxDetails(string uniqueId)
+        {
+            try
+            {
+                var handler = LedgerFactory.GetOneRepMaxDetailQueryHandler(new GetOneRepMaxDetailQuery(this.HttpContext, uniqueId));
+                var response = handler.Get();
+
+                return PartialView("_OneRepMaxDetail", response);
+            }
+            catch (Exception ex)
+            {
+                return PartialView("_OneRepMaxDetail");
+            }
+        }
     }
 }

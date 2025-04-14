@@ -107,6 +107,7 @@
     <Compile Include="Areas\Ledger\QueryHandlers\GetExercisesQueryHandler.cs" />
     <Compile Include="Areas\Ledger\QueryHandlers\GetExercisesSetsBarchartQueryHandler.cs" />
     <Compile Include="Areas\Ledger\QueryHandlers\GetExercosesPiechartDataQueryHandler.cs" />
+    <Compile Include="Areas\Ledger\QueryHandlers\GetOneRepMaxDetailQueryHandler.cs" />
     <Compile Include="Areas\Ledger\QueryHandlers\GetOneRepMaxesQueryHandler.cs" />
     <Compile Include="Areas\Ledger\QueryHandlers\GetOneRepMaxLineChartQueryHandler.cs" />
     <Compile Include="Areas\Ledger\QueryHandlers\GetSessionDetailQueryHandler.cs" />
@@ -119,6 +120,7 @@
     <Compile Include="Areas\Ledger\Querys\GetExercisesPiechartDataQuery.cs" />
     <Compile Include="Areas\Ledger\Querys\GetExercisesQuery.cs" />
     <Compile Include="Areas\Ledger\Querys\GetExercisesSetsBarchartQuery.cs" />
+    <Compile Include="Areas\Ledger\Querys\GetOneRepmaxDetailQuery.cs" />
     <Compile Include="Areas\Ledger\Querys\GetOneRepMaxesQuery.cs" />
     <Compile Include="Areas\Ledger\Querys\GetOneRepMaxLineChartQuery.cs" />
     <Compile Include="Areas\Ledger\Querys\GetSessionDetailQuery.cs" />

@@ -42,11 +42,11 @@
 
 <div id="sessionToolbar">
     <button class="btn btn-light" id="addOneRepMax"><a><i class="fa-solid fa-plus fa-lg text-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add a One Rep Max"></i></a></button>
-    <button class="btn btn-light" id="downloadallOneRepMaxes" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Download All Sessions as CSV"><a><i class="fa-solid fa-download text-primary"></i></a></button>
+    <button class="btn btn-light" id="downloadallOneRepMaxes" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Download All One Rep Maxes as CSV"><a><i class="fa-solid fa-download text-primary"></i></a></button>
 </div>
 
-<div id="sessionTableContainer"
-     data-url="@Url.Action("GetSessionDetails", "Ledger")">
+<div id="oneRepMaxTableContainer"
+     data-url="@Url.Action("GetOneRepMaxDetails", "Ledger")">
 </div>
 
 <div id="addOneRepMaxContainer"
