@@ -1,6 +1,29 @@
 ﻿@{
     ViewBag.Title = "One Rep Maxes";
 }
+<div class="container px-0 mt-2">
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h5 class="card-title text-center mb-3">Options</h5>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <a href="@Url.Action("Exercises", "Ledger")" class="text-decoration-none"><i class="fa-regular fa-clipboard"></i> View your Exercises</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="@Url.Action("Sessions", "Ledger")" class="text-decoration-none"><i class="fa-solid fa-dumbbell"></i> View your Sessions</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="container px-0 mt-2">
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h5 class="card-title text-center mb-3">Calculate One Rep Max</h5>
+        </div>
+    </div>
+</div>
 
 <div class="container px-0 mt-4">
     <div class="card card-body">
