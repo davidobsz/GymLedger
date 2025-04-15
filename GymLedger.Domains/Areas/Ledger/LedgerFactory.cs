@@ -62,6 +62,11 @@ namespace GymLedger.Domains.Areas.Ledger
         {
             return new DeleteOneRepMaxCommandValidator(new DeleteOneRepMaxCommandHandler(null, command), command);
         }
+
+        public static ICommandHandler<CalculateOneRepMaxCommand, DataCommandResponse> CalculateOneRepMaxCommandHandler(CalculateOneRepMaxCommand command)
+        {
+            return new CalculateOneRepMaxCommandValidator(new CalculateOneRepMaxCommandHandler(null, command), command);
+        }
         #endregion
 
         #region Querys

@@ -1,4 +1,5 @@
-﻿@{
+﻿@model GymLedger.Views.Areas.Ledger.CalculateOneRepMaxView
+@{
     ViewBag.Title = "One Rep Maxes";
 }
 <div class="container px-0 mt-2">
@@ -19,13 +20,41 @@
 
 <div class="container px-0 mt-2">
     <div class="card shadow-sm">
-        <div class="card-body">
+        <div class="card-body p-3">
             <h5 class="card-title text-center mb-3">Calculate One Rep Max</h5>
+
+            <p class="text-muted mb-3">Calculate your one rep max using the form below.</p>
+
+            @using (Html.BeginForm("CalculateOneRepMax", "Ledger", FormMethod.Post, new { @class = "needs-validation", role = "form", id = "calculateOneRepMaxForm", novalidate = "novalidate" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="mb-3">
+                    @Html.LabelFor(m => m.Weight, new { @class = "form-label fw-semibold" })
+                    @Html.TextBoxFor(m => m.Weight, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Weight, "", new { @class = "text-danger small" })
+                </div>
+
+                <div class="mb-3">
+                    @Html.LabelFor(m => m.Reps, new { @class = "form-label fw-semibold" })
+                    @Html.TextBoxFor(m => m.Reps, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Reps, "", new { @class = "text-danger small" })
+                </div>
+
+                <div id="oneRepMaxResult">
+
+                </div>
+
+                <div class="text-end mt-3">
+                    <button type="submit" class="btn btn-success px-4">
+                        <i class="fa-solid fa-check"></i> Submit
+                    </button>
+                </div>
+            }
         </div>
     </div>
 </div>
 
-<div class="container px-0 mt-4">
+<div class="container px-0 mt-2">
     <div class="card card-body">
 
         <div class="row">

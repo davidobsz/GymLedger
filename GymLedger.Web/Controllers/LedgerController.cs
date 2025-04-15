@@ -535,24 +535,24 @@ namespace GymLedger.Web.Controllers
 
         }
 
-        [HttpGet]
-        public JsonResult CalculateOneRepMax(string uniqueid)
+        [HttpPost]
+        public JsonResult CalculateOneRepMax(CalculateOneRepMaxView view)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var handler = LedgerFactory.DeleteOneRepMaxCommandHandler(new DeleteOneRepMaxCommand(uniqueid, this.HttpContext));
+                    var handler = LedgerFactory.CalculateOneRepMaxCommandHandler(new CalculateOneRepMaxCommand(view, this.HttpContext));
                     var response = handler.Execute();
 
-                    return Json(new { success = true, responseText = $"{response.Message}", responseReload = true }, JsonRequestBehavior.AllowGet);
+                    return Json(new { success = true, responseText = $"{response.Message}", responseReload = false, Data = response.Data }, JsonRequestBehavior.AllowGet);
                 }
                 catch (Exception ex)
                 {
                     return Json(new { success = false, responseText = ex.Message }, JsonRequestBehavior.AllowGet);
                 }
             }
-            return Json(new { success = false, responseText = "Failed to delete one rep max" }, JsonRequestBehavior.AllowGet);
+            return Json(new { success = false, responseText = "Failed to calculate one rep max" }, JsonRequestBehavior.AllowGet);
 
         }
     }

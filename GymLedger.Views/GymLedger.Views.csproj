@@ -48,6 +48,7 @@
     <Compile Include="Areas\Ledger\AddOneRepMaxView.cs" />
     <Compile Include="Areas\Ledger\AddSessionApiView.cs" />
     <Compile Include="Areas\Ledger\AddSessionView.cs" />
+    <Compile Include="Areas\Ledger\CalculateOneRepMaxView.cs" />
     <Compile Include="Areas\Ledger\DeleteExerciseView.cs" />
     <Compile Include="Areas\Ledger\DeleteSessionView.cs" />
     <Compile Include="Areas\Ledger\EditExerciseView.cs" />

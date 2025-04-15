@@ -493,6 +493,41 @@ $(document).ready(function () {
 });
 
 
+$(document).on('submit', '#calculateOneRepMaxForm', function (e) {
+    e.preventDefault(); // Prevent the default form submission
+
+    const $form = $(this);
+    const $submitButton = $form.find('button[type="submit"]');
+
+    $submitButton.prop('disabled', true); // Disable button to prevent multiple clicks
+
+    const formData = $form.serialize(); // Serialize the form data
+    $.ajax({
+        url: $form.attr('action'),
+        type: 'POST',
+        data: formData,
+        success: function (response) {
+            if (response.success) {
+                $.growl.notice({ title: "Success", message: response.responseText });
+                if (response.responseReload) {
+                    setTimeout(() => location.reload(), 2000); // Reload after success
+                }
+                $('#oneRepMaxResult').html(`<div class="alert alert-primary">Estimated 1RM: <strong>${response.Data.OneRepMax} kg</strong></div>`);
+
+            } else {
+                $.growl.error({ title: "Error", message: response.responseText });
+                $submitButton.prop('disabled', false); // Re-enable button if error occurs
+            }
+        },
+        error: function (xhr, status, error) {
+            $.growl.error({ title: "Error", message: "An unexpected error occurred." });
+            $submitButton.prop('disabled', false); // Re-enable button if error occurs
+        }
+    });
+
+    $submitButton.prop('disabled', false);
+});
+
 $(document).on('click', '#addSession', function (e) {
     e.preventDefault(); // Prevent any unwanted navigation
 
