@@ -20,7 +20,7 @@
 
                     <div class="mb-3">
                         @Html.LabelFor(m => m.Exercise, new { @class = "form-label fw-semibold" })
-                        @Html.TextBoxFor(m => m.Exercise, new { @class = "form-control", placeholder = Model.Exercise })
+                        @Html.TextBoxFor(m => m.Exercise, new { @class = "form-control", placeholder = Model.Exercise, disabled = true })
                         @Html.ValidationMessageFor(m => m.Exercise, "", new { @class = "text-danger small" })
                     </div>
 
@@ -31,9 +31,9 @@
                     </div>
 
                     <div class="mb-3">
-                        @Html.LabelFor(m => m.DateAdded, new { @class = "form-label fw-semibold" })
-                        @Html.TextBoxFor(m => m.DateAdded, new { @class = "form-control", type = "date", Value = Model.DateAddedAsString })
-                        @Html.ValidationMessageFor(m => m.DateAdded, "", new { @class = "text-danger small" })
+                        @Html.LabelFor(m => m.Date, new { @class = "form-label fw-semibold" })
+                        @Html.TextBoxFor(m => m.Date, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+                        @Html.ValidationMessageFor(m => m.Date, "", new { @class = "text-danger small" })
                     </div>
 
                     <div class="modal-footer">

@@ -473,10 +473,9 @@ namespace GymLedger.Web.Controllers
                     return Json(new { success = false, responseText = ex.Message }, JsonRequestBehavior.AllowGet);
                 }
             }
-            return Json(new { success = false, responseText = "Failed to add session" }, JsonRequestBehavior.AllowGet);
+            return Json(new { success = false, responseText = "Failed to add one rep max" }, JsonRequestBehavior.AllowGet);
 
         }
-
 
         [HttpGet]
         public PartialViewResult GetOneRepMaxDetails(string uniqueId)
@@ -492,6 +491,48 @@ namespace GymLedger.Web.Controllers
             {
                 return PartialView("_OneRepMaxDetail");
             }
+        }
+
+        [HttpPost]
+        public JsonResult EditOneRepMax(EditOneRepMaxView view)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var handler = LedgerFactory.EditOneRepMaxCommandHandler(new EditOneRepMaxCommand(view, this.HttpContext));
+                    var response = handler.Execute();
+
+                    return Json(new { success = true, responseText = $"{response.Message}", responseReload = true }, JsonRequestBehavior.AllowGet);
+                }
+                catch (Exception ex)
+                {
+                    return Json(new { success = false, responseText = ex.Message }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            return Json(new { success = false, responseText = "Failed to edit one rep max" }, JsonRequestBehavior.AllowGet);
+
+        }
+
+        [HttpPost]
+        public JsonResult DeleteOneRepMax(string uniqueid)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var handler = LedgerFactory.DeleteOneRepMaxCommandHandler(new DeleteOneRepMaxCommand(uniqueid, this.HttpContext));
+                    var response = handler.Execute();
+
+                    return Json(new { success = true, responseText = $"{response.Message}", responseReload = true }, JsonRequestBehavior.AllowGet);
+                }
+                catch (Exception ex)
+                {
+                    return Json(new { success = false, responseText = ex.Message }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            return Json(new { success = false, responseText = "Failed to delete one rep max" }, JsonRequestBehavior.AllowGet);
+
         }
     }
 }
