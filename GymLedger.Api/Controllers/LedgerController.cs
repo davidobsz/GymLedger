@@ -257,5 +257,115 @@ namespace GymLedger.Api.Controllers
                 return BadRequest(ex.Message); // Invalid token or error handling
             }
         }
+
+        [HttpGet]
+        [Route("onerepmaxes")]
+        public IHttpActionResult GetOneRepMaxes()
+        {
+            var token = Request.Headers.Authorization?.Parameter;
+            if (token == null)
+            {
+                return Unauthorized(); // Token missing
+            }
+
+            try
+            {
+                var handler = ApiFactory.GetOneRepMaxesQueryHandlerApi(new Domains.Api.Querys.GetOneRepMaxesQueryApi(token));
+                var response = handler.Get();
+
+                return Ok(new
+                {
+                    Data = response.OneRepMaxes
+
+                });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message); // Invalid token or error handling
+            }
+        }
+
+        [HttpPost]
+        [Route("addonerepmax")]
+        public IHttpActionResult AddOneRepMax(AddOneRepMaxApiView view)
+        {
+            var token = Request.Headers.Authorization?.Parameter;
+            if (token == null)
+            {
+                return Unauthorized(); // Token missing
+            }
+
+            try
+            {
+                var handler = ApiFactory.AddOneRepMaxCommandHandlerApi(new Domains.Api.Commands.AddOneRepMaxCommandApi(view, token));
+                var response = handler.Execute();
+
+                return Ok(new
+                {
+                    Status = "Success",
+                    Message = "Successfully Added One Rep Max",
+                    response.Data
+                });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message); // Invalid token or error handling
+            }
+        }
+
+        [HttpDelete]
+        [Route("deleteonerepmax")]
+        public IHttpActionResult DeleteOneRepMax(string uniqueId)
+        {
+            var token = Request.Headers.Authorization?.Parameter;
+            if (token == null)
+            {
+                return Unauthorized(); // Token missing
+            }
+
+            try
+            {
+                var handler = ApiFactory.DeleteOneRepMaxCommandHandlerApi(new Domains.Api.Commands.DeleteOneRepMaxCommandApi(uniqueId, token));
+                var response = handler.Execute();
+
+                return Ok(new
+                {
+                    Status = "Success",
+                    Message = "Successfully Deleted One Rep Max",
+                    response.Data
+                });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message); // Invalid token or error handling
+            }
+        }
+
+        [HttpGet]
+        [Route("onerepmax")]
+        public IHttpActionResult GetOneRepMax(string uniqueId)
+        {
+            var token = Request.Headers.Authorization?.Parameter;
+            if (token == null)
+            {
+                return Unauthorized(); // Token missing
+            }
+
+            try
+            {
+                var handler = ApiFactory.GetOneRepMaxQueryHandlerApi(new Domains.Api.Querys.GetOneRepMaxQueryApi(token, uniqueId));
+                var response = handler.Get();
+
+                return Ok(new
+                {
+                    Data = response
+
+                });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message); // Invalid token or error handling
+            }
+        }
     }
 }

@@ -8,18 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace GymLedger.Domains.Areas.Ledger.Commands
+namespace GymLedger.Domains.Api.Commands
 {
-    public class AddOneRepMaxCommand : ICommand<DataCommandResponse>
+    public class AddOneRepMaxCommandApi : ICommand<ApiDataCommandResponse>
     {
-        public AddOneRepMaxView View { get; set; }
+        public AddOneRepMaxApiView View { get; set; }
         public User UserIdentity { get; set; }
 
-        public AddOneRepMaxCommand(AddOneRepMaxView view, HttpContextBase context)
+        public AddOneRepMaxCommandApi(AddOneRepMaxApiView view, string token)
         {
             this.View = view;
 
-            this.UserIdentity = GymLedger.Helpers.CookieAuth.AuthCookieHelper.getUserIdentity();
+            this.UserIdentity = GymLedger.Helpers.JwtAuth.JwtTokenHelper.GetUserFromToken(token);
 
         }
         public void ValidateMe()
@@ -29,7 +29,10 @@ namespace GymLedger.Domains.Areas.Ledger.Commands
                 throw new Exception("Weight cannot be empty");
             }
 
-
+            if (View.ExerciseName == null)
+            {
+                throw new Exception("Exercise Name cannot be empty");
+            }
         }
     }
 }

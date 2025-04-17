@@ -24,14 +24,13 @@
 
                     <p class="text-muted">Date Added: @Model.DateAdded</p>
 
-                    <div class="modal-footer">
+                    <div class="modal-footer px-0 mx-0">
                         <a href="@Url.Action("ExerciseDetails", "Ledger", new { uniqueId = Model.UniqueId })" class="btn btn-primary me-auto">
                             <i class="fa-solid fa-arrow-right">
                             </i> Go to Exercise
                         </a>
-                        <button type = "button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type = "submit" class="btn btn-success px-4">
-                            <i class="fa-solid fa-check"></i> Save Changes
+                            <i class="fa-solid fa-check"></i> Save Changes 
                         </button>
                     </div>
                 }

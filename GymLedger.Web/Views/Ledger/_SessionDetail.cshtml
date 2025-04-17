@@ -66,8 +66,7 @@
             </div>
 
             <!-- Delete Button -->
-            <div class="modal-footer d-flex justify-content-between">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <div class="modal-footer d-flex justify-content-right">
                 @using (Html.BeginForm("DeleteSession", "Ledger", FormMethod.Post, new { id = "deleteSessionForm" }))
                 {
                     @Html.HiddenFor(m => m.UniqueId)

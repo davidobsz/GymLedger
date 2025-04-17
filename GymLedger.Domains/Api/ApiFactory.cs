@@ -65,6 +65,16 @@ namespace GymLedger.Domains.Api
         {
             return new DeleteUserCommandValidatorApi(new DeleteUserCommandHandlerApi(null, command), command);
         }
+
+        public static ICommandHandler<AddOneRepMaxCommandApi, ApiDataCommandResponse> AddOneRepMaxCommandHandlerApi(AddOneRepMaxCommandApi command)
+        {
+            return new AddOneRepMaxCommandValidatorApi(new AddOneRepMaxCommandHandlerApi(null, command), command);
+        }
+
+        public static ICommandHandler<DeleteOneRepMaxCommandApi, ApiDataCommandResponse> DeleteOneRepMaxCommandHandlerApi(DeleteOneRepMaxCommandApi command)
+        {
+            return new DeleteOneRepMaxCommandValidatorApi(new DeleteOneRepMaxCommandHandlerApi(null, command), command);
+        }
         #endregion
 
         #region Querys
@@ -96,6 +106,16 @@ namespace GymLedger.Domains.Api
         public static IQueryHandler<GetPreviousLoginsQueryApi, PreviousLoginsView> GetPreviousLoginsQueryHandlerApi(GetPreviousLoginsQueryApi query)
         {
             return new GetPreviousLoginsQueryValidatorApi(new GetPreviousLoginsQueryHandlerApi(query), query);
+        }
+
+        public static IQueryHandler<GetOneRepMaxesQueryApi, GetOneRepMaxesView> GetOneRepMaxesQueryHandlerApi(GetOneRepMaxesQueryApi query)
+        {
+            return new GetOneRepMaxesQueryValidatorApi(new GetOneRepMaxesQueryHandlerApi(query), query);
+        }
+
+        public static IQueryHandler<GetOneRepMaxQueryApi, OneRepMaxApiView> GetOneRepMaxQueryHandlerApi(GetOneRepMaxQueryApi query)
+        {
+            return new GetOneRepMaxQueryValidatorApi(new GetOneRepMaxQueryHandlerApi(query), query);
         }
         #endregion
     }

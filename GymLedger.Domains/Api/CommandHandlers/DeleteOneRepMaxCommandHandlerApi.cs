@@ -1,4 +1,5 @@
 ﻿using GymLedger.Data;
+using GymLedger.Domains.Api.Commands;
 using GymLedger.Domains.Areas.Ledger.Commands;
 using GymLedger.Domains.BaseCommands;
 using System;
@@ -7,20 +8,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GymLedger.Domains.Areas.Ledger.CommandHandlers
+namespace GymLedger.Domains.Api.CommandHandlers
 {
-    public class DeleteOneRepMaxCommandValidator : ICommandHandler<DeleteOneRepMaxCommand, DataCommandResponse>
+    public class DeleteOneRepMaxCommandValidatorApi : ICommandHandler<DeleteOneRepMaxCommandApi, ApiDataCommandResponse>
     {
-        readonly ICommandHandler<DeleteOneRepMaxCommand, DataCommandResponse> decorated;
-        DeleteOneRepMaxCommand Command;
+        readonly ICommandHandler<DeleteOneRepMaxCommandApi, ApiDataCommandResponse> decorated;
+        DeleteOneRepMaxCommandApi Command;
 
-        public DeleteOneRepMaxCommandValidator(ICommandHandler<DeleteOneRepMaxCommand, DataCommandResponse> decorated, DeleteOneRepMaxCommand command)
+        public DeleteOneRepMaxCommandValidatorApi(ICommandHandler<DeleteOneRepMaxCommandApi, ApiDataCommandResponse> decorated, DeleteOneRepMaxCommandApi command)
         {
             this.decorated = decorated;
             this.Command = command;
         }
 
-        public DataCommandResponse Execute()
+        public ApiDataCommandResponse Execute()
         {
             Command.ValidateMe();
 
@@ -38,18 +39,18 @@ namespace GymLedger.Domains.Areas.Ledger.CommandHandlers
         }
     }
 
-    public class DeleteOneRepMaxCommandHandler : ICommandHandler<DeleteOneRepMaxCommand, DataCommandResponse>
+    public class DeleteOneRepMaxCommandHandlerApi : ICommandHandler<DeleteOneRepMaxCommandApi, ApiDataCommandResponse>
     {
-        readonly ICommandHandler<DeleteOneRepMaxCommand, DataCommandResponse> decorated;
-        DeleteOneRepMaxCommand Command;
+        readonly ICommandHandler<DeleteOneRepMaxCommandApi, ApiDataCommandResponse> decorated;
+        DeleteOneRepMaxCommandApi Command;
 
-        public DeleteOneRepMaxCommandHandler(ICommandHandler<DeleteOneRepMaxCommand, DataCommandResponse> decorated, DeleteOneRepMaxCommand command)
+        public DeleteOneRepMaxCommandHandlerApi(ICommandHandler<DeleteOneRepMaxCommandApi, ApiDataCommandResponse> decorated, DeleteOneRepMaxCommandApi command)
         {
             this.decorated = decorated;
             this.Command = command;
         }
 
-        public DataCommandResponse Execute()
+        public ApiDataCommandResponse Execute()
         {
             using (DataContext db = new DataContext())
             {
@@ -62,7 +63,7 @@ namespace GymLedger.Domains.Areas.Ledger.CommandHandlers
                 db.OneRepMaxes.Remove(orm);
                 db.SaveChanges();
 
-                var response = new DataCommandResponse();
+                var response = new ApiDataCommandResponse();
 
                 response.Success = true;
                 response.Message = "One rep max deleted successfully";
