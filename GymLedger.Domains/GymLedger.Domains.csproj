@@ -67,6 +67,7 @@
     <Compile Include="Api\CommandHandlers\DeleteSessionCommandHandlerApi.cs" />
     <Compile Include="Api\CommandHandlers\DeleteUserCommandHandlerApi.cs" />
     <Compile Include="Api\CommandHandlers\EditExerciseCommandHandler.cs" />
+    <Compile Include="Api\CommandHandlers\EditSessionCommandHandlerApi.cs" />
     <Compile Include="Api\CommandHandlers\LoginApiAccountCommandHandler.cs" />
     <Compile Include="Api\CommandHandlers\RegisterAccountCommandHandlerApi.cs" />
     <Compile Include="Api\Commands\AddExerciseCommand.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="Api\Commands\DeleteSessionCommandApi.cs" />
     <Compile Include="Api\Commands\DeleteUserCommandApi.cs" />
     <Compile Include="Api\Commands\EditExerciseCommand.cs" />
+    <Compile Include="Api\Commands\EditSessionCommandApi.cs" />
     <Compile Include="Api\Commands\LoginApiAccountCommand.cs" />
     <Compile Include="Api\Commands\RegisterAccountCommandApi.cs" />
     <Compile Include="Api\QueryHandler\AccountDetailsGetApiQueryHandler.cs" />

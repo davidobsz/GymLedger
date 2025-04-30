@@ -75,6 +75,11 @@ namespace GymLedger.Domains.Api
         {
             return new DeleteOneRepMaxCommandValidatorApi(new DeleteOneRepMaxCommandHandlerApi(null, command), command);
         }
+
+        public static ICommandHandler<EditSessionCommandApi, ApiDataCommandResponse> EditSessionCommandHandlerApi(EditSessionCommandApi command)
+        {
+            return new EditSessionCommandValidatorApi(new EditSessionCommandHandlerApi(null, command), command);
+        }
         #endregion
 
         #region Querys

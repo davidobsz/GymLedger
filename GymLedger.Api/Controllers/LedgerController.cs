@@ -230,6 +230,34 @@ namespace GymLedger.Api.Controllers
             }
         }
 
+        [HttpPut]
+        [Route("editsession")]
+        public IHttpActionResult EditSession(EditSessionView view)
+        {
+            var token = Request.Headers.Authorization?.Parameter;
+            if (token == null)
+            {
+                return Unauthorized(); // Token missing
+            }
+
+            try
+            {
+                var handler = ApiFactory.EditSessionCommandHandlerApi(new Domains.Api.Commands.EditSessionCommandApi(view, token));
+                var response = handler.Execute();
+
+                return Ok(new
+                {
+                    Status = "Success",
+                    Message = "Successfully Edited Session",
+                    response.Data
+                });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message); // Invalid token or error handling
+            }
+        }
+
         [HttpDelete]
         [Route("deletesession")]
         public IHttpActionResult DeleteSession(DeleteSessionView view)
